@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book your intake call — Shortlist</title>
+<meta name="description" content="Book a free 20-minute intake call with Shortlist.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&family=Fragment+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/flow.css">
+<!--
+  NOT CONNECTED YET — booking is front-end only.
+  To go live, replace submitBooking() with a call to the chosen tool
+  (Cal.com / Calendly API, or a small serverless function that writes to
+  Google Calendar and emails the Meet link), and load real availability
+  in place of isTaken().
+-->
+</head>
+<body data-title="Book your intake call — Shortlist">
+
+<div class="demo" id="demoBar" role="note"><b>Preview.</b> Bookings aren’t connected to a calendar yet, so no invite is sent.</div>
+
+<header class="fhead">
+  <div class="wrap">
+    <a href="index.html" class="brand" aria-label="Shortlist home"><span class="brand-mark" aria-hidden="true"></span>Shortlist</a>
+    <ol class="stepper" aria-label="Booking steps">
+      <li data-step-ind="time" data-label="Pick a time" aria-current="step"><span class="n">1</span>Pick a time</li>
+      <li data-step-ind="details" data-label="Your details"><span class="n">2</span>Your details</li>
+      <li data-step-ind="done" data-label="Confirmed"><span class="n">3</span>Confirmed</li>
+    </ol>
+    <div class="stepper-m" aria-hidden="true"></div>
+    <div class="fhead-right"><a href="index.html">← Back to site</a></div>
+  </div>
+  <div class="progress" aria-hidden="true"><i></i></div>
+</header>
+
+<main class="flow">
+  <div>
+    <!-- STEP 1 · TIME -->
+    <section class="panel active" data-step="time" aria-labelledby="h-time">
+      <p class="eyebrow mono">Intake call · 20 minutes</p>
+      <h1 id="h-time">Pick a time for your call.</h1>
+      <p class="lede">Choose a day, then a time. We’ll talk about the roles you want and tell you honestly whether we can help.</p>
+
+      <div class="cal" id="cal">
+        <div class="cal-top">
+          <b id="calMonth" aria-live="polite"></b>
+          <div class="cal-nav">
+            <button type="button" class="icon-btn" id="prevM" aria-label="Previous month"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.5"/></svg></button>
+            <button type="button" class="icon-btn" id="nextM" aria-label="Next month"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M5 2l5 5-5 5" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          </div>
+        </div>
+        <div class="dow" aria-hidden="true"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
+        <div class="days-grid" id="daysGrid" role="group" aria-label="Available days"></div>
+      </div>
+
+      <div class="slots-h"><b id="slotsTitle">Available times</b><span class="mono">West Africa Time</span></div>
+      <div class="slots" id="slots" role="group" aria-labelledby="slotsTitle"></div>
+      <p class="err" id="err-slots" role="alert"></p>
+      <p class="tz" id="tzNote"></p>
+
+      <div class="actions">
+        <a href="index.html" class="btn-back">← Back to site</a>
+        <button type="button" class="btn btn-ink" id="toDetails"><span class="lbl-t">Continue</span> <span class="arr" aria-hidden="true">→</span></button>
+      </div>
+    </section>
+
+    <!-- STEP 2 · DETAILS -->
+    <section class="panel" data-step="details" aria-labelledby="h-details" hidden>
+      <p class="eyebrow mono" id="detailsWhen">Your call</p>
+      <h1 id="h-details">Tell us a little about you.</h1>
+      <p class="lede">It takes two minutes and means we can spend the call on your search, not on forms.</p>
+
+      <form id="detailsForm" novalidate>
+        <div class="fields">
+          <div class="row2">
+            <div class="field"><label for="name">Full name</label><input class="input" id="name" name="name" autocomplete="name" required><p class="err" id="err-name"></p></div>
+            <div class="field"><label for="email">Email</label><input class="input" id="email" name="email" type="email" autocomplete="email" inputmode="email" required><p class="err" id="err-email"></p></div>
+          </div>
+          <div class="field">
+            <label for="phone">WhatsApp number</label>
+            <div class="phone">
+              <select class="select" id="cc" name="cc" aria-label="Country code" autocomplete="tel-country-code">
+                <option value="+234">NG +234</option><option value="+233">GH +233</option><option value="+44">UK +44</option><option value="+1">US +1</option><option value="+1 ">CA +1</option><option value="+353">IE +353</option><option value="+49">DE +49</option><option value="+971">AE +971</option>
+              </select>
+              <input class="input" id="phone" name="phone" type="tel" autocomplete="tel-national" inputmode="tel" placeholder="803 123 4567" required>
+            </div>
+            <p class="hint">We’ll only use it for reminders about your call.</p>
+            <p class="err" id="err-phone"></p>
+          </div>
+
+          <div class="field">
+            <span class="legend" id="whereLbl">Where do you want to work?</span>
+            <div class="choices three" role="radiogroup" id="where" aria-labelledby="whereLbl">
+              <label class="choice"><input type="radio" name="where" value="Nigeria"><span class="choice-box"><span><span class="choice-t">In Nigeria</span><span class="choice-d">Lagos, Abuja, PH or remote</span></span></span></label>
+              <label class="choice"><input type="radio" name="where" value="Abroad"><span class="choice-box"><span><span class="choice-t">Abroad</span><span class="choice-d">UK, EU, Canada, remote</span></span></span></label>
+              <label class="choice"><input type="radio" name="where" value="Both"><span class="choice-box"><span><span class="choice-t">Both</span><span class="choice-d">Open to either</span></span></span></label>
+            </div>
+            <p class="err" id="err-where"></p>
+          </div>
+
+          <div class="row2">
+            <div class="field"><label for="roles">Roles you’re aiming for</label><input class="input" id="roles" name="roles" placeholder="e.g. Product analyst, data analyst" required><p class="err" id="err-roles"></p></div>
+            <div class="field">
+              <label for="exp">Years of experience</label>
+              <select class="select" id="exp" name="exp" required>
+                <option value="">Choose one</option><option>Less than 1 year</option><option>1–3 years</option><option>3–5 years</option><option>5–10 years</option><option>More than 10 years</option>
+              </select>
+              <p class="err" id="err-exp"></p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="plan">Package you’re interested in <span class="opt">Optional</span></label>
+            <select class="select" id="plan" name="plan">
+              <option value="">Not sure yet</option><option value="rewrite">CV Rewrite · one-off</option><option value="active">Active Search · monthly</option><option value="concierge">Full Concierge · monthly</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="notes">Anything we should know? <span class="opt">Optional</span></label>
+            <textarea class="textarea" id="notes" name="notes" placeholder="Career change, visa questions, a deadline you’re working to…"></textarea>
+          </div>
+
+          <div class="field">
+            <label class="check"><input type="checkbox" id="consent" name="consent" required><span>I agree to Shortlist storing these details to arrange my call. Read the <a href="#">privacy notice</a>.</span></label>
+            <p class="err" id="err-consent"></p>
+          </div>
+        </div>
+
+        <div class="alert" id="bookAlert" role="alert"></div>
+
+        <div class="actions">
+          <button type="button" class="btn-back" id="backTime">← Change time</button>
+          <button type="submit" class="btn btn-ink" id="confirmBtn"><span class="lbl-t">Confirm booking</span> <span class="arr" aria-hidden="true">→</span><span class="spin" aria-hidden="true"></span></button>
+        </div>
+      </form>
+    </section>
+
+    <!-- STEP 3 · DONE -->
+    <section class="panel" data-step="done" aria-labelledby="h-done" hidden>
+      <div class="done-mark" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M6 14.5l5.5 5.5L22 9" stroke="#141619" stroke-width="2.4"/></svg></div>
+      <h1 id="h-done">You’re booked.</h1>
+      <p class="lede" id="doneLede"></p>
+
+      <div class="cta-row">
+        <a class="btn btn-ink" id="gcal" target="_blank" rel="noopener">Add to Google Calendar</a>
+        <button type="button" class="btn btn-line" id="ics">Download calendar file</button>
+      </div>
+
+      <div class="block">
+        <h2>Before the call</h2>
+        <p>Nothing to prepare formally. These make the 20 minutes count:</p>
+        <ol class="next">
+          <li><span class="num">01</span><div><b>Have your current CV open</b><span>Whatever state it’s in. We’ve seen worse.</span></div></li>
+          <li><span class="num">02</span><div><b>Think of three roles you’d love</b><span>Job titles or real adverts. Specific beats general.</span></div></li>
+          <li><span class="num">03</span><div><b>Know your salary floor</b><span>The number below which you’d say no.</span></div></li>
+        </ol>
+      </div>
+
+      <div class="block">
+        <h2>After the call</h2>
+        <p>If we’re a good fit, we’ll send your agreement and payment link the same day. You sign and pay online, then upload your CV to get started.</p>
+      </div>
+
+      <div class="actions">
+        <a href="index.html" class="btn-back">← Back to Shortlist</a>
+      </div>
+    </section>
+  </div>
+
+  <aside class="aside" aria-label="Booking summary">
+    <div class="sum">
+      <div class="sum-h"><span class="mono">Your booking</span><span class="mono">Free</span></div>
+      <div class="sum-b">
+        <p class="sum-title">Intake call with Shortlist</p>
+        <dl>
+          <div><dt>When</dt><dd id="sumWhen" class="empty">Choose a time</dd></div>
+          <div><dt>Length</dt><dd>20 minutes</dd></div>
+          <div><dt>Where</dt><dd>Google Meet</dd></div>
+          <div><dt>Package</dt><dd id="sumPlan" class="empty">Not decided</dd></div>
+        </dl>
+        <ul class="sum-list">
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>We learn the roles, salary and locations you’re aiming for</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>We look at your CV and say what we’d change</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>You get a straight answer on which package fits, if any</li>
+        </ul>
+      </div>
+      <div class="sum-foot"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>No payment needed to book. Reschedule or cancel from your confirmation email.</div>
+    </div>
+    <p class="help">Can’t find a time that works? Email <a href="mailto:hello@shortlist.ng">hello@shortlist.ng</a> and we’ll fit you in.</p>
+  </aside>
+</main>
+
+<footer class="ffoot"><div class="wrap"><span>© 2026 Shortlist</span><span><a href="#">Privacy</a> · <a href="#">Terms</a></span></div></footer>
+
+<script src="assets/flow.js"></script>
+<script>
+(() => {
+  const { $, $$, wait, goTo, validate, liveClear, busy, isEmail, digits, esc, qs } = Flow;
+  const DEMO = true;
+  if (!DEMO) $('#demoBar').remove();
+
+  const PLANS = { rewrite: 'CV Rewrite', active: 'Active Search', concierge: 'Full Concierge' };
+  const TIMES = ['09:00', '10:00', '11:30', '13:00', '14:30', '16:00']; // WAT
+  const WAT_OFFSET = 1; // UTC+1, no daylight saving
+
+  /* ---- availability (replace with real calendar data) ---- */
+  const pad = n => String(n).padStart(2, '0');
+  const isoOf = d => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const available = new Set();
+  for (let i = 1; available.size < 15; i++) {
+    const d = new Date(today); d.setDate(today.getDate() + i);
+    if (d.getDay() !== 0 && d.getDay() !== 6) available.add(isoOf(d));
+  }
+  const availList = [...available];
+  function isTaken(iso, t) {
+    let h = 0; for (const c of iso + t) h = (h * 31 + c.charCodeAt(0)) >>> 0;
+    return h % 9 < 3;
+  }
+  const slotUTC = (iso, t) => {
+    const [y, m, d] = iso.split('-').map(Number), [hh, mm] = t.split(':').map(Number);
+    return new Date(Date.UTC(y, m - 1, d, hh - WAT_OFFSET, mm));
+  };
+  const localTZ = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+  const fmtLocal = dt => dt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  const differsFromWAT = dt => dt.getTimezoneOffset() !== -60 * WAT_OFFSET;
+
+  /* ---- state ---- */
+  const state = { iso: null, time: null, month: null };
+  const wantDate = qs.get('date'), wantTime = qs.get('time'), wantPlan = qs.get('plan');
+  state.iso = available.has(wantDate) ? wantDate : availList[0];
+  if (TIMES.includes(wantTime) && !isTaken(state.iso, wantTime)) state.time = wantTime;
+  const [sy, sm] = state.iso.split('-').map(Number); state.month = new Date(sy, sm - 1, 1);
+  if (PLANS[wantPlan]) { $('#plan').value = wantPlan; }
+
+  const firstMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+  const lastISO = availList[availList.length - 1].split('-').map(Number);
+  const lastMonth = new Date(lastISO[0], lastISO[1] - 1, 1);
+
+  /* ---- calendar ---- */
+  const grid = $('#daysGrid');
+  function drawMonth() {
+    const m = state.month;
+    $('#calMonth').textContent = m.toLocaleDateString('en-GB', { month: 'long', year: 'numeric' });
+    $('#prevM').disabled = m <= firstMonth;
+    $('#nextM').disabled = m >= lastMonth;
+    const lead = (m.getDay() + 6) % 7, days = new Date(m.getFullYear(), m.getMonth() + 1, 0).getDate();
+    let html = '';
+    for (let i = 0; i < lead; i++) html += '<span class="dd blank" aria-hidden="true"></span>';
+    for (let d = 1; d <= days; d++) {
+      const dt = new Date(m.getFullYear(), m.getMonth(), d), iso = isoOf(dt), ok = available.has(iso);
+      const label = dt.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' }) + (ok ? '' : ', unavailable');
+      html += `<button type="button" class="dd${+dt === +today ? ' today' : ''}" data-iso="${iso}" aria-label="${label}" aria-pressed="${iso === state.iso}" ${ok ? '' : 'disabled'} tabindex="${iso === state.iso ? 0 : -1}">${d}</button>`;
+    }
+    grid.innerHTML = html;
+    if (!grid.querySelector('[tabindex="0"]')) { const f = grid.querySelector('.dd:not(:disabled)'); f && (f.tabIndex = 0); }
+  }
+  grid.addEventListener('click', e => {
+    const b = e.target.closest('.dd'); if (!b || b.disabled) return;
+    state.iso = b.dataset.iso; state.time = null; drawMonth(); drawSlots(); updateSummary();
+    grid.querySelector(`[data-iso="${state.iso}"]`).focus();
+  });
+  grid.addEventListener('keydown', e => {
+    const moves = { ArrowRight: 1, ArrowLeft: -1, ArrowDown: 7, ArrowUp: -7 };
+    if (!(e.key in moves)) return;
+    e.preventDefault();
+    const btns = $$('.dd:not(.blank)', grid), i = btns.indexOf(document.activeElement);
+    let j = i + moves[e.key];
+    while (btns[j] && btns[j].disabled && Math.abs(moves[e.key]) === 1) j += moves[e.key];
+    const t = btns[j]; if (!t || t.disabled) return;
+    btns.forEach(b => b.tabIndex = -1); t.tabIndex = 0; t.focus();
+  });
+  $('#prevM').addEventListener('click', () => { state.month = new Date(state.month.getFullYear(), state.month.getMonth() - 1, 1); drawMonth(); });
+  $('#nextM').addEventListener('click', () => { state.month = new Date(state.month.getFullYear(), state.month.getMonth() + 1, 1); drawMonth(); });
+
+  /* ---- slots ---- */
+  const slotsEl = $('#slots');
+  function drawSlots() {
+    const d = new Date(state.iso + 'T12:00:00');
+    $('#slotsTitle').textContent = d.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
+    slotsEl.innerHTML = TIMES.map(t => {
+      const taken = isTaken(state.iso, t), utc = slotUTC(state.iso, t);
+      const sub = differsFromWAT(utc) ? `${fmtLocal(utc)} your time` : (taken ? 'Booked' : 'Available');
+      return `<button type="button" class="slot" data-t="${t}" aria-pressed="${state.time === t}" ${taken ? 'disabled' : ''} aria-label="${t} West Africa Time${taken ? ', booked' : ''}"><b>${t}</b><small>${sub}</small></button>`;
+    }).join('');
+    const tzEl = $('#tzNote');
+    tzEl.textContent = differsFromWAT(slotUTC(state.iso, TIMES[0]))
+      ? `Times are in West Africa Time (Lagos). Your local time (${localTZ.replace(/_/g, ' ')}) is shown underneath.`
+      : 'Times are in West Africa Time (Lagos).';
+  }
+  slotsEl.addEventListener('click', e => {
+    const b = e.target.closest('.slot'); if (!b || b.disabled) return;
+    state.time = b.dataset.t; drawSlots(); updateSummary();
+    Flow.setError(slotsEl, ''); slotsEl.querySelector(`[data-t="${state.time}"]`).focus();
+  });
+  slotsEl.dataset.errId = 'slots';
+
+  /* ---- summary ---- */
+  const whenText = () => {
+    const d = new Date(state.iso + 'T12:00:00');
+    return `${d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' })} · ${state.time} WAT`;
+  };
+  function updateSummary() {
+    const w = $('#sumWhen');
+    if (state.time) { w.classList.remove('empty'); w.innerHTML = `<span class="flash">${whenText()}</span>`; }
+    else { w.classList.add('empty'); w.textContent = 'Choose a time'; }
+    const p = $('#plan').value, sp = $('#sumPlan');
+    sp.classList.toggle('empty', !p); sp.textContent = PLANS[p] || 'Not decided';
+  }
+  $('#plan').addEventListener('change', updateSummary);
+
+  /* ---- step 1 → 2 ---- */
+  $('#toDetails').addEventListener('click', () => {
+    if (!state.time) { Flow.setError(slotsEl, 'Choose a time to continue'); slotsEl.querySelector('.slot:not(:disabled)')?.focus(); return; }
+    const d = new Date(state.iso + 'T12:00:00');
+    $('#detailsWhen').textContent = `${d.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' })} · ${state.time} WAT`;
+    goTo('details');
+  });
+  $('#backTime').addEventListener('click', () => goTo('time'));
+
+  /* ---- step 2 → submit ---- */
+  const form = $('#detailsForm');
+  liveClear(form);
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const v = id => $('#' + id).value.trim();
+    const em = v('email'), ph = digits(v('phone'));
+    const ok = validate([
+      [$('#name'), v('name').length < 2 ? 'Enter your full name' : ''],
+      [$('#email'), !em ? 'Enter your email address' : !isEmail(em) ? 'Enter an email address like name@example.com' : ''],
+      [$('#phone'), ph.length < 7 || ph.length > 15 ? 'Enter your WhatsApp number' : ''],
+      [$('#where'), form.where.value ? '' : 'Choose where you want to work'],
+      [$('#roles'), v('roles') ? '' : 'Tell us at least one role you’re aiming for'],
+      [$('#exp'), v('exp') ? '' : 'Choose your years of experience'],
+      [$('#consent'), $('#consent').checked ? '' : 'Tick the box so we can store your details for the call'],
+    ]);
+    if (!ok) return;
+    const alert = $('#bookAlert'); alert.classList.remove('show');
+    const btn = $('#confirmBtn'); busy(btn, true);
+    try {
+      await submitBooking({ iso: state.iso, time: state.time, name: v('name'), email: em, phone: $('#cc').value.trim() + ' ' + v('phone'), where: form.where.value, roles: v('roles'), exp: v('exp'), plan: v('plan'), notes: v('notes') });
+      showDone(v('name'), em);
+    } catch (err) {
+      alert.innerHTML = `<div><b>We couldn’t confirm your booking.</b> ${esc(err.message)} Your answers are still here, so you can try again.</div>`;
+      alert.classList.add('show');
+    } finally { busy(btn, false); }
+  });
+
+  /* Replace with the real booking call. Throw an Error with a plain message on failure. */
+  async function submitBooking(data) {
+    if (!navigator.onLine) throw new Error('You seem to be offline. Check your connection.');
+    await wait(1100);
+    return { ok: true };
+  }
+
+  /* ---- done ---- */
+  function showDone(name, email) {
+    const d = new Date(state.iso + 'T12:00:00');
+    const first = name.split(' ')[0];
+    $('#doneLede').innerHTML = `Thanks, ${esc(first)}. Your call is on <b>${d.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' })} at ${state.time} WAT</b>. We’ll email the Google Meet link to <b>${esc(email)}</b>.`;
+    const start = slotUTC(state.iso, state.time), end = new Date(+start + 20 * 60000);
+    const stamp = dt => dt.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+    const title = 'Shortlist intake call', details = '20-minute intake call with Shortlist. The Google Meet link is in your confirmation email.';
+    $('#gcal').href = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${stamp(start)}/${stamp(end)}&details=${encodeURIComponent(details)}`;
+    $('#ics').onclick = () => {
+      const ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Shortlist//Intake call//EN', 'BEGIN:VEVENT',
+        `UID:${stamp(start)}-${Math.random().toString(36).slice(2)}@shortlist.ng`, `DTSTAMP:${stamp(new Date())}`,
+        `DTSTART:${stamp(start)}`, `DTEND:${stamp(end)}`, `SUMMARY:${title}`, `DESCRIPTION:${details}`,
+        'BEGIN:VALARM', 'TRIGGER:-PT30M', 'ACTION:DISPLAY', 'DESCRIPTION:Shortlist call in 30 minutes', 'END:VALARM',
+        'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([ics], { type: 'text/calendar' }));
+      a.download = 'shortlist-intake-call.ics'; a.click();
+      setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    };
+    goTo('done');
+  }
+
+  drawMonth(); drawSlots(); updateSummary(); goTo('time', { focus: false });
+})();
+</script>
+</body>
+</html>

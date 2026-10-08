@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Start your package — Shortlist</title>
+<meta name="description" content="Choose your Shortlist package, sign your agreement and pay securely.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&family=Fragment+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/flow.css">
+<!--
+  GOING LIVE
+  1. Put the client's Paystack PUBLIC key in PAYSTACK_PUBLIC_KEY (pk_test_… first, then pk_live_…).
+     Never put the secret key in this file.
+  2. Verify every payment on a server (Paystack "verify transaction" API or webhook) before
+     starting work. The browser callback alone is not proof of payment.
+  3. Monthly packages need a Paystack Plan + subscription for automatic renewals.
+  4. Store the signed agreement (name, timestamp, IP, agreement version) server-side.
+  The agreement text below is a DRAFT placeholder and must be reviewed by a lawyer.
+-->
+</head>
+<body data-title="Start your package — Shortlist">
+
+<div class="demo" id="demoBar" role="note"><b>Preview.</b> Payments are in demo mode. No money is taken and no card details are requested.</div>
+
+<header class="fhead">
+  <div class="wrap">
+    <a href="index.html" class="brand" aria-label="Shortlist home"><span class="brand-mark" aria-hidden="true"></span>Shortlist</a>
+    <ol class="stepper" aria-label="Checkout steps">
+      <li data-step-ind="package" data-label="Package" aria-current="step"><span class="n">1</span>Package</li>
+      <li data-step-ind="agreement" data-label="Agreement"><span class="n">2</span>Agreement</li>
+      <li data-step-ind="payment" data-label="Payment"><span class="n">3</span>Payment</li>
+      <li data-step-ind="done" data-label="Done"><span class="n">4</span>Done</li>
+    </ol>
+    <div class="stepper-m" aria-hidden="true"></div>
+    <div class="fhead-right"><a href="index.html">← Back to site</a></div>
+  </div>
+  <div class="progress" aria-hidden="true"><i></i></div>
+</header>
+
+<main class="flow">
+  <div>
+    <!-- STEP 1 · PACKAGE -->
+    <section class="panel active" data-step="package" aria-labelledby="h-package">
+      <p class="eyebrow mono">After your intake call</p>
+      <h1 id="h-package">Start your package.</h1>
+      <p class="lede">Confirm the package we agreed on the call and your details. Next you’ll read and sign the agreement, then pay.</p>
+
+      <form id="pkgForm" novalidate>
+        <div class="block" style="margin-top:0">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:var(--s4);margin-bottom:var(--s4)">
+            <span class="legend" id="pkgLbl">Package</span>
+            <div class="seg" id="seg" role="group" aria-label="Currency">
+              <span class="thumb" aria-hidden="true"></span>
+              <button type="button" aria-pressed="true" data-cur="ngn">Naira ₦</button>
+              <button type="button" aria-pressed="false" data-cur="usd">Dollars $</button>
+            </div>
+          </div>
+          <div class="choices pkg" role="radiogroup" id="pkg" aria-labelledby="pkgLbl"></div>
+          <p class="err" id="err-pkg"></p>
+        </div>
+
+        <div class="block">
+          <h2>Your details</h2>
+          <p>Use the same email you booked your call with. Your receipt and signed agreement go there.</p>
+          <div class="fields">
+            <div class="row2">
+              <div class="field"><label for="name">Full legal name</label><input class="input" id="name" autocomplete="name"><p class="hint">As it should appear on the agreement.</p><p class="err" id="err-name"></p></div>
+              <div class="field"><label for="email">Email</label><input class="input" id="email" type="email" autocomplete="email" inputmode="email"><p class="err" id="err-email"></p></div>
+            </div>
+            <div class="field">
+              <label for="phone">Phone number</label>
+              <div class="phone">
+                <select class="select" id="cc" aria-label="Country code" autocomplete="tel-country-code"><option value="+234">NG +234</option><option value="+233">GH +233</option><option value="+44">UK +44</option><option value="+1">US/CA +1</option><option value="+353">IE +353</option><option value="+971">AE +971</option></select>
+                <input class="input" id="phone" type="tel" autocomplete="tel-national" inputmode="tel" placeholder="803 123 4567">
+              </div>
+              <p class="err" id="err-phone"></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <a href="index.html#packages" class="btn-back">← Packages</a>
+          <button type="submit" class="btn btn-ink"><span class="lbl-t">Continue to agreement</span> <span class="arr" aria-hidden="true">→</span></button>
+        </div>
+      </form>
+    </section>
+
+    <!-- STEP 2 · AGREEMENT -->
+    <section class="panel" data-step="agreement" aria-labelledby="h-agreement" hidden>
+      <p class="eyebrow mono">Service agreement</p>
+      <h1 id="h-agreement">Read and sign your agreement.</h1>
+      <p class="lede">The website and the agreement say the same thing. Here’s the short version, then the full text.</p>
+
+      <div class="plain">
+        <h2>In plain words</h2>
+        <ul>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg><span id="plainDeliver"></span></li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.5"/></svg><span>We don’t guarantee interviews or a job offer. Hiring decisions belong to employers.</span></li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg><span>Nothing is sent to an employer without your approval.</span></li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg><span id="plainCancel"></span></li>
+        </ul>
+      </div>
+
+      <div class="doc-wrap" id="docWrap">
+        <article class="doc" id="doc" tabindex="0" aria-label="Full service agreement">
+          <div class="meta"><span>Service agreement · v0.1 draft</span><span id="docDate"></span></div>
+          <h3>Job-search support agreement</h3>
+          <p>This agreement is between <b>Shortlist</b> (“we”, “us”) and <span class="fill" data-fill="name"></span> (“you”) for the <span class="fill" data-fill="pkg"></span> package.</p>
+
+          <h4>1. What we will do</h4>
+          <p id="docServices"></p>
+          <h4>2. What we don’t promise</h4>
+          <p>We do not guarantee that you will be invited to interview or offered a job. Employers make their own decisions. We are a job-search support service, not a recruitment agency, and we do not take fees from employers.</p>
+          <h4>3. Your approval</h4>
+          <p>We will not send any application, CV or message to an employer that you have not approved. You can approve or reject roles from your tracker or by message.</p>
+          <h4>4. Your responsibilities</h4>
+          <p>You agree to give us accurate information about your experience and qualifications. We will not invent or exaggerate experience on your behalf, and we may pause work if information turns out to be untrue.</p>
+          <h4>5. Fees and payment</h4>
+          <p id="docFees"></p>
+          <h4>6. Cancelling and refunds</h4>
+          <p id="docCancel"></p>
+          <h4>7. Your documents and data</h4>
+          <p>Your CV, certificates and personal details are stored privately and shared only with employers you have approved. You can ask us to delete them at any time, and we will confirm when it’s done.</p>
+          <h4>8. Ending this agreement</h4>
+          <p>Either of us can end this agreement with written notice by email. Work already delivered stays yours.</p>
+          <h4>9. Law</h4>
+          <p>This agreement is governed by the laws of the Federal Republic of Nigeria.</p>
+          <p style="margin-top:var(--s6);color:var(--ink-3);font-size:14px">End of agreement.</p>
+        </article>
+        <div class="doc-fade" aria-hidden="true"></div>
+      </div>
+      <div class="read-state"><span id="readState">Scroll to read the full agreement</span><span class="mono">9 sections</span></div>
+
+      <form id="signForm" novalidate>
+        <div class="sign">
+          <div class="field">
+            <label class="check"><input type="checkbox" id="agree"><span>I’ve read the agreement and agree to its terms.</span></label>
+            <p class="err" id="err-agree"></p>
+          </div>
+          <div class="field">
+            <label for="sigName">Type your full name to sign</label>
+            <input class="input" id="sigName" autocomplete="off" spellcheck="false">
+            <p class="err" id="err-sigName"></p>
+            <div class="sig-line" aria-hidden="true">
+              <div class="sig empty" id="sigPreview">Your signature</div>
+              <div class="sig-date" id="sigDate"></div>
+            </div>
+            <div class="sig-cap" aria-hidden="true"><span>Signature</span><span>Date</span></div>
+          </div>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back="package">← Back</button>
+          <button type="submit" class="btn btn-ink"><span class="lbl-t">Sign and continue</span> <span class="arr" aria-hidden="true">→</span></button>
+        </div>
+      </form>
+    </section>
+
+    <!-- STEP 3 · PAYMENT -->
+    <section class="panel" data-step="payment" aria-labelledby="h-payment" hidden>
+      <p class="eyebrow mono">Payment</p>
+      <h1 id="h-payment">Pay securely.</h1>
+      <p class="lede">Choose how you’d like to pay. You’ll finish in Paystack’s secure window; we never see your card details.</p>
+
+      <span class="legend" id="pmLbl">Payment method</span>
+      <div class="choices pay-methods" role="radiogroup" aria-labelledby="pmLbl" style="margin-top:var(--s3)">
+        <label class="choice"><input type="radio" name="pm" value="card" checked><span class="choice-box"><span><span class="choice-t">Debit or credit card</span><span class="choice-d">Visa, Mastercard and Verve</span></span><span class="pm-icons" aria-hidden="true"><span>VISA</span><span>MC</span><span>VERVE</span></span></span></label>
+        <label class="choice"><input type="radio" name="pm" value="bank_transfer"><span class="choice-box"><span><span class="choice-t">Bank transfer</span><span class="choice-d">Transfer to a one-time account number from any Nigerian bank</span></span></span></label>
+      </div>
+
+      <div class="paybox">
+        <button type="button" class="btn btn-ink" id="payBtn"><span class="lbl-t" id="payLbl">Pay</span><span class="spin" aria-hidden="true"></span></button>
+        <div class="pay-note"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="3" y="7" width="10" height="7" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M5 7V5a3 3 0 016 0v2" stroke="currentColor" stroke-width="1.3"/></svg><span id="payNote"></span></div>
+        <div class="demo-note" id="demoNote"><b>Demo mode</b>No payment window opens and nothing is charged. Add the Paystack public key to take real payments.</div>
+      </div>
+      <div class="alert" id="payAlert" role="alert"></div>
+
+      <div class="actions">
+        <button type="button" class="btn-back" data-back="agreement">← Back to agreement</button>
+      </div>
+    </section>
+
+    <!-- STEP 4 · DONE -->
+    <section class="panel" data-step="done" aria-labelledby="h-done" hidden>
+      <div class="done-mark" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M6 14.5l5.5 5.5L22 9" stroke="#141619" stroke-width="2.4"/></svg></div>
+      <h1 id="h-done">You’re all set.</h1>
+      <p class="lede" id="doneLede"></p>
+
+      <div class="sum receipt" style="box-shadow:none">
+        <div class="sum-h"><span class="mono">Receipt</span><span class="mono" id="rRef"></span></div>
+        <div class="sum-b"><dl id="rList"></dl></div>
+      </div>
+
+      <div class="block">
+        <h2>What happens next</h2>
+        <ol class="next" id="nextList"></ol>
+      </div>
+
+      <div class="actions">
+        <a href="index.html" class="btn-back">← Back to Shortlist</a>
+      </div>
+    </section>
+  </div>
+
+  <aside class="aside" aria-label="Order summary">
+    <div class="sum">
+      <div class="sum-h"><span class="mono">Order summary</span><span class="mono" id="sumBilling"></span></div>
+      <div class="sum-b">
+        <p class="sum-title" id="sumPkg"></p>
+        <dl>
+          <div><dt>Price</dt><dd id="sumPrice"></dd></div>
+          <div><dt>Billing</dt><dd id="sumCycle"></dd></div>
+          <div><dt>Agreement</dt><dd id="sumSigned" class="empty">Not signed yet</dd></div>
+        </dl>
+        <div class="total"><span id="totalLbl">Due today</span><b id="sumTotal"></b></div>
+        <ul class="sum-list" id="sumIncl"></ul>
+      </div>
+      <div class="sum-foot"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="3" y="7" width="10" height="7" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M5 7V5a3 3 0 016 0v2" stroke="currentColor" stroke-width="1.3"/></svg>Payments are processed by Paystack. We never see or store your card details.</div>
+    </div>
+    <p class="help">Questions about your package? Email <a href="mailto:hello@shortlist.ng">hello@shortlist.ng</a>.</p>
+  </aside>
+</main>
+
+<footer class="ffoot"><div class="wrap"><span>© 2026 Shortlist</span><span><a href="#">Refund policy</a> · <a href="#">Privacy</a> · <a href="#">Terms</a></span></div></footer>
+
+<script src="assets/flow.js"></script>
+<script>
+(() => {
+  const { $, $$, wait, goTo, validate, liveClear, busy, isEmail, digits, esc, qs } = Flow;
+  const PAYSTACK_PUBLIC_KEY = ''; // pk_test_… / pk_live_… — public key only
+  const DEMO = !PAYSTACK_PUBLIC_KEY;
+  if (!DEMO) { $('#demoBar').remove(); $('#demoNote').remove(); }
+
+  const PKGS = {
+    rewrite:   { name: 'CV Rewrite',     ngn: 45000,  usd: 35,  monthly: false, blurb: 'CV, LinkedIn and cover letter template',
+                 incl: ['CV rewritten for applicant tracking systems', 'LinkedIn headline and About section', 'Two rounds of revisions', 'Delivered in 5 working days'],
+                 services: 'Rewrite your CV for applicant tracking systems, rewrite your LinkedIn headline and About section, and provide a cover letter template. You get two rounds of revisions. The first draft is delivered within five working days of receiving your documents.' },
+    active:    { name: 'Active Search',  ngn: 150000, usd: 110, monthly: true,  blurb: '30 tailored applications a month', tag: 'Recommended',
+                 incl: ['Everything in CV Rewrite', '30 tailored applications a month', 'You approve every shortlist', 'Live application tracker', 'Weekly 15-minute check-in'],
+                 services: 'Provide everything in CV Rewrite, plus up to 30 tailored applications each month to roles you have approved, a live tracker showing every application, and a 15-minute check-in call each week.' },
+    concierge: { name: 'Full Concierge', ngn: 280000, usd: 210, monthly: true,  blurb: '60 applications and interview coaching',
+                 incl: ['Everything in Active Search', '60 tailored applications a month', 'Three mock interviews with feedback', 'Salary negotiation notes', 'Priority WhatsApp line'],
+                 services: 'Provide everything in Active Search, with up to 60 tailored applications each month, three video mock interviews with written feedback, salary negotiation notes before offers, and a priority WhatsApp line to your specialist.' },
+  };
+  const state = { plan: PKGS[qs.get('plan')] ? qs.get('plan') : 'active', cur: 'ngn', signedAt: null, ref: null };
+  const money = (cur, n) => cur === 'ngn' ? '₦' + n.toLocaleString('en-NG') : '$' + n.toLocaleString('en-US');
+  const price = () => money(state.cur, PKGS[state.plan][state.cur]);
+  const moneyHTML = (cur, n) => `<i class="cur">${cur === 'ngn' ? '₦' : '$'}</i>${n.toLocaleString(cur === 'ngn' ? 'en-NG' : 'en-US')}`;
+  const fmtDate = d => d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  const fmtStamp = d => `${d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })}, ${d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })}`;
+
+  /* ---- package list ---- */
+  const pkgEl = $('#pkg');
+  function drawPkgs() {
+    pkgEl.innerHTML = Object.entries(PKGS).map(([k, p]) => `
+      <label class="choice"><input type="radio" name="pkg" value="${k}" ${k === state.plan ? 'checked' : ''}>
+        <span class="choice-box"><span><span class="choice-t">${p.name}${p.tag ? `<span class="tag">${p.tag}</span>` : ''}</span><span class="choice-d">${p.blurb}</span></span>
+        <span class="pkg-price"><b>${moneyHTML(state.cur, p[state.cur])}</b><small>${p.monthly ? 'per month' : 'one-off'}</small></span></span></label>`).join('');
+  }
+  pkgEl.addEventListener('change', e => { state.plan = e.target.value; render(); });
+
+  const seg = $('#seg');
+  $$('button', seg).forEach(b => b.addEventListener('click', () => {
+    state.cur = b.dataset.cur;
+    $$('button', seg).forEach(x => x.setAttribute('aria-pressed', x === b));
+    seg.classList.toggle('usd', state.cur === 'usd');
+    drawPkgs(); render();
+  }));
+
+  /* ---- summary + agreement text ---- */
+  function render() {
+    const p = PKGS[state.plan];
+    $('#sumPkg').textContent = p.name;
+    $('#sumBilling').textContent = p.monthly ? 'Monthly' : 'One-off';
+    $('#sumPrice').textContent = price() + (p.monthly ? ' / month' : '');
+    $('#sumCycle').textContent = p.monthly ? 'Renews monthly' : 'Pay once';
+    $('#sumTotal').innerHTML = moneyHTML(state.cur, p[state.cur]);
+    $('#sumIncl').innerHTML = p.incl.map(i => `<li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>${i}</li>`).join('');
+    $('#payLbl').textContent = `Pay ${price()}`;
+    $('#payNote').textContent = p.monthly
+      ? `You pay ${price()} today for your first month. It renews monthly until you cancel.`
+      : `You pay ${price()} once. There’s nothing more to pay for this package.`;
+
+    $('#plainDeliver').textContent = p.monthly
+      ? `We rewrite your CV and send up to ${state.plan === 'active' ? 30 : 60} tailored applications a month, logged in your tracker.`
+      : 'We rewrite your CV and LinkedIn, with two rounds of revisions, within five working days.';
+    $('#plainCancel').textContent = p.monthly
+      ? 'Cancel any time before your next billing date and you won’t be charged again.'
+      : 'If we haven’t started your rewrite, you can cancel for a full refund.';
+    $$('[data-fill="pkg"]').forEach(el => el.textContent = p.name);
+    $('#docServices').textContent = 'We will ' + p.services.charAt(0).toLowerCase() + p.services.slice(1);
+    $('#docFees').textContent = p.monthly
+      ? `The fee is ${price()} per month, paid in advance. Payment is processed by Paystack. The first payment is due when you sign; later payments are taken on the same date each month.`
+      : `The fee is ${price()}, paid once in advance when you sign. Payment is processed by Paystack.`;
+    $('#docCancel').textContent = p.monthly
+      ? 'You can cancel at any time by email or from your tracker. Cancelling stops future payments; the current month is not refunded once applications for that month have started.'
+      : 'You can cancel for a full refund until we start your first draft. Once work has started, refunds are at our discretion and pro-rated to the work delivered.';
+  }
+
+  /* ---- step 1 ---- */
+  liveClear(document);
+  $('#pkgForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const v = id => $('#' + id).value.trim(), em = v('email'), ph = digits(v('phone'));
+    if (!validate([
+      [$('#name'), v('name').split(/\s+/).length < 2 ? 'Enter your first and last name' : ''],
+      [$('#email'), !em ? 'Enter your email address' : !isEmail(em) ? 'Enter an email address like name@example.com' : ''],
+      [$('#phone'), ph.length < 7 || ph.length > 15 ? 'Enter your phone number' : ''],
+    ])) return;
+    $$('[data-fill="name"]').forEach(el => el.textContent = v('name'));
+    $('#docDate').textContent = fmtDate(new Date());
+    $('#sigDate').textContent = new Date().toLocaleDateString('en-GB');
+    goTo('agreement');
+    $('#doc').scrollTop = 0; onDocScroll();
+  });
+
+  /* ---- step 2 ---- */
+  const doc = $('#doc');
+  function onDocScroll() {
+    const end = doc.scrollTop + doc.clientHeight >= doc.scrollHeight - 24;
+    $('#docWrap').classList.toggle('end', end);
+    if (end) $('#readState').textContent = 'You’ve reached the end of the agreement';
+  }
+  doc.addEventListener('scroll', onDocScroll, { passive: true });
+  const sigIn = $('#sigName'), sigOut = $('#sigPreview');
+  sigIn.addEventListener('input', () => {
+    const t = sigIn.value.trim();
+    sigOut.textContent = t || 'Your signature'; sigOut.classList.toggle('empty', !t);
+  });
+  const norm = s => s.trim().replace(/\s+/g, ' ').toLowerCase();
+  $('#signForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const name = $('#name').value.trim(), sig = sigIn.value;
+    if (!validate([
+      [$('#agree'), $('#agree').checked ? '' : 'Tick the box to confirm you agree'],
+      [sigIn, !sig.trim() ? 'Type your full name to sign' : norm(sig) !== norm(name) ? `Type your name exactly as entered: ${name}` : ''],
+    ])) return;
+    state.signedAt = new Date();
+    const s = $('#sumSigned'); s.classList.remove('empty'); s.innerHTML = `<span class="flash">Signed ${fmtStamp(state.signedAt)}</span>`;
+    goTo('payment');
+  });
+  $$('[data-back]').forEach(b => b.addEventListener('click', () => goTo(b.dataset.back)));
+
+  /* ---- step 3 ---- */
+  const payBtn = $('#payBtn'), payAlert = $('#payAlert');
+  const showPayError = html => { payAlert.innerHTML = `<div>${html}</div>`; payAlert.classList.add('show'); };
+  payBtn.addEventListener('click', async () => {
+    payAlert.classList.remove('show');
+    if (!navigator.onLine) return showPayError('<b>You seem to be offline.</b> Check your connection and try again. You haven’t been charged.');
+    const method = document.querySelector('input[name="pm"]:checked').value;
+    state.ref = 'SL-' + Date.now().toString(36).toUpperCase().slice(-6) + Math.random().toString(36).slice(2, 5).toUpperCase();
+    busy(payBtn, true);
+    try {
+      const ref = DEMO ? await demoPay() : await paystackPay(method);
+      if (ref) done(method, ref);
+    } catch (err) {
+      showPayError(`<b>Payment didn’t go through.</b> ${esc(err.message)}`);
+    } finally { busy(payBtn, false); }
+  });
+
+  async function demoPay() { await wait(1600); return state.ref; }
+
+  function loadPaystack() {
+    return window.PaystackPop ? Promise.resolve() : new Promise((ok, fail) => {
+      const s = document.createElement('script'); s.src = 'https://js.paystack.co/v1/inline.js';
+      s.onload = ok; s.onerror = () => fail(new Error('The payment window couldn’t load. Check your connection and try again.'));
+      document.head.appendChild(s);
+    });
+  }
+  async function paystackPay(method) {
+    await loadPaystack();
+    const p = PKGS[state.plan];
+    return new Promise((resolve, reject) => {
+      const h = PaystackPop.setup({
+        key: PAYSTACK_PUBLIC_KEY, email: $('#email').value.trim(), ref: state.ref,
+        amount: p[state.cur] * 100, currency: state.cur === 'usd' ? 'USD' : 'NGN', channels: [method],
+        metadata: { custom_fields: [{ display_name: 'Package', variable_name: 'package', value: p.name }, { display_name: 'Signed', variable_name: 'signed_at', value: state.signedAt.toISOString() }] },
+        callback: r => resolve(r.reference), // verify on the server before starting work
+        onClose: () => reject(new Error('The payment window was closed before paying. You haven’t been charged.')),
+      });
+      h.openIframe();
+    });
+  }
+
+  /* ---- step 4 ---- */
+  function done(method, ref) {
+    const p = PKGS[state.plan], email = $('#email').value.trim(), first = $('#name').value.trim().split(' ')[0];
+    $('#doneLede').innerHTML = `Welcome to Shortlist, ${esc(first)}. A receipt and a copy of your signed agreement will be emailed to <b>${esc(email)}</b>.`;
+    $('#rRef').textContent = ref;
+    $('#rList').innerHTML = [
+      ['Package', p.name], ['Amount paid', price() + (DEMO ? ' (demo)' : '')],
+      ['Method', method === 'card' ? 'Card' : 'Bank transfer'], ['Agreement', 'Signed ' + fmtStamp(state.signedAt)],
+      ...(p.monthly ? [['Next payment', fmtDate(new Date(new Date().setMonth(new Date().getMonth() + 1)))]] : []),
+    ].map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('');
+    const steps = [
+      ['Upload your CV and work history', 'Your current CV, certificates and a short form about each past role.', '<span class="soon">Next page · coming soon</span>'],
+      ['Get your first draft', 'Within five working days of your upload. Comment on any line.', ''],
+      p.monthly ? ['Approve your first shortlist', 'We send roles that fit your brief. Applications go out once you approve them.', '']
+                : ['Use your two revision rounds', 'We rework anything that doesn’t sound like you on your best day.', ''],
+    ];
+    $('#nextList').innerHTML = steps.map(([t, d, x], i) => `<li><span class="num">0${i + 1}</span><div><b>${t}</b><span>${d}</span></div>${x}</li>`).join('');
+    $('#totalLbl').textContent = 'Paid today';
+    goTo('done');
+  }
+
+  drawPkgs(); render(); goTo('package', { focus: false });
+})();
+</script>
+</body>
+</html>

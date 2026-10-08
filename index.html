@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&family=Fragment+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/base.css">
 <!--
   PLACEHOLDERS — confirm with client before launch:
   • Business name "Shortlist", contact details, address
@@ -15,80 +16,12 @@
   • Tracker rows, CV samples and company names are invented sample content
 -->
 <style>
-:root{
-  --paper:#F3F4F1; --sheet:#FFFFFF; --ink:#141619; --ink-2:#464A51; --ink-3:#6B6F76;
-  --rule:#DADCD6; --rule-2:#C4C7C0; --scroll:#8A8E88;
-  --marker:#F2E85A;
-  --night:#111315; --night-2:#191C1F; --night-rule:#2A2E33; --night-ink:#ECEDEA; --night-ink-2:#A3A7AD;
-
-  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px; --s7:48px; --s8:64px; --s9:96px; --s10:128px;
-  --r1:2px; --r2:6px; --r3:10px;
-
-  --t-mono:12.5px; --t-sm:14px; --t-body:17px; --t-lead:20px; --t-h3:26px;
-  --t-h2:clamp(36px, 4.6vw, 64px);
-  --t-h1:clamp(44px, 5.75vw, 92px);
-
-  --ease-out:cubic-bezier(.23,1,.32,1);
-  --ease-io:cubic-bezier(.77,0,.175,1);
-
-  --sh-paper:0 1px 0 rgba(20,22,25,.04), 0 2px 4px -2px rgba(20,22,25,.08), 0 18px 32px -16px rgba(20,22,25,.18), 0 48px 96px -48px rgba(20,22,25,.28);
-  --sh-lift:0 1px 0 rgba(20,22,25,.04), 0 10px 24px -14px rgba(20,22,25,.22);
-
-  --pad:clamp(20px, 4vw, 48px);
-  --max:1320px;
-
-  --sans:"Schibsted Grotesk", ui-sans-serif, system-ui, sans-serif;
-  --serif:"Newsreader", Georgia, serif;
-  --mono:"Fragment Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-}
-*,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;text-size-adjust:100%;color-scheme:light;accent-color:var(--ink);scrollbar-color:var(--scroll) var(--paper)}
-@supports not (scrollbar-color:auto){
-  ::-webkit-scrollbar{width:12px;height:12px}
-  ::-webkit-scrollbar-track{background:var(--paper)}
-  ::-webkit-scrollbar-thumb{background:var(--scroll);border:3px solid var(--paper);border-radius:var(--r2)}
-  ::-webkit-scrollbar-thumb:hover{background:var(--ink-2)}
-  ::-webkit-scrollbar-corner{background:var(--paper)}
-}
 html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth{scroll-behavior:auto!important}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:var(--t-body);line-height:1.55;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;overflow-x:hidden}
-img,svg{display:block;max-width:100%}
-a{color:inherit;text-decoration:none}
-button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
-:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:var(--r1)}
-.night :focus-visible{outline-color:var(--marker)}
-::selection{background:var(--marker);color:var(--ink)}
-
-.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
-.mono{font-family:var(--mono);font-size:var(--t-mono);letter-spacing:.02em;text-transform:uppercase}
-.eyebrow{display:flex;align-items:center;gap:var(--s3);color:var(--ink-2)}
-.eyebrow::before{content:"";width:24px;height:1px;background:currentColor}
-.hl{background:linear-gradient(var(--marker),var(--marker)) no-repeat 0 82% / 0% 46%;-webkit-box-decoration-break:clone;box-decoration-break:clone;padding:0 .08em;margin:0 -.08em;transition:background-size 900ms var(--ease-out)}
-.hl.on{background-size:100% 46%}
-
-/* ---------- buttons ---------- */
-.btn{display:inline-flex;align-items:center;gap:var(--s3);height:52px;padding:0 var(--s5);border-radius:var(--r2);font-weight:600;font-size:16px;letter-spacing:-.005em;transition:transform 160ms var(--ease-out), background-color 200ms ease, color 200ms ease, border-color 200ms ease;white-space:nowrap}
-.btn:active{transform:scale(.97)}
-.btn-ink{background:var(--ink);color:var(--paper)}
-.btn-line{border:1px solid var(--rule-2);color:var(--ink)}
-.btn .arr{display:inline-block;transition:transform 220ms var(--ease-out)}
-@media (hover:hover) and (pointer:fine){
-  .btn-ink:hover{background:#000}
-  .btn-line:hover{border-color:var(--ink)}
-  .btn:hover .arr{transform:translateX(3px)}
-}
-.btn-sm{height:40px;padding:0 var(--s4);font-size:15px}
-
 /* ---------- nav ---------- */
 .nav{position:fixed;inset:0 0 auto 0;z-index:50;transition:background-color 300ms ease, border-color 300ms ease;border-bottom:1px solid transparent}
 .nav.scrolled{background:rgba(243,244,241,.86);-webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px);border-bottom-color:var(--rule)}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px;gap:var(--s5)}
-.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:20px;letter-spacing:-.03em}
-.brand-mark{width:22px;height:22px;position:relative;border:1.5px solid var(--ink);border-radius:var(--r1)}
-.brand-mark::before,.brand-mark::after{content:"";position:absolute;left:4px;right:4px;height:1.5px;background:var(--ink)}
-.brand-mark::before{top:6px}
-.brand-mark::after{top:11px;right:8px;background:var(--ink);box-shadow:0 0 0 2.5px var(--marker)}
 .nav-links{display:flex;gap:var(--s6);font-size:15px;color:var(--ink-2)}
 .nav-links a{position:relative;padding:var(--s2) 0;transition:color 200ms ease}
 .nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:right;transition:transform 300ms var(--ease-out)}
@@ -525,7 +458,7 @@ ul{list-style:none;margin:0;padding:0}
     </nav>
     <div class="nav-right">
       <span class="nav-loc mono">Lagos · Remote</span>
-      <a href="#book" class="btn btn-ink btn-sm">Book intake call</a>
+      <a href="book.html" class="btn btn-ink btn-sm">Book intake call</a>
       <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><span></span></button>
     </div>
   </div>
@@ -535,7 +468,7 @@ ul{list-style:none;margin:0;padding:0}
     <a href="#tracker">Tracker</a>
     <a href="#packages">Packages</a>
     <a href="#faq">FAQ</a>
-    <a href="#book">Book intake call</a>
+    <a href="book.html">Book intake call</a>
   </div>
 </header>
 
@@ -552,7 +485,7 @@ ul{list-style:none;margin:0;padding:0}
       </h1>
       <p class="hero-sub fade-up d1">We rewrite your CV, apply to roles on your behalf and prepare you for every interview. You can follow each application in your own tracker.</p>
       <div class="hero-cta fade-up d2">
-        <a href="#book" class="btn btn-ink">Book a 20-min intake call <span class="arr" aria-hidden="true">→</span></a>
+        <a href="book.html" class="btn btn-ink">Book a 20-min intake call <span class="arr" aria-hidden="true">→</span></a>
         <a href="#packages" class="btn btn-line">See packages</a>
       </div>
     </div>
@@ -777,7 +710,7 @@ ul{list-style:none;margin:0;padding:0}
           <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Two rounds of revisions</li>
           <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Delivered in 5 working days</li>
         </ul>
-        <a href="#book" class="btn btn-line">Start with a rewrite</a>
+        <a href="book.html?plan=rewrite" class="btn btn-line">Start with a rewrite</a>
       </div>
       <div class="pk-col rec" data-reveal style="--d:80ms">
         <div class="pk-name"><h3>Active Search</h3><span class="mono">Recommended</span></div>
@@ -790,7 +723,7 @@ ul{list-style:none;margin:0;padding:0}
           <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Live application tracker</li>
           <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>15-minute check-in call each week</li>
         </ul>
-        <a href="#book" class="btn btn-ink">Start Active Search <span class="arr" aria-hidden="true">→</span></a>
+        <a href="book.html?plan=active" class="btn btn-ink">Start Active Search <span class="arr" aria-hidden="true">→</span></a>
       </div>
       <div class="pk-col" data-reveal style="--d:160ms">
         <div class="pk-name"><h3>Full Concierge</h3><span class="mono">Per month</span></div>
@@ -803,7 +736,7 @@ ul{list-style:none;margin:0;padding:0}
           <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Salary negotiation notes before offers</li>
           <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Priority WhatsApp line to your specialist</li>
         </ul>
-        <a href="#book" class="btn btn-line">Talk about Concierge</a>
+        <a href="book.html?plan=concierge" class="btn btn-line">Talk about Concierge</a>
       </div>
     </div>
     <div class="pk-note" data-reveal><span>Card or bank transfer, processed by Paystack</span><span>Cancel monthly plans before your next billing date</span><span>Refund terms are written into your agreement</span></div>
@@ -878,7 +811,7 @@ ul{list-style:none;margin:0;padding:0}
         <div class="slots" id="slots"></div>
         <div class="cal-f">
           <span class="sel" id="sel" aria-live="polite">Pick a time to continue</span>
-          <a href="#book" class="btn btn-mk" id="go" aria-disabled="true">Continue <span class="arr" aria-hidden="true">→</span></a>
+          <a href="book.html" class="btn btn-mk" id="go" aria-disabled="true">Continue <span class="arr" aria-hidden="true">→</span></a>
         </div>
       </div>
     </div>
@@ -894,7 +827,7 @@ ul{list-style:none;margin:0;padding:0}
         <a href="#top" class="brand"><span class="brand-mark" aria-hidden="true"></span>Shortlist</a>
         <p class="foot-blurb">A job-search support service. We are not a recruitment agency and we don’t take fees from employers.</p>
       </div>
-      <div><h4>Service</h4><ul><li><a href="#services">What we do</a></li><li><a href="#process">How it works</a></li><li><a href="#packages">Packages</a></li><li><a href="#tracker">Tracker</a></li></ul></div>
+      <div><h4>Service</h4><ul><li><a href="#services">What we do</a></li><li><a href="#process">How it works</a></li><li><a href="#packages">Packages</a></li><li><a href="#tracker">Tracker</a></li><li><a href="checkout.html">Start your package</a></li></ul></div>
       <div><h4>Contact</h4><ul><li><a href="mailto:hello@shortlist.ng">hello@shortlist.ng</a></li><li><a href="#book">WhatsApp</a></li><li>Mon–Fri · 9:00–18:00 WAT</li><li>Lekki, Lagos</li></ul></div>
       <div><h4>Legal</h4><ul><li><a href="#">Service agreement</a></li><li><a href="#">Refund policy</a></li><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li></ul></div>
     </div>
@@ -1112,12 +1045,14 @@ ul{list-style:none;margin:0;padding:0}
     $$('.slot', slotsEl).forEach((b, i) => b.addEventListener('click', () => { chosenTime = i; drawSlots(); update(); }));
   }
   function update() {
-    if (chosenTime === null) { selEl.textContent = 'Pick a time to continue'; go.setAttribute('aria-disabled', 'true'); return; }
+    if (chosenTime === null) { selEl.textContent = 'Pick a time to continue'; go.setAttribute('aria-disabled', 'true'); go.href = 'book.html'; return; }
     const x = days[chosenDay];
     selEl.innerHTML = `<b>${x.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'short' })}</b> at <b>${times[chosenTime]}</b> WAT`;
     go.setAttribute('aria-disabled', 'false');
+    const iso = `${x.getFullYear()}-${String(x.getMonth() + 1).padStart(2, '0')}-${String(x.getDate()).padStart(2, '0')}`;
+    go.href = `book.html?date=${iso}&time=${times[chosenTime]}`;
   }
-  go.addEventListener('click', e => { e.preventDefault(); });
+  go.addEventListener('click', e => { if (go.getAttribute('aria-disabled') === 'true') e.preventDefault(); });
   drawDays(); drawSlots();
 })();
 </script>
