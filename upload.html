@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Upload your CV — Shortlist</title>
+<meta name="description" content="Send Shortlist your CV, work history and job preferences to start your search.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&family=Fragment+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/flow.css">
+<link rel="stylesheet" href="assets/portal.css">
+<!--
+  NOT CONNECTED YET — files stay in the browser.
+  To go live: upload to private storage (e.g. Supabase Storage / S3 with signed
+  URLs) from a server route, scan files, and save the work-history and
+  preference answers against the client's account. Never make CVs public.
+-->
+</head>
+<body data-title="Upload your CV — Shortlist">
+
+<div class="demo" role="note"><b>Preview.</b> Files stay in your browser and aren’t uploaded anywhere.</div>
+
+<header class="fhead">
+  <div class="wrap">
+    <a href="index.html" class="brand" aria-label="Shortlist home"><span class="brand-mark" aria-hidden="true"></span>Shortlist</a>
+    <ol class="stepper" aria-label="Onboarding steps">
+      <li data-step-ind="docs" data-label="Your CV" aria-current="step"><span class="n">1</span>Your CV</li>
+      <li data-step-ind="history" data-label="Work history"><span class="n">2</span>Work history</li>
+      <li data-step-ind="prefs" data-label="Preferences"><span class="n">3</span>Preferences</li>
+      <li data-step-ind="done" data-label="Done"><span class="n">4</span>Done</li>
+    </ol>
+    <div class="stepper-m" aria-hidden="true"></div>
+    <div class="fhead-right"><a href="tracker.html">Your tracker</a></div>
+  </div>
+  <div class="progress" aria-hidden="true"><i></i></div>
+</header>
+
+<main class="flow">
+  <div>
+    <!-- STEP 1 · DOCUMENTS -->
+    <section class="panel active" data-step="docs" aria-labelledby="h-docs">
+      <p class="eyebrow mono">Onboarding · about 10 minutes</p>
+      <h1 id="h-docs">Send us your current CV.</h1>
+      <p class="lede">Whatever state it’s in. We rewrite it from scratch, so an old or messy version is fine.</p>
+
+      <form id="docsForm" novalidate>
+        <div class="field">
+          <span class="legend" id="cvLbl">CV <span class="opt">Required</span></span>
+          <label class="drop" id="cvDrop" data-err-id="cvDrop">
+            <span class="ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 12V3M5 6.5 9 2.5l4 4M3 12.5v2h12v-2" stroke="#141619" stroke-width="1.6"/></svg></span>
+            <b>Drop your CV here, or choose a file</b>
+            <span>PDF or Word, up to 10 MB</span>
+            <input type="file" id="cvInput" class="sr-only" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" aria-labelledby="cvLbl" aria-describedby="err-cvDrop">
+          </label>
+          <ul class="files" id="cvFiles" aria-live="polite"></ul>
+          <p class="err" id="err-cvDrop"></p>
+        </div>
+
+        <div class="field block" style="margin-top:var(--s6)">
+          <span class="legend" id="certLbl">Certificates and other documents <span class="opt">Optional</span></span>
+          <p class="hint">Degree certificates, professional qualifications, reference letters. Up to 5 files.</p>
+          <label class="drop small" id="certDrop">
+            <b>Add documents</b>
+            <span>PDF, Word or image, up to 10 MB each</span>
+            <input type="file" id="certInput" class="sr-only" multiple accept=".pdf,.doc,.docx,.png,.jpg,.jpeg" aria-labelledby="certLbl">
+          </label>
+          <ul class="files" id="certFiles" aria-live="polite"></ul>
+          <p class="err" id="err-certDrop"></p>
+        </div>
+
+        <div class="field" style="margin-top:var(--s6)">
+          <label for="linkedin">LinkedIn profile <span class="opt">Optional</span></label>
+          <input class="input" id="linkedin" type="url" inputmode="url" placeholder="linkedin.com/in/your-name" autocomplete="url">
+          <p class="err" id="err-linkedin"></p>
+        </div>
+
+        <div class="actions">
+          <a href="tracker.html" class="btn-back">Finish later</a>
+          <button type="submit" class="btn btn-ink"><span class="lbl-t">Continue</span> <span class="arr" aria-hidden="true">→</span></button>
+        </div>
+      </form>
+    </section>
+
+    <!-- STEP 2 · HISTORY -->
+    <section class="panel" data-step="history" aria-labelledby="h-history" hidden>
+      <p class="eyebrow mono">Work history</p>
+      <h1 id="h-history">Tell us what you actually did.</h1>
+      <p class="lede">Start with your most recent role. Rough notes are fine. Numbers help most: team size, targets, results.</p>
+
+      <form id="historyForm" novalidate>
+        <div class="fields" id="roles"></div>
+        <button type="button" class="add-role" id="addRole" style="width:100%;margin-top:var(--s4)">+ Add another role</button>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back="docs">← Back</button>
+          <button type="submit" class="btn btn-ink"><span class="lbl-t">Continue</span> <span class="arr" aria-hidden="true">→</span></button>
+        </div>
+      </form>
+    </section>
+
+    <!-- STEP 3 · PREFERENCES -->
+    <section class="panel" data-step="prefs" aria-labelledby="h-prefs" hidden>
+      <p class="eyebrow mono">Preferences</p>
+      <h1 id="h-prefs">What should we apply for?</h1>
+      <p class="lede">This is the brief your specialist works from. You can change it any time from your tracker.</p>
+
+      <form id="prefsForm" novalidate>
+        <div class="fields">
+          <div class="field">
+            <label for="targets">Roles you want</label>
+            <input class="input" id="targets" placeholder="e.g. Growth marketing lead, brand manager">
+            <p class="hint">Separate with commas. Three is a good number.</p>
+            <p class="err" id="err-targets"></p>
+          </div>
+
+          <div class="field">
+            <span class="legend" id="whereLbl">Where do you want to work?</span>
+            <div class="choices three" role="radiogroup" id="where" aria-labelledby="whereLbl">
+              <label class="choice"><input type="radio" name="where" value="Nigeria"><span class="choice-box"><span><span class="choice-t">In Nigeria</span><span class="choice-d">Lagos, Abuja, PH or remote</span></span></span></label>
+              <label class="choice"><input type="radio" name="where" value="Abroad"><span class="choice-box"><span><span class="choice-t">Abroad</span><span class="choice-d">UK, EU, Canada, remote</span></span></span></label>
+              <label class="choice"><input type="radio" name="where" value="Both"><span class="choice-box"><span><span class="choice-t">Both</span><span class="choice-d">Open to either</span></span></span></label>
+            </div>
+            <p class="err" id="err-where"></p>
+          </div>
+
+          <div class="field">
+            <span class="legend" id="styleLbl">Work style <span class="opt">Pick any</span></span>
+            <div class="multi" role="group" aria-labelledby="styleLbl">
+              <label><input type="checkbox" name="style" value="On-site"><span>On-site</span></label>
+              <label><input type="checkbox" name="style" value="Hybrid" checked><span>Hybrid</span></label>
+              <label><input type="checkbox" name="style" value="Remote" checked><span>Remote</span></label>
+            </div>
+          </div>
+
+          <div class="row2">
+            <div class="field">
+              <label for="salary">Lowest salary you’d accept</label>
+              <div class="money">
+                <select class="select" id="salaryCur" aria-label="Salary currency"><option value="NGN">₦ / month</option><option value="GBP">£ / year</option><option value="USD">$ / year</option><option value="CAD">CA$ / year</option></select>
+                <input class="input" id="salary" inputmode="numeric" placeholder="650,000">
+              </div>
+              <p class="hint">Only your specialist sees this.</p>
+              <p class="err" id="err-salary"></p>
+            </div>
+            <div class="field">
+              <label for="notice">Notice period</label>
+              <select class="select" id="notice">
+                <option value="">Choose one</option><option>Available now</option><option>2 weeks</option><option>1 month</option><option>2–3 months</option>
+              </select>
+              <p class="err" id="err-notice"></p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="avoid">Anything we should avoid? <span class="opt">Optional</span></label>
+            <textarea class="textarea" id="avoid" placeholder="Companies, industries, commute limits, roles you’ve already applied for…"></textarea>
+          </div>
+
+          <div class="field">
+            <label class="check"><input type="checkbox" id="accurate"><span>Everything I’ve shared is accurate. I understand Shortlist won’t invent or exaggerate experience.</span></label>
+            <p class="err" id="err-accurate"></p>
+          </div>
+        </div>
+        <div class="alert" id="upAlert" role="alert"></div>
+        <div class="actions">
+          <button type="button" class="btn-back" data-back="history">← Back</button>
+          <button type="submit" class="btn btn-ink" id="sendBtn"><span class="lbl-t">Send to my specialist</span> <span class="arr" aria-hidden="true">→</span><span class="spin" aria-hidden="true"></span></button>
+        </div>
+      </form>
+    </section>
+
+    <!-- STEP 4 · DONE -->
+    <section class="panel" data-step="done" aria-labelledby="h-done" hidden>
+      <div class="done-mark" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M6 14.5l5.5 5.5L22 9" stroke="#141619" stroke-width="2.4"/></svg></div>
+      <h1 id="h-done">We’ve got everything.</h1>
+      <p class="lede" id="doneLede"></p>
+      <div class="block">
+        <h2>What happens next</h2>
+        <ol class="next">
+          <li><span class="num">01</span><div><b>Your specialist reads everything</b><span>They’ll message you on WhatsApp within one working day if anything’s unclear.</span></div></li>
+          <li><span class="num">02</span><div><b>First CV draft in 5 working days</b><span>It appears in your tracker under Documents. Comment on any line.</span></div></li>
+          <li><span class="num">03</span><div><b>Approve your first shortlist</b><span>Once your CV is approved, we send roles that fit your brief. Nothing goes out until you approve it.</span></div></li>
+        </ol>
+      </div>
+      <div class="cta-row">
+        <a href="tracker.html" class="btn btn-ink">Open your tracker <span class="arr" aria-hidden="true">→</span></a>
+      </div>
+    </section>
+  </div>
+
+  <aside class="aside" aria-label="Onboarding checklist">
+    <div class="sum">
+      <div class="sum-h"><span class="mono">Your onboarding</span><span class="mono" id="sumCount">0 of 3</span></div>
+      <div class="sum-b">
+        <p class="sum-title">Adaeze Okafor</p>
+        <dl>
+          <div><dt>Package</dt><dd>Active Search</dd></div>
+          <div><dt>Specialist</dt><dd>Ngozi Eze</dd></div>
+          <div><dt>Agreement</dt><dd>Signed</dd></div>
+        </dl>
+        <ul class="sum-list" id="checklist">
+          <li data-check="docs"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.4"/></svg><span>CV uploaded</span></li>
+          <li data-check="history"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.4"/></svg><span>Work history added</span></li>
+          <li data-check="prefs"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.4"/></svg><span>Preferences set</span></li>
+        </ul>
+      </div>
+      <div class="sum-foot"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="3" y="7" width="10" height="7" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M5 7V5a3 3 0 016 0v2" stroke="currentColor" stroke-width="1.3"/></svg>Your documents are private. They’re only shared with employers you approve.</div>
+    </div>
+    <p class="help">Stuck? Message your specialist on WhatsApp or email <a href="mailto:hello@shortlist.ng">hello@shortlist.ng</a>.</p>
+  </aside>
+</main>
+
+<footer class="ffoot"><div class="wrap"><span>© 2026 Shortlist</span><span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></span></div></footer>
+
+<script src="assets/flow.js"></script>
+<script>
+(() => {
+  const { $, $$, wait, goTo, validate, setError, liveClear, busy, esc } = Flow;
+  const MAX = 10 * 1024 * 1024;
+  const CV_TYPES = ['pdf', 'doc', 'docx'];
+  const CERT_TYPES = ['pdf', 'doc', 'docx', 'png', 'jpg', 'jpeg'];
+  const state = { cv: null, certs: [], done: new Set() };
+  liveClear(document);
+
+  const ext = name => (name.split('.').pop() || '').toLowerCase();
+  const size = b => b > 1048576 ? (b / 1048576).toFixed(1) + ' MB' : Math.max(1, Math.round(b / 1024)) + ' KB';
+
+  function fileRow(file, i, kind) {
+    return `<li class="file"><span class="mono">${esc(ext(file.name).toUpperCase())}</span><span style="min-width:0"><b>${esc(file.name)}</b><small>${size(file.size)}</small></span><button type="button" class="x" data-remove="${kind}" data-i="${i}" aria-label="Remove ${esc(file.name)}"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 2l8 8M10 2l-8 8" stroke="currentColor" stroke-width="1.5"/></svg></button></li>`;
+  }
+  function draw() {
+    $('#cvFiles').innerHTML = state.cv ? fileRow(state.cv, 0, 'cv') : '';
+    $('#certFiles').innerHTML = state.certs.map((f, i) => fileRow(f, i, 'cert')).join('');
+    $('#cvDrop b').textContent = state.cv ? 'Replace your CV' : 'Drop your CV here, or choose a file';
+  }
+  document.addEventListener('click', e => {
+    const b = e.target.closest('[data-remove]'); if (!b) return;
+    if (b.dataset.remove === 'cv') state.cv = null; else state.certs.splice(+b.dataset.i, 1);
+    draw();
+  });
+
+  function addCv(files) {
+    const f = files[0]; if (!f) return;
+    if (!CV_TYPES.includes(ext(f.name))) return setError($('#cvDrop'), 'Upload a PDF or Word document');
+    if (f.size > MAX) return setError($('#cvDrop'), 'That file is over 10 MB. Try exporting it as a PDF.');
+    setError($('#cvDrop'), ''); state.cv = f; draw();
+  }
+  function addCerts(files) {
+    const box = $('#err-certDrop'); box.textContent = '';
+    for (const f of files) {
+      if (state.certs.length >= 5) { box.textContent = 'You can add up to 5 documents.'; break; }
+      if (!CERT_TYPES.includes(ext(f.name))) { box.textContent = `${f.name} isn’t a PDF, Word or image file.`; continue; }
+      if (f.size > MAX) { box.textContent = `${f.name} is over 10 MB.`; continue; }
+      state.certs.push(f);
+    }
+    draw();
+  }
+  function wire(drop, input, add) {
+    input.addEventListener('change', () => { add([...input.files]); input.value = ''; });
+    ['dragenter', 'dragover'].forEach(t => drop.addEventListener(t, e => { e.preventDefault(); drop.classList.add('over'); }));
+    ['dragleave', 'drop'].forEach(t => drop.addEventListener(t, e => { e.preventDefault(); drop.classList.remove('over'); }));
+    drop.addEventListener('drop', e => add([...e.dataTransfer.files]));
+  }
+  wire($('#cvDrop'), $('#cvInput'), addCv);
+  wire($('#certDrop'), $('#certInput'), addCerts);
+
+  function tick(step) {
+    state.done.add(step);
+    $$('#checklist li').forEach(li => {
+      const on = state.done.has(li.dataset.check);
+      li.querySelector('svg').innerHTML = on
+        ? '<circle cx="8" cy="8" r="7" fill="#F2E85A"/><path d="M4.8 8.3l2.2 2.2 4.2-4.6" stroke="#141619" stroke-width="1.5"/>'
+        : '<circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.4"/>';
+    });
+    $('#sumCount').textContent = `${state.done.size} of 3`;
+  }
+
+  $('#docsForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const li = $('#linkedin').value.trim();
+    if (!validate([
+      [$('#cvDrop'), state.cv ? '' : 'Add your CV to continue'],
+      [$('#linkedin'), li && !/linkedin\.com\//i.test(li) ? 'Enter a LinkedIn profile link, like linkedin.com/in/your-name' : ''],
+    ])) { if (!state.cv) $('#cvInput').focus(); return; }
+    tick('docs'); goTo('history');
+  });
+
+  let roleCount = 0;
+  function addRole(first) {
+    roleCount++;
+    const id = 'r' + roleCount;
+    const el = document.createElement('div');
+    el.className = 'role'; el.dataset.role = id;
+    el.innerHTML = `
+      <div class="role-h"><span class="mono">${first ? 'Most recent role' : 'Earlier role'}</span>${first ? '' : `<button type="button" class="x" data-del="${id}" aria-label="Remove this role"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 2l8 8M10 2l-8 8" stroke="currentColor" stroke-width="1.5"/></svg></button>`}</div>
+      <div class="row2">
+        <div class="field"><label for="${id}-title">Job title</label><input class="input" id="${id}-title" autocomplete="organization-title"><p class="err" id="err-${id}-title"></p></div>
+        <div class="field"><label for="${id}-org">Employer</label><input class="input" id="${id}-org" autocomplete="organization"><p class="err" id="err-${id}-org"></p></div>
+      </div>
+      <div class="row3">
+        <div class="field"><label for="${id}-from">From</label><input class="input" id="${id}-from" type="month"></div>
+        <div class="field"><label for="${id}-to">To</label><input class="input" id="${id}-to" type="month" ${first ? 'disabled' : ''}></div>
+        <label class="check" style="padding-bottom:14px"><input type="checkbox" id="${id}-now" ${first ? 'checked' : ''}><span>I work here now</span></label>
+      </div>
+      <div class="field"><label for="${id}-notes">What did you do there? <span class="opt">Rough notes are fine</span></label><textarea class="textarea" id="${id}-notes" placeholder="Ran the Instagram page, grew it from 4k to 31k followers. Managed two interns. Planned four product launches…"></textarea></div>`;
+    $('#roles').appendChild(el);
+    $(`#${id}-now`).addEventListener('change', e => { $(`#${id}-to`).disabled = e.target.checked; });
+    $('#addRole').hidden = $$('#roles .role').length >= 6;
+    if (!first) $(`#${id}-title`).focus();
+  }
+  $('#roles').addEventListener('click', e => {
+    const b = e.target.closest('[data-del]'); if (!b) return;
+    $(`[data-role="${b.dataset.del}"]`).remove();
+    $('#addRole').hidden = false; $('#addRole').focus();
+  });
+  $('#addRole').addEventListener('click', () => addRole(false));
+  addRole(true);
+
+  $('#historyForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const checks = [];
+    $$('#roles .role').forEach(r => {
+      const id = r.dataset.role;
+      checks.push([$(`#${id}-title`), $(`#${id}-title`).value.trim() ? '' : 'Enter the job title']);
+      checks.push([$(`#${id}-org`), $(`#${id}-org`).value.trim() ? '' : 'Enter the employer']);
+    });
+    if (!validate(checks)) return;
+    tick('history'); goTo('prefs');
+  });
+
+  $('#salary').addEventListener('input', e => {
+    const d = e.target.value.replace(/\D/g, '');
+    e.target.value = d ? Number(d).toLocaleString('en-NG') : '';
+  });
+
+  $('#prefsForm').addEventListener('submit', async e => {
+    e.preventDefault();
+    const f = e.target;
+    if (!validate([
+      [$('#targets'), $('#targets').value.trim() ? '' : 'Tell us at least one role'],
+      [$('#where'), f.where.value ? '' : 'Choose where you want to work'],
+      [$('#salary'), $('#salary').value.trim() ? '' : 'Enter the lowest salary you’d accept'],
+      [$('#notice'), $('#notice').value ? '' : 'Choose your notice period'],
+      [$('#accurate'), $('#accurate').checked ? '' : 'Tick the box to confirm your details are accurate'],
+    ])) return;
+    const alert = $('#upAlert'); alert.classList.remove('show');
+    const btn = $('#sendBtn'); busy(btn, true);
+    try {
+      if (!navigator.onLine) throw new Error('You seem to be offline. Your answers are saved on this page, so try again when you’re connected.');
+      await wait(1200);
+      tick('prefs');
+      const roles = $$('#roles .role').length;
+      $('#doneLede').innerHTML = `Your CV${state.certs.length ? `, ${state.certs.length} document${state.certs.length > 1 ? 's' : ''}` : ''} and ${roles} role${roles > 1 ? 's' : ''} are with <b>Ngozi Eze</b>, your specialist.`;
+      goTo('done');
+    } catch (err) {
+      alert.innerHTML = `<div><b>We couldn’t send that.</b> ${esc(err.message)}</div>`;
+      alert.classList.add('show');
+    } finally { busy(btn, false); }
+  });
+
+  $$('[data-back]').forEach(b => b.addEventListener('click', () => goTo(b.dataset.back)));
+  goTo('docs', { focus: false });
+})();
+</script>
+</body>
+</html>

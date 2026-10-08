@@ -107,7 +107,7 @@
 
       <div class="doc-wrap" id="docWrap">
         <article class="doc" id="doc" tabindex="0" aria-label="Full service agreement">
-          <div class="meta"><span>Service agreement · v0.1 draft</span><span id="docDate"></span></div>
+          <div class="meta"><span>Service agreement · v0.1 draft · <a href="agreement.html" target="_blank" rel="noopener" style="text-decoration:underline">open in new tab</a></span><span id="docDate"></span></div>
           <h3>Job-search support agreement</h3>
           <p>This agreement is between <b>Shortlist</b> (“we”, “us”) and <span class="fill" data-fill="name"></span> (“you”) for the <span class="fill" data-fill="pkg"></span> package.</p>
 
@@ -201,6 +201,7 @@
 
       <div class="actions">
         <a href="index.html" class="btn-back">← Back to Shortlist</a>
+        <a href="upload.html" class="btn btn-ink"><span class="lbl-t">Upload your CV</span> <span class="arr" aria-hidden="true">→</span></a>
       </div>
     </section>
   </div>
@@ -224,7 +225,7 @@
   </aside>
 </main>
 
-<footer class="ffoot"><div class="wrap"><span>© 2026 Shortlist</span><span><a href="#">Refund policy</a> · <a href="#">Privacy</a> · <a href="#">Terms</a></span></div></footer>
+<footer class="ffoot"><div class="wrap"><span>© 2026 Shortlist</span><span><a href="refunds.html">Refund policy</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></span></div></footer>
 
 <script src="assets/flow.js"></script>
 <script>
@@ -396,7 +397,7 @@
       ...(p.monthly ? [['Next payment', fmtDate(new Date(new Date().setMonth(new Date().getMonth() + 1)))]] : []),
     ].map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('');
     const steps = [
-      ['Upload your CV and work history', 'Your current CV, certificates and a short form about each past role.', '<span class="soon">Next page · coming soon</span>'],
+      ['Upload your CV and work history', 'Your current CV, certificates and a short form about each past role. Takes about 10 minutes.', '<a class="btn btn-ink btn-sm" href="upload.html">Start upload</a>'],
       ['Get your first draft', 'Within five working days of your upload. Comment on any line.', ''],
       p.monthly ? ['Approve your first shortlist', 'We send roles that fit your brief. Applications go out once you approve them.', '']
                 : ['Use your two revision rounds', 'We rework anything that doesn’t sound like you on your best day.', ''],

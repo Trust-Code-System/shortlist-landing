@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your tracker — Shortlist</title>
+<meta name="description" content="Follow every application Shortlist sends for you.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&family=Fragment+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/flow.css">
+<link rel="stylesheet" href="assets/portal.css">
+<!--
+  SAMPLE DATA — this is what a signed-in client sees. To go live, load the
+  client's own applications, documents, interviews and billing from the
+  backend after authentication; approvals and plan changes become API calls.
+-->
+</head>
+<body data-title="Your tracker — Shortlist">
+
+<div class="demo" role="note"><b>Preview.</b> Sample tracker for an example client. Nothing here is sent to employers.</div>
+
+<header class="phead">
+  <div class="wrap phead-row">
+    <a href="index.html" class="brand" aria-label="Shortlist home"><span class="brand-mark" aria-hidden="true"></span>Shortlist</a>
+    <div class="puser">
+      <span class="name">Adaeze Okafor</span>
+      <span class="av" aria-hidden="true">AO</span>
+      <a href="signin.html">Sign out</a>
+    </div>
+  </div>
+  <div class="phead-tabs">
+    <div class="wrap">
+      <nav class="ptabs" role="tablist" aria-label="Tracker sections">
+        <button class="ptab" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview<span class="n" id="approveBadge">6</span></button>
+        <button class="ptab" role="tab" id="tab-applications" aria-controls="applications" aria-selected="false" tabindex="-1">Applications</button>
+        <button class="ptab" role="tab" id="tab-documents" aria-controls="documents" aria-selected="false" tabindex="-1">Documents</button>
+        <button class="ptab" role="tab" id="tab-interviews" aria-controls="interviews" aria-selected="false" tabindex="-1">Interviews</button>
+        <button class="ptab" role="tab" id="tab-plan" aria-controls="plan" aria-selected="false" tabindex="-1">Plan &amp; billing</button>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main class="pmain">
+
+  <!-- OVERVIEW -->
+  <section class="ppanel active" id="overview" role="tabpanel" aria-labelledby="tab-overview">
+    <div class="hello">
+      <div>
+        <p class="eyebrow mono">Week 3 of your search · Active Search</p>
+        <h1 tabindex="-1">Good morning, Adaeze.</h1>
+        <p id="helloLine">You have roles waiting for your approval.</p>
+      </div>
+      <a class="btn btn-line btn-sm" href="upload.html">Update my preferences</a>
+    </div>
+
+    <div class="kpis" aria-label="This month so far">
+      <div class="kpi"><span class="mono">Sent</span><b id="kSent">21</b></div>
+      <div class="kpi"><span class="mono">Viewed</span><b>9</b></div>
+      <div class="kpi"><span class="mono">Replies</span><b>4</b></div>
+      <div class="kpi hi"><span class="mono">Interviews</span><b>2</b></div>
+    </div>
+
+    <div class="grid2">
+      <div class="stack">
+        <div class="card mark" id="approveCard">
+          <div class="card-h"><h2>This week’s shortlist</h2><span class="mono" id="approveCount">6 roles</span></div>
+          <div class="card-b" id="approveBody">
+            <p style="margin:0 0 var(--s4);color:var(--ink-2)">Tick the roles you’d like us to apply for. Nothing goes out until you approve it.</p>
+            <div class="alist" id="alist"></div>
+          </div>
+          <div class="afoot" id="approveFoot">
+            <span class="note" id="selNote">5 selected</span>
+            <div style="display:flex;gap:var(--s2)">
+              <button type="button" class="btn btn-line btn-sm" id="skipAll">Skip this week</button>
+              <button type="button" class="btn btn-ink btn-sm" id="approveBtn">Approve 5 roles</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-h"><h2>Latest updates</h2><button type="button" class="mono" style="color:var(--ink-3)" data-goto="applications">All applications →</button></div>
+          <div class="card-b">
+            <ol class="tl">
+              <li><div><b>Interview invite from Copperline Ltd</b><span>Senior Growth Marketer · Tue 13 Oct, 16:00 · added to Interviews</span></div></li>
+              <li><div><b>Palmgrove Bank viewed your application</b><span>Brand Manager · Yesterday</span></div></li>
+              <li><div><b>Ferrule Pay replied</b><span>Growth Marketing Lead · asked for a portfolio link · Mon 5 Oct</span></div></li>
+              <li><div><b>6 applications sent</b><span>From last week’s approved shortlist · Fri 2 Oct</span></div></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="stack">
+        <div class="card">
+          <div class="card-h"><h2>Next interview</h2><span class="mono">In 5 days</span></div>
+          <div class="card-b">
+            <div class="iv">
+              <div class="date-tile" aria-hidden="true"><small>Tue</small><b>13</b></div>
+              <div>
+                <h3>Senior Growth Marketer</h3>
+                <p>Copperline Ltd · Panel · Video · 16:00 WAT</p>
+                <p style="margin-top:var(--s3)">Mock interview with <b style="color:var(--ink)">Bisi Coker</b> on Mon 12 Oct, 18:00.</p>
+                <button type="button" class="btn btn-line btn-sm" style="margin-top:var(--s4)" data-goto="interviews">See prep checklist</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-h"><h2>Your specialist</h2></div>
+          <div class="card-b">
+            <div class="person"><span class="av soft" aria-hidden="true">NE</span><div><b>Ngozi Eze</b><small>Senior Career Specialist</small></div></div>
+            <dl class="kv">
+              <div><dt>Next check-in</dt><dd>Fri 9 Oct · 10:00</dd></div>
+              <div><dt>WhatsApp</dt><dd>+234 803 214 4410</dd></div>
+              <div><dt>Email</dt><dd><a href="mailto:ngozi@shortlist.ng">ngozi@shortlist.ng</a></dd></div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPLICATIONS -->
+  <section class="ppanel" id="applications" role="tabpanel" aria-labelledby="tab-applications" hidden>
+    <div class="hello">
+      <div>
+        <p class="eyebrow mono">Every application, on the record</p>
+        <h1 tabindex="-1">Applications</h1>
+        <p>Each role, the date we applied and what happened next.</p>
+      </div>
+      <div class="filters" role="group" aria-label="Filter applications" id="appFilters">
+        <button type="button" class="fchip" data-f="all" aria-pressed="true">All</button>
+        <button type="button" class="fchip" data-f="progress" aria-pressed="false">In progress</button>
+        <button type="button" class="fchip" data-f="interview" aria-pressed="false">Interviews</button>
+        <button type="button" class="fchip" data-f="closed" aria-pressed="false">Not progressed</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ptable-wrap">
+        <table class="ptable">
+          <thead><tr><th scope="col">Role</th><th scope="col">Employer</th><th scope="col">Location</th><th scope="col">Sent</th><th scope="col">Status</th></tr></thead>
+          <tbody id="appRows"></tbody>
+        </table>
+      </div>
+    </div>
+    <p class="hint" style="margin-top:var(--s4)" id="appCount"></p>
+  </section>
+
+  <!-- DOCUMENTS -->
+  <section class="ppanel" id="documents" role="tabpanel" aria-labelledby="tab-documents" hidden>
+    <div class="hello">
+      <div>
+        <p class="eyebrow mono">Your documents</p>
+        <h1 tabindex="-1">Documents</h1>
+        <p>Drafts from your specialist and the files you sent us.</p>
+      </div>
+      <a class="btn btn-line btn-sm" href="upload.html">Upload a document</a>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-h"><h2>From Shortlist</h2><span class="mono">Rewritten for you</span></div>
+        <div class="card-b">
+          <div class="docs">
+            <div class="doc-row"><span class="doc-ic" aria-hidden="true">PDF</span><div><b>CV — version 3</b><small id="cvState">Sent Mon 5 Oct · waiting for your review</small></div><div class="doc-actions"><button type="button" class="btn btn-line btn-sm" id="commentCv">Comment</button><button type="button" class="btn btn-ink btn-sm" id="approveCv">Approve</button></div></div>
+            <div class="doc-row"><span class="doc-ic" aria-hidden="true">PDF</span><div><b>CV — version 2</b><small>Sat 26 Sep · 7 comments resolved</small></div><div class="doc-actions"><span class="st closed">Superseded</span></div></div>
+            <div class="doc-row"><span class="doc-ic" aria-hidden="true">DOC</span><div><b>Cover letter template</b><small>Adapt the opening line for each role</small></div><div class="doc-actions"><span class="st viewed">Ready</span></div></div>
+            <div class="doc-row"><span class="doc-ic" aria-hidden="true">TXT</span><div><b>LinkedIn headline and About</b><small>Paste into your profile</small></div><div class="doc-actions"><span class="st viewed">Ready</span></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-h"><h2>From you</h2><span class="mono">Private</span></div>
+        <div class="card-b">
+          <div class="docs">
+            <div class="doc-row"><span class="doc-ic" aria-hidden="true">DOCX</span><div><b>Adaeze-Okafor-CV-2025.docx</b><small>Uploaded Tue 15 Sep · 180 KB</small></div></div>
+            <div class="doc-row"><span class="doc-ic" aria-hidden="true">PDF</span><div><b>BSc-Mass-Communication.pdf</b><small>Uploaded Tue 15 Sep · 1.2 MB</small></div></div>
+          </div>
+          <p class="hint" style="margin-top:var(--s4)">Only shared with employers you approve. Ask your specialist to delete any file at any time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERVIEWS -->
+  <section class="ppanel" id="interviews" role="tabpanel" aria-labelledby="tab-interviews" hidden>
+    <div class="hello">
+      <div>
+        <p class="eyebrow mono">Get ready</p>
+        <h1 tabindex="-1">Interviews</h1>
+        <p>Every interview gets a mock with a coach, built around that role.</p>
+      </div>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-h"><h2>Tue 13 Oct · Copperline Ltd</h2><span class="mono">Panel · Video</span></div>
+        <div class="card-b">
+          <div class="iv">
+            <div class="date-tile" aria-hidden="true"><small>Tue</small><b>13</b></div>
+            <div>
+              <h3>Senior Growth Marketer</h3>
+              <p>16:00 WAT · 45 minutes · Head of Marketing and two team leads</p>
+            </div>
+          </div>
+          <div class="block" style="margin-top:var(--s6)">
+            <h2 style="font-size:16px">Prep checklist</h2>
+            <div class="prep-list" id="prep">
+              <label class="check"><input type="checkbox" checked><span>Read the job description again and mark three must-haves</span></label>
+              <label class="check"><input type="checkbox" checked><span>Prepare the Instagram growth story (4,200 → 31,000) in under two minutes</span></label>
+              <label class="check"><input type="checkbox"><span>Mock interview with Bisi Coker · Mon 12 Oct, 18:00</span></label>
+              <label class="check"><input type="checkbox"><span>Two questions to ask the panel about how they measure growth</span></label>
+              <label class="check"><input type="checkbox"><span>Test your camera and microphone 15 minutes before</span></label>
+            </div>
+            <p class="hint" id="prepCount" style="margin-top:var(--s3)"></p>
+          </div>
+        </div>
+      </div>
+      <div class="stack">
+        <div class="card">
+          <div class="card-h"><h2>Mon 19 Oct · Palmgrove Bank</h2><span class="mono">Screening</span></div>
+          <div class="card-b"><div class="iv"><div class="date-tile" aria-hidden="true"><small>Mon</small><b>19</b></div><div><h3>Brand Manager</h3><p>11:00 WAT · Phone · HR screening call</p><p style="margin-top:var(--s3)"><span class="st pending">Mock to be booked</span></p></div></div></div>
+        </div>
+        <div class="card">
+          <div class="card-h"><h2>Past</h2></div>
+          <div class="card-b"><ol class="tl"><li><div><b>Ferrule Pay · Screening</b><span>Wed 30 Sep · moved to next round</span></div></li></ol></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLAN -->
+  <section class="ppanel" id="plan" role="tabpanel" aria-labelledby="tab-plan" hidden>
+    <div class="hello">
+      <div>
+        <p class="eyebrow mono">Your plan</p>
+        <h1 tabindex="-1">Plan &amp; billing</h1>
+        <p>Pause or cancel any time before your next billing date.</p>
+      </div>
+    </div>
+    <div class="grid2">
+      <div class="stack">
+        <div class="card">
+          <div class="card-h"><h2>Active Search</h2><span class="st" id="planState">Active</span></div>
+          <div class="card-b">
+            <dl class="kv" style="margin-top:0">
+              <div><dt>Price</dt><dd>₦150,000 / month</dd></div>
+              <div><dt>Applications</dt><dd>Up to 30 a month</dd></div>
+              <div><dt>Next billing date</dt><dd id="nextBill">Thu 29 Oct 2026</dd></div>
+              <div><dt>Payment</dt><dd>Card, through Paystack</dd></div>
+              <div><dt>Agreement</dt><dd>Signed Mon 14 Sep · <a href="agreement.html">Read it</a></dd></div>
+            </dl>
+            <div class="cta-row" style="margin-top:var(--s5)">
+              <button type="button" class="btn btn-line btn-sm" id="pauseBtn">Pause applications</button>
+              <a class="btn btn-line btn-sm" href="mailto:hello@shortlist.ng?subject=Change%20my%20package">Change package</a>
+              <button type="button" class="btn btn-sm" style="color:var(--error)" id="cancelBtn">Cancel plan</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-h"><h2>Payments</h2><span class="mono">Receipts by email</span></div>
+        <div class="ptable-wrap">
+          <table class="ptable" style="min-width:0">
+            <thead><tr><th scope="col">Date</th><th scope="col">Amount</th><th scope="col">Status</th></tr></thead>
+            <tbody>
+              <tr><td class="num">Tue 29 Sep</td><td class="num">₦150,000</td><td><span class="st viewed">Paid</span></td></tr>
+              <tr><td class="num">Sat 29 Aug</td><td class="num">₦150,000</td><td><span class="st viewed">Paid</span></td></tr>
+              <tr><td class="num">Mon 14 Sep</td><td class="num dim">Agreement signed</td><td><span class="st closed">—</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="ffoot"><div class="wrap"><span>© 2026 Shortlist · Need help? <a href="mailto:hello@shortlist.ng">hello@shortlist.ng</a></span><span><a href="refunds.html">Refund policy</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></span></div></footer>
+
+<dialog class="modal" id="cancelModal" aria-labelledby="cancelTitle">
+  <div class="modal-b">
+    <h2 id="cancelTitle">Cancel your plan?</h2>
+    <p>Applications stop today and you won’t be charged on Thu 29 Oct. This month isn’t refunded because applications for it have already gone out. Your tracker and documents stay available for 30 days.</p>
+    <p style="margin:0">Want a break instead? You can pause and restart any time.</p>
+  </div>
+  <div class="modal-f">
+    <button type="button" class="btn btn-line btn-sm" value="keep" id="keepBtn">Keep my plan</button>
+    <button type="button" class="btn btn-danger btn-sm" id="confirmCancel">Cancel plan</button>
+  </div>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="assets/flow.js"></script>
+<script>
+(() => {
+  const { $, $$, esc, reduce } = Flow;
+
+  /* ---- tabs with deep links ---- */
+  const tabs = $$('.ptab');
+  function show(id, focus) {
+    tabs.forEach(t => {
+      const on = t.getAttribute('aria-controls') === id;
+      t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1;
+      const p = $('#' + t.getAttribute('aria-controls'));
+      p.hidden = !on; p.classList.toggle('active', on);
+    });
+    if (location.hash !== '#' + id) history.replaceState(null, '', '#' + id);
+    window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    if (focus) $(`#${id} h1`)?.focus({ preventScroll: true });
+  }
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => show(t.getAttribute('aria-controls'), true));
+    t.addEventListener('keydown', e => {
+      const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0; if (!d) return;
+      e.preventDefault(); const n = tabs[(i + d + tabs.length) % tabs.length]; n.focus(); show(n.getAttribute('aria-controls'), false);
+    });
+  });
+  $$('[data-goto]').forEach(b => b.addEventListener('click', () => show(b.dataset.goto, true)));
+  const start = location.hash.slice(1);
+  if (start && $('#' + start)?.classList.contains('ppanel')) show(start, false);
+
+  const toastEl = $('#toast'); let toastT;
+  function toast(msg) { toastEl.textContent = msg; toastEl.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => toastEl.classList.remove('show'), 3200); }
+
+  /* ---- applications ---- */
+  const APPS = [
+    ['Senior Growth Marketer', 'Copperline Ltd', 'Remote, UK', '29 Sep', 'interview', 'Interview'],
+    ['Brand Manager', 'Palmgrove Bank', 'Lagos', '1 Oct', 'interview', 'Interview'],
+    ['Growth Marketing Lead', 'Ferrule Pay', 'Lagos · Hybrid', '25 Sep', 'replied', 'Replied'],
+    ['Content Lead', 'Odun Health', 'Lagos', '2 Oct', 'viewed', 'Viewed'],
+    ['Marketing Manager', 'Halo Retail', 'Lagos', '2 Oct', 'viewed', 'Viewed'],
+    ['Brand Manager', 'Saltpond Telecom', 'Abuja', '2 Oct', 'sent', 'Sent'],
+    ['Growth Marketing Lead', 'Kestrel Energy', 'Lagos', '2 Oct', 'sent', 'Sent'],
+    ['Digital Marketing Lead', 'Lumen Health', 'Remote, UK', '24 Sep', 'viewed', 'Viewed'],
+    ['Content Lead', 'Arcadia Foods', 'Lagos', '22 Sep', 'closed', 'Not progressed'],
+    ['Brand Manager', 'Tidewell Insurance', 'Lagos', '22 Sep', 'sent', 'Sent'],
+  ];
+  const GROUP = { progress: ['sent', 'viewed', 'replied'], interview: ['interview'], closed: ['closed'] };
+  let filter = 'all';
+  function drawApps() {
+    const rows = APPS.filter(a => filter === 'all' || GROUP[filter].includes(a[4]));
+    $('#appRows').innerHTML = rows.map(a => `<tr><td class="r">${esc(a[0])}</td><td>${esc(a[1])}</td><td class="dim">${esc(a[2])}</td><td class="num">${a[3] === 'Today' ? 'Today' : esc(a[3])}</td><td><span class="st ${a[4]}">${esc(a[5])}</span></td></tr>`).join('')
+      || `<tr><td colspan="5" class="dim" style="text-align:center;padding:var(--s7)">No applications in this view yet.</td></tr>`;
+    $('#appCount').textContent = `${rows.length} of ${APPS.length} applications`;
+  }
+  $$('#appFilters .fchip').forEach(b => b.addEventListener('click', () => {
+    filter = b.dataset.f; $$('#appFilters .fchip').forEach(x => x.setAttribute('aria-pressed', x === b)); drawApps();
+  }));
+  drawApps();
+
+  /* ---- shortlist approval ---- */
+  const SHORT = [
+    ['Growth Marketing Manager', 'Northbank Capital', 'Lagos', 'Strong fit', true],
+    ['Senior Brand Executive', 'Brightwater Logistics', 'Lagos · Hybrid', 'Strong fit', true],
+    ['Content Marketing Lead', 'Harbourside Group', 'Remote, UK', 'Good fit', true],
+    ['Lifecycle Marketing Manager', 'Calder Analytics', 'Remote, UK', 'Good fit', true],
+    ['Marketing Lead', 'Arcadia Foods', 'Lagos', 'Good fit', true],
+    ['Head of Marketing', 'Halo Retail', 'Port Harcourt', 'Stretch', false],
+  ];
+  $('#alist').innerHTML = SHORT.map((s, i) => `
+    <label class="arow"><span class="check"><input type="checkbox" data-i="${i}" ${s[4] ? 'checked' : ''}></span>
+      <span><b>${esc(s[0])}</b><small>${esc(s[1])} · ${esc(s[2])}</small></span><span class="fit">${esc(s[3])}</span></label>`).join('');
+  const boxes = () => $$('#alist input');
+  function syncSel() {
+    const n = boxes().filter(b => b.checked).length;
+    $('#selNote').textContent = `${n} of ${SHORT.length} selected`;
+    $('#approveBtn').textContent = n ? `Approve ${n} role${n > 1 ? 's' : ''}` : 'Select roles to approve';
+    $('#approveBtn').disabled = !n;
+  }
+  $('#alist').addEventListener('change', syncSel); syncSel();
+
+  function closeShortlist(html, badge) {
+    $('#approveBody').innerHTML = `<div class="done-note">${html}</div>`;
+    $('#approveFoot').remove(); $('#approveCard').classList.remove('mark');
+    $('#approveCount').textContent = 'Done for this week';
+    $('#approveBadge').remove();
+    $('#helloLine').textContent = badge;
+  }
+  $('#approveBtn').addEventListener('click', () => {
+    const chosen = boxes().filter(b => b.checked).map(b => SHORT[+b.dataset.i]);
+    chosen.forEach(s => APPS.unshift([s[0], s[1], s[2], 'Today', 'sent', 'Sent']));
+    $('#kSent').textContent = 21 + chosen.length;
+    drawApps();
+    closeShortlist(`<svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#F2E85A"/><path d="M6 10.4l2.7 2.6L14 7.6" stroke="#141619" stroke-width="1.7"/></svg><span><b>${chosen.length} applications go out today.</b> They’ll appear in Applications as each one is sent. Next shortlist arrives Monday.</span>`, 'You’re all caught up for this week.');
+    toast(`Approved ${chosen.length} roles. Ngozi has been notified.`);
+  });
+  $('#skipAll').addEventListener('click', () => {
+    closeShortlist('<span><b>Skipped this week.</b> Tell Ngozi what didn’t fit and she’ll adjust next Monday’s shortlist.</span>', 'No shortlist this week. Your next one arrives Monday.');
+    toast('Shortlist skipped for this week.');
+  });
+
+  /* ---- documents ---- */
+  $('#approveCv').addEventListener('click', e => {
+    $('#cvState').textContent = 'Approved today · this version is used for applications';
+    e.target.closest('.doc-actions').innerHTML = '<span class="st replied">Approved</span>';
+    toast('CV version 3 approved.');
+  });
+  $('#commentCv').addEventListener('click', () => toast('Comments open in the document. (Preview: not connected yet.)'));
+
+  /* ---- prep ---- */
+  function prepCount() { const all = $$('#prep input'), n = all.filter(b => b.checked).length; $('#prepCount').textContent = `${n} of ${all.length} done`; }
+  $('#prep').addEventListener('change', prepCount); prepCount();
+
+  /* ---- plan ---- */
+  let paused = false;
+  $('#pauseBtn').addEventListener('click', () => {
+    paused = !paused;
+    $('#planState').textContent = paused ? 'Paused' : 'Active';
+    $('#planState').className = 'st' + (paused ? ' pending' : '');
+    $('#pauseBtn').textContent = paused ? 'Restart applications' : 'Pause applications';
+    $('#nextBill').textContent = paused ? 'Paused — no charge until you restart' : 'Thu 29 Oct 2026';
+    toast(paused ? 'Applications paused. You won’t be charged while paused.' : 'Applications restarted.');
+  });
+  const modal = $('#cancelModal');
+  $('#cancelBtn').addEventListener('click', () => modal.showModal());
+  $('#keepBtn').addEventListener('click', () => modal.close());
+  $('#confirmCancel').addEventListener('click', () => {
+    modal.close();
+    $('#planState').textContent = 'Cancelled'; $('#planState').className = 'st closed';
+    $('#nextBill').textContent = 'No further payments';
+    $('#pauseBtn').disabled = true; $('#cancelBtn').disabled = true;
+    toast('Plan cancelled. A confirmation is on its way to your email.');
+  });
+})();
+</script>
+</body>
+</html>

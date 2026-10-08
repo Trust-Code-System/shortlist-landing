@@ -31,6 +31,8 @@ html.lenis,html.lenis body{height:auto}
 }
 .nav-right{display:flex;align-items:center;gap:var(--s4)}
 .nav-loc{color:var(--ink-3)}
+.nav-signin{font-size:15px;color:var(--ink-2);transition:color 200ms ease}
+@media (hover:hover){.nav-signin:hover{color:var(--ink)}}
 .menu-btn{display:none;width:40px;height:40px;border:1px solid var(--rule-2);border-radius:var(--r2);align-items:center;justify-content:center}
 .menu-btn span{width:16px;height:1.5px;background:var(--ink);position:relative;transition:background-color 200ms}
 .menu-btn span::before,.menu-btn span::after{content:"";position:absolute;left:0;width:16px;height:1.5px;background:var(--ink);transition:transform 260ms var(--ease-out)}
@@ -356,7 +358,7 @@ ul{list-style:none;margin:0;padding:0}
   .book{padding:var(--s7)}
 }
 @media (max-width:960px){
-  .nav-links{display:none}
+  .nav-links,.nav-signin{display:none}
   .menu-btn{display:inline-flex}
   .mobile-menu{display:block;position:fixed;top:72px;left:0;right:0;background:var(--paper);border-bottom:1px solid var(--rule);padding:var(--s3) var(--pad) var(--s5);transform:translateY(-8px);opacity:0;pointer-events:none;transition:opacity 220ms ease, transform 280ms var(--ease-out)}
   .nav.open .mobile-menu{opacity:1;transform:none;pointer-events:auto}
@@ -458,6 +460,7 @@ ul{list-style:none;margin:0;padding:0}
     </nav>
     <div class="nav-right">
       <span class="nav-loc mono">Lagos · Remote</span>
+      <a href="signin.html" class="nav-signin">Sign in</a>
       <a href="book.html" class="btn btn-ink btn-sm">Book intake call</a>
       <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><span></span></button>
     </div>
@@ -468,6 +471,7 @@ ul{list-style:none;margin:0;padding:0}
     <a href="#tracker">Tracker</a>
     <a href="#packages">Packages</a>
     <a href="#faq">FAQ</a>
+    <a href="signin.html">Sign in to your tracker</a>
     <a href="book.html">Book intake call</a>
   </div>
 </header>
@@ -827,9 +831,9 @@ ul{list-style:none;margin:0;padding:0}
         <a href="#top" class="brand"><span class="brand-mark" aria-hidden="true"></span>Shortlist</a>
         <p class="foot-blurb">A job-search support service. We are not a recruitment agency and we don’t take fees from employers.</p>
       </div>
-      <div><h4>Service</h4><ul><li><a href="#services">What we do</a></li><li><a href="#process">How it works</a></li><li><a href="#packages">Packages</a></li><li><a href="#tracker">Tracker</a></li><li><a href="checkout.html">Start your package</a></li></ul></div>
+      <div><h4>Service</h4><ul><li><a href="#services">What we do</a></li><li><a href="#process">How it works</a></li><li><a href="#packages">Packages</a></li><li><a href="#tracker">Tracker</a></li><li><a href="checkout.html">Start your package</a></li><li><a href="signin.html">Your tracker</a></li></ul></div>
       <div><h4>Contact</h4><ul><li><a href="mailto:hello@shortlist.ng">hello@shortlist.ng</a></li><li><a href="#book">WhatsApp</a></li><li>Mon–Fri · 9:00–18:00 WAT</li><li>Lekki, Lagos</li></ul></div>
-      <div><h4>Legal</h4><ul><li><a href="#">Service agreement</a></li><li><a href="#">Refund policy</a></li><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li></ul></div>
+      <div><h4>Legal</h4><ul><li><a href="agreement.html">Service agreement</a></li><li><a href="refunds.html">Refund policy</a></li><li><a href="privacy.html">Privacy</a></li><li><a href="terms.html">Terms</a></li></ul></div>
     </div>
     <div class="foot-bottom"><span>© 2026 Shortlist. All rights reserved.</span><span>RC number: to be added</span></div>
     <div class="wordmark" aria-hidden="true">Shortlist</div>

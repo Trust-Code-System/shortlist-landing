@@ -69,3 +69,6 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .brand-mark::before,.brand-mark::after{content:"";position:absolute;left:4px;right:4px;height:1.5px;background:var(--ink)}
 .brand-mark::before{top:6px}
 .brand-mark::after{top:11px;right:8px;background:var(--ink);box-shadow:0 0 0 2.5px var(--marker)}
+
+/* ---------- utilities ---------- */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
