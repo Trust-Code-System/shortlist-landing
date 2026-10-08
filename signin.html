@@ -58,12 +58,19 @@
 <script>
 (() => {
   const { $, wait, validate, liveClear, busy, isEmail, esc } = Flow;
+  /* PREVIEW ONLY: skips sign-in for the team. Remove when real authentication is added. */
+  const PREVIEW_EMAILS = ['hello@trustcodesystem.tech'];
   liveClear(document);
   $('#signForm').addEventListener('submit', async e => {
     e.preventDefault();
     const v = $('#email').value.trim();
     if (!validate([[$('#email'), !v ? 'Enter your email address' : !isEmail(v) ? 'Enter an email address like name@example.com' : '']])) return;
     const b = $('#sendLink'); busy(b, true);
+    if (PREVIEW_EMAILS.includes(v.toLowerCase())) {
+      await wait(500);
+      location.href = 'tracker.html';
+      return;
+    }
     await wait(900); busy(b, false);
     $('#sentLine').innerHTML = `If <b>${esc(v)}</b> belongs to a Shortlist client, a sign-in link is on its way. It works once and expires in 15 minutes.`;
     $('#askStep').hidden = true; $('#sentStep').hidden = false; $('#sentStep h1').focus();
