@@ -17,7 +17,7 @@
 <style>
 :root{
   --paper:#F3F4F1; --sheet:#FFFFFF; --ink:#141619; --ink-2:#464A51; --ink-3:#6B6F76;
-  --rule:#DADCD6; --rule-2:#C4C7C0;
+  --rule:#DADCD6; --rule-2:#C4C7C0; --scroll:#8A8E88;
   --marker:#F2E85A;
   --night:#111315; --night-2:#191C1F; --night-rule:#2A2E33; --night-ink:#ECEDEA; --night-ink-2:#A3A7AD;
 
@@ -42,7 +42,14 @@
   --mono:"Fragment Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 *,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;color-scheme:light;accent-color:var(--ink);scrollbar-color:var(--scroll) var(--paper)}
+@supports not (scrollbar-color:auto){
+  ::-webkit-scrollbar{width:12px;height:12px}
+  ::-webkit-scrollbar-track{background:var(--paper)}
+  ::-webkit-scrollbar-thumb{background:var(--scroll);border:3px solid var(--paper);border-radius:var(--r2)}
+  ::-webkit-scrollbar-thumb:hover{background:var(--ink-2)}
+  ::-webkit-scrollbar-corner{background:var(--paper)}
+}
 html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth{scroll-behavior:auto!important}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:var(--t-body);line-height:1.55;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;overflow-x:hidden}
