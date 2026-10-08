@@ -1,0 +1,1078 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shortlist — Job-search concierge</title>
+<meta name="description" content="Shortlist rewrites your CV, applies to roles on your behalf and prepares you for interviews, with a live tracker of every application.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&family=Fragment+Mono&display=swap" rel="stylesheet">
+<!--
+  PLACEHOLDERS — confirm with client before launch:
+  • Business name "Shortlist", contact details, address
+  • All package names, prices (₦ and $) and inclusions
+  • Tracker rows, CV samples and company names are invented sample content
+-->
+<style>
+:root{
+  --paper:#F3F4F1; --sheet:#FFFFFF; --ink:#141619; --ink-2:#464A51; --ink-3:#6B6F76;
+  --rule:#DADCD6; --rule-2:#C4C7C0;
+  --marker:#F2E85A;
+  --night:#111315; --night-2:#191C1F; --night-rule:#2A2E33; --night-ink:#ECEDEA; --night-ink-2:#A3A7AD;
+
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px; --s7:48px; --s8:64px; --s9:96px; --s10:128px;
+  --r1:2px; --r2:6px; --r3:10px;
+
+  --t-mono:12.5px; --t-sm:14px; --t-body:17px; --t-lead:20px; --t-h3:26px;
+  --t-h2:clamp(36px, 4.6vw, 64px);
+  --t-h1:clamp(44px, 5.75vw, 92px);
+
+  --ease-out:cubic-bezier(.23,1,.32,1);
+  --ease-io:cubic-bezier(.77,0,.175,1);
+
+  --sh-paper:0 1px 0 rgba(20,22,25,.04), 0 2px 4px -2px rgba(20,22,25,.08), 0 18px 32px -16px rgba(20,22,25,.18), 0 48px 96px -48px rgba(20,22,25,.28);
+  --sh-lift:0 1px 0 rgba(20,22,25,.04), 0 10px 24px -14px rgba(20,22,25,.22);
+
+  --pad:clamp(20px, 4vw, 48px);
+  --max:1320px;
+
+  --sans:"Schibsted Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --serif:"Newsreader", Georgia, serif;
+  --mono:"Fragment Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:var(--t-body);line-height:1.55;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;overflow-x:hidden}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:var(--r1)}
+.night :focus-visible{outline-color:var(--marker)}
+::selection{background:var(--marker);color:var(--ink)}
+
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+.mono{font-family:var(--mono);font-size:var(--t-mono);letter-spacing:.02em;text-transform:uppercase}
+.eyebrow{display:flex;align-items:center;gap:var(--s3);color:var(--ink-2)}
+.eyebrow::before{content:"";width:24px;height:1px;background:currentColor}
+.hl{background:linear-gradient(var(--marker),var(--marker)) no-repeat 0 82% / 0% 46%;-webkit-box-decoration-break:clone;box-decoration-break:clone;padding:0 .08em;margin:0 -.08em;transition:background-size 900ms var(--ease-out)}
+.hl.on{background-size:100% 46%}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;gap:var(--s3);height:52px;padding:0 var(--s5);border-radius:var(--r2);font-weight:600;font-size:16px;letter-spacing:-.005em;transition:transform 160ms var(--ease-out), background-color 200ms ease, color 200ms ease, border-color 200ms ease;white-space:nowrap}
+.btn:active{transform:scale(.97)}
+.btn-ink{background:var(--ink);color:var(--paper)}
+.btn-line{border:1px solid var(--rule-2);color:var(--ink)}
+.btn .arr{display:inline-block;transition:transform 220ms var(--ease-out)}
+@media (hover:hover) and (pointer:fine){
+  .btn-ink:hover{background:#000}
+  .btn-line:hover{border-color:var(--ink)}
+  .btn:hover .arr{transform:translateX(3px)}
+}
+.btn-sm{height:40px;padding:0 var(--s4);font-size:15px}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;inset:0 0 auto 0;z-index:50;transition:background-color 300ms ease, border-color 300ms ease;border-bottom:1px solid transparent}
+.nav.scrolled{background:rgba(243,244,241,.86);-webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px);border-bottom-color:var(--rule)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px;gap:var(--s5)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:20px;letter-spacing:-.03em}
+.brand-mark{width:22px;height:22px;position:relative;border:1.5px solid var(--ink);border-radius:var(--r1)}
+.brand-mark::before,.brand-mark::after{content:"";position:absolute;left:4px;right:4px;height:1.5px;background:var(--ink)}
+.brand-mark::before{top:6px}
+.brand-mark::after{top:11px;right:8px;background:var(--ink);box-shadow:0 0 0 2.5px var(--marker)}
+.nav-links{display:flex;gap:var(--s6);font-size:15px;color:var(--ink-2)}
+.nav-links a{position:relative;padding:var(--s2) 0;transition:color 200ms ease}
+.nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:right;transition:transform 300ms var(--ease-out)}
+@media (hover:hover) and (pointer:fine){
+  .nav-links a:hover{color:var(--ink)}
+  .nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
+}
+.nav-right{display:flex;align-items:center;gap:var(--s4)}
+.nav-loc{color:var(--ink-3)}
+.menu-btn{display:none;width:40px;height:40px;border:1px solid var(--rule-2);border-radius:var(--r2);align-items:center;justify-content:center}
+.menu-btn span{width:16px;height:1.5px;background:var(--ink);position:relative;transition:background-color 200ms}
+.menu-btn span::before,.menu-btn span::after{content:"";position:absolute;left:0;width:16px;height:1.5px;background:var(--ink);transition:transform 260ms var(--ease-out)}
+.menu-btn span::before{top:-5px}.menu-btn span::after{top:5px}
+.nav.open .menu-btn span{background:transparent}
+.nav.open .menu-btn span::before{transform:translateY(5px) rotate(45deg)}
+.nav.open .menu-btn span::after{transform:translateY(-5px) rotate(-45deg)}
+.mobile-menu{display:none}
+
+/* ---------- hero ---------- */
+.hero{padding-top:calc(72px + var(--s9));padding-bottom:var(--s9);position:relative}
+.hero-grid{display:grid;grid-template-columns:minmax(0,7.4fr) minmax(0,4.6fr);gap:var(--s7) var(--s8);align-items:start}
+.hero h1{font-size:var(--t-h1);line-height:.96;letter-spacing:-.045em;font-weight:700;margin:var(--s6) 0 var(--s6)}
+.hero h1 .line{display:block;overflow:hidden;padding-bottom:.06em;margin-bottom:-.06em}
+.hero h1 .line>span{display:inline-block;transform:translateY(108%);transition:transform 1000ms var(--ease-out)}
+.hero h1 .line.soft{color:var(--ink)}
+.loaded .hero h1 .line>span{transform:none}
+.loaded .hero h1 .line:nth-child(2)>span{transition-delay:90ms}
+.loaded .hero h1 .line:nth-child(3)>span{transition-delay:180ms}
+.hero-sub{font-size:var(--t-lead);line-height:1.5;color:var(--ink-2);max-width:42ch;margin:0 0 var(--s6)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:var(--s3)}
+.hero-facts{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:var(--s3) var(--s7);margin-top:var(--s6);padding-top:var(--s5);border-top:1px solid var(--rule);font-size:var(--t-sm);color:var(--ink-2)}
+.hero-facts li{display:flex;align-items:center;gap:var(--s2)}
+.hero-facts svg{flex:none}
+ul{list-style:none;margin:0;padding:0}
+
+.fade-up{opacity:0;transform:translateY(12px);transition:opacity 800ms var(--ease-out), transform 800ms var(--ease-out)}
+.loaded .fade-up{opacity:1;transform:none}
+.loaded .fade-up.d1{transition-delay:380ms}.loaded .fade-up.d2{transition-delay:470ms}.loaded .fade-up.d3{transition-delay:560ms}.loaded .fade-up.d0{transition-delay:0ms}
+
+/* CV stack */
+.desk{position:relative;padding-top:var(--s4);margin-bottom:128px}
+.cv{position:relative;z-index:2;background:var(--sheet);border-radius:var(--r1);box-shadow:var(--sh-paper);padding:36px 36px 28px;transform:translateY(28px) rotate(.5deg);opacity:0;transition:transform 1200ms var(--ease-out), opacity 900ms var(--ease-out);transition-delay:250ms}
+.loaded .cv{transform:rotate(-1.6deg);opacity:1}
+.cv-head{display:flex;justify-content:space-between;align-items:flex-start;gap:var(--s4);padding-bottom:var(--s4);border-bottom:1px solid #E6E7E3}
+.cv-name{font-family:var(--serif);font-size:28px;line-height:1.1;font-weight:500;letter-spacing:-.01em}
+.cv-role{font-family:var(--serif);font-style:italic;color:var(--ink-2);font-size:16px;margin-top:4px}
+.cv-contact{display:grid;gap:6px;justify-items:end;padding-top:6px}
+.bar{height:6px;border-radius:3px;background:#E9EAE6}
+.cv-sec{margin-top:var(--s5)}
+.cv-sec h4{margin:0 0 var(--s3);font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:400}
+.cv-job{display:flex;justify-content:space-between;font-family:var(--serif);font-size:16px;font-weight:600}
+.cv-job span{font-weight:400;color:var(--ink-3);font-size:14px}
+.cv-bullets{margin-top:22px;display:grid;gap:10px;font-family:var(--serif);font-size:15.5px;line-height:1.45;color:#2A2D31}
+.cv-bullets li{display:grid;grid-template-columns:14px 1fr;align-items:start}
+.cv-bullets li::before{content:"";width:4px;height:4px;border-radius:50%;background:#9A9DA2;margin-top:.62em}
+.edit{position:relative;min-height:calc(3 * 1.45em);margin:-10px -10px -6px;padding:12px 10px 6px;border-radius:var(--r1);background:#FAFAF6;outline:1px dashed #D6D8D2;outline-offset:0}
+.edit-old,.edit-new{display:block}
+.edit-old{position:relative;width:fit-content;color:var(--ink-3);transition:opacity 220ms ease, filter 220ms ease}
+.edit-old::after{content:"";position:absolute;left:-2px;right:-2px;top:52%;height:1.5px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform 520ms var(--ease-io)}
+.edit-old.struck::after{transform:scaleX(1)}
+.edit-old.gone{opacity:0;filter:blur(3px)}
+.edit-new{position:absolute;left:10px;right:10px;top:12px;color:var(--ink)}
+.caret{display:inline-block;width:1.5px;height:1.05em;background:var(--ink);vertical-align:-.15em;margin-left:1px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.edit-tag{position:absolute;right:10px;top:-10px;background:var(--ink);color:var(--paper);padding:2px 7px;border-radius:var(--r1);white-space:nowrap;font-size:10.5px}
+.cv-skel{display:grid;gap:8px;margin-top:var(--s3)}
+.cv-foot{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);margin-top:var(--s5);padding-top:var(--s4);border-top:1px solid #E6E7E3}
+.cv-foot .mono{color:var(--ink-3);font-size:11px}
+.cv-foot .appr{display:flex;gap:var(--s2)}
+.chip{display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:var(--r1);border:1px solid var(--rule-2);font-size:13px;font-weight:500}
+.chip.ink{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chip svg{width:12px;height:12px}
+
+.ticket{position:absolute;z-index:3;left:-44px;bottom:-132px;width:280px;background:var(--sheet);border-radius:var(--r2);box-shadow:var(--sh-lift);padding:var(--s4);transform:rotate(-4deg) translateY(20px);opacity:0;transition:transform 1200ms var(--ease-out), opacity 900ms var(--ease-out);transition-delay:520ms}
+.loaded .ticket{transform:rotate(-4deg);opacity:1}
+.ticket-top{display:flex;justify-content:space-between;color:var(--ink-3)}
+.ticket-role{font-weight:600;font-size:15px;margin-top:var(--s3);letter-spacing:-.01em}
+.ticket-co{font-size:13px;color:var(--ink-2)}
+.ticket-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:var(--s4)}
+.ticket-steps i{height:4px;border-radius:2px;background:#E6E7E3;position:relative;overflow:hidden}
+.ticket-steps i::after{content:"";position:absolute;inset:0;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform 600ms var(--ease-out)}
+.ticket-steps i.on::after{transform:scaleX(1)}
+.ticket-steps i.mk::after{background:#D9CD2E}
+.ticket-legend{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:6px;font-family:var(--mono);font-size:9.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-3)}
+
+/* ---------- marquee ---------- */
+.strip{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);overflow:hidden;padding:var(--s4) 0;color:var(--ink-2);margin-top:var(--s7)}
+.strip-track{display:flex;width:max-content;animation:marquee 60s linear infinite}
+.strip.paused .strip-track{animation-play-state:paused}
+.strip-set{display:flex;align-items:center}
+.strip-set span{padding:0 var(--s5);white-space:nowrap}
+.strip-set span::after{content:"";display:inline-block;width:5px;height:5px;background:var(--ink-3);border-radius:1px;transform:rotate(45deg);margin-left:var(--s5);vertical-align:2px}
+@keyframes marquee{to{transform:translateX(-50%)}}
+@media (hover:hover){.strip:hover .strip-track{animation-play-state:paused}}
+
+/* ---------- section scaffolding ---------- */
+.section{padding:var(--s10) 0}
+.sec-head{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:var(--s7);align-items:end;margin-bottom:var(--s8)}
+.sec-head h2,.h2{font-size:var(--t-h2);line-height:1.02;letter-spacing:-.04em;font-weight:700;margin:var(--s4) 0 0;max-width:16ch;text-wrap:balance}
+.sec-head>p{margin:0;color:var(--ink-2);font-size:var(--t-lead);line-height:1.5;max-width:44ch;justify-self:end}
+.eyebrow{margin:0}
+
+[data-reveal]{opacity:0;transform:translateY(16px);transition:opacity 800ms var(--ease-out), transform 800ms var(--ease-out);transition-delay:var(--d,0ms)}
+[data-reveal].in{opacity:1;transform:none}
+
+/* ---------- services ---------- */
+.svc{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--s7);align-items:stretch}
+.svc-tabs{display:flex;flex-direction:column;border-top:1px solid var(--rule)}
+.svc-tab{text-align:left;padding:var(--s5) 0;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:1fr auto;gap:var(--s2) var(--s4);align-items:baseline;color:var(--ink-3);transition:color 220ms ease}
+.svc-tab .t{font-size:var(--t-h3);font-weight:600;letter-spacing:-.025em;line-height:1.15}
+.svc-tab .d{grid-column:1/-1;font-size:15px;line-height:1.5;max-width:42ch;display:grid;grid-template-rows:0fr;transition:grid-template-rows 360ms var(--ease-out), opacity 300ms ease;opacity:0}
+.svc-tab .d>span{overflow:hidden}
+.svc-tab .k{transition:transform 300ms var(--ease-out)}
+.svc-tab[aria-selected="true"]{color:var(--ink)}
+.svc-tab[aria-selected="true"] .d{grid-template-rows:1fr;opacity:1;color:var(--ink-2)}
+.svc-tab[aria-selected="true"] .k{transform:rotate(45deg)}
+.svc-tab[aria-selected="true"] .t span{background:linear-gradient(var(--marker),var(--marker)) no-repeat 0 90% / 100% 40%}
+@media (hover:hover) and (pointer:fine){.svc-tab:hover{color:var(--ink)}}
+.svc-meta{margin-top:var(--s6);display:grid;gap:var(--s3)}
+.svc-meta li{display:flex;justify-content:space-between;gap:var(--s4);padding-bottom:var(--s3);border-bottom:1px dashed var(--rule);font-size:15px}
+.svc-meta li span:first-child{color:var(--ink-3)}
+.svc-meta li span:last-child{font-weight:500;text-align:right}
+
+.stage{position:relative;background:#E8EAE5;border-radius:var(--r3);min-height:560px;overflow:hidden;display:grid}
+.stage::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--rule) 1px, transparent 1px), linear-gradient(90deg, var(--rule) 1px, transparent 1px);background-size:32px 32px;opacity:.45;-webkit-mask-image:radial-gradient(ellipse at center, #000 30%, transparent 80%);mask-image:radial-gradient(ellipse at center, #000 30%, transparent 80%)}
+.panel{grid-area:1/1;position:relative;display:flex;align-items:center;justify-content:center;padding:var(--s7);opacity:0;transform:translateY(10px) scale(.985);filter:blur(4px);transition:opacity 380ms var(--ease-out), transform 480ms var(--ease-out), filter 380ms var(--ease-out);pointer-events:none}
+.panel.active{opacity:1;transform:none;filter:none;pointer-events:auto}
+.stage-label{position:absolute;left:var(--s5);top:var(--s5);color:var(--ink-3)}
+
+.diff{width:100%;max-width:560px;display:grid;gap:var(--s4)}
+.diff-card{background:var(--sheet);border-radius:var(--r2);box-shadow:var(--sh-lift);padding:var(--s5)}
+.diff-card .mono{color:var(--ink-3);font-size:11px;display:flex;justify-content:space-between}
+.diff-card p{margin:var(--s3) 0 0;font-family:var(--serif);font-size:18px;line-height:1.45}
+.diff-card.before p{color:var(--ink-3);text-decoration:line-through;text-decoration-thickness:1px}
+.diff-card.after{border-left:3px solid var(--ink)}
+.diff-arrow{display:flex;align-items:center;gap:var(--s3);color:var(--ink-3);padding-left:var(--s5)}
+.diff-arrow::before{content:"";width:1px;height:28px;background:var(--rule-2)}
+
+.apps{width:100%;max-width:560px;background:var(--sheet);border-radius:var(--r2);box-shadow:var(--sh-lift);overflow:hidden}
+.apps-h{display:flex;justify-content:space-between;align-items:center;padding:var(--s4) var(--s5);border-bottom:1px solid #E6E7E3}
+.apps-h b{font-weight:600;letter-spacing:-.01em}
+.apps-h .mono{color:var(--ink-3);font-size:11px}
+.apps li{display:grid;grid-template-columns:20px 1fr auto;gap:var(--s4);align-items:center;padding:14px var(--s5);border-bottom:1px solid #EFF0EC;font-size:15px}
+.apps li:last-child{border-bottom:0}
+.apps .box{width:18px;height:18px;border-radius:4px;border:1.5px solid var(--rule-2);display:grid;place-items:center}
+.apps .box.on{background:var(--ink);border-color:var(--ink)}
+.apps .r{font-weight:600;letter-spacing:-.01em}
+.apps .c{color:var(--ink-3);font-size:13.5px}
+.apps .fit{font-family:var(--mono);font-size:11px;color:var(--ink-2)}
+.apps-f{display:flex;justify-content:space-between;align-items:center;padding:var(--s4) var(--s5);background:#FAFAF8;border-top:1px solid #E6E7E3;font-size:14px;color:var(--ink-2)}
+
+.prep{width:100%;max-width:560px;display:grid;gap:var(--s4)}
+.prep-q{background:var(--ink);color:var(--paper);border-radius:var(--r2);padding:var(--s5) var(--s5) var(--s6)}
+.prep-q .mono{color:#9EA2A8;font-size:11px}
+.prep-q p{margin:var(--s3) 0 0;font-size:24px;line-height:1.25;letter-spacing:-.02em;font-weight:600}
+.prep-star{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3)}
+.prep-star div{background:var(--sheet);border-radius:var(--r2);padding:var(--s4);box-shadow:var(--sh-lift)}
+.prep-star .mono{font-size:11px;color:var(--ink-3)}
+.prep-star p{margin:var(--s2) 0 0;font-size:14px;line-height:1.45;color:var(--ink-2)}
+.prep-fb{display:flex;align-items:center;gap:var(--s3);font-size:14px;color:var(--ink-2);background:var(--sheet);border-radius:var(--r2);padding:var(--s3) var(--s4);box-shadow:var(--sh-lift)}
+.prep-fb .dot{width:8px;height:8px;border-radius:50%;background:#D24B3E;flex:none;animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.35}}
+
+/* ---------- process ---------- */
+.process{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--s7)}
+.process-aside{position:sticky;top:120px;align-self:start}
+.process-aside .lede{color:var(--ink-2);font-size:var(--t-lead);max-width:34ch;margin:var(--s5) 0 var(--s6)}
+.who-key{display:flex;gap:var(--s4);color:var(--ink-3)}
+.who-key span{display:flex;align-items:center;gap:var(--s2)}
+.steps{position:relative;padding-left:var(--s7)}
+.rail{position:absolute;left:7px;top:10px;bottom:10px;width:1px;background:var(--rule)}
+.rail i{position:absolute;inset:0;background:var(--ink);transform:scaleY(0);transform-origin:top}
+.step{position:relative;padding:var(--s4) 0 var(--s8)}
+.step:last-child{padding-bottom:0}
+.step::before{content:"";position:absolute;left:calc(-1 * var(--s7) + 2px);top:calc(var(--s4) + 9px);width:11px;height:11px;border-radius:50%;background:var(--paper);border:1.5px solid var(--rule-2);transition:background-color 300ms ease, border-color 300ms ease, transform 300ms var(--ease-out)}
+.step.on::before{background:var(--ink);border-color:var(--ink);transform:scale(1.15)}
+.step-top{display:flex;align-items:center;gap:var(--s4);color:var(--ink-3)}
+.who{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:var(--r1);border:1px solid var(--rule-2);font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-2)}
+.who.us{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.who.both{background:var(--marker);border-color:#D9CD2E;color:var(--ink)}
+.step h3{font-size:clamp(24px,2.6vw,34px);letter-spacing:-.03em;line-height:1.1;margin:var(--s3) 0 var(--s3);font-weight:650;color:var(--ink-3);transition:color 400ms ease}
+.step.on h3{color:var(--ink)}
+.step p{margin:0;color:var(--ink-2);max-width:52ch}
+
+/* ---------- tracker (night) ---------- */
+.night{background:var(--night);color:var(--night-ink)}
+.night .eyebrow{color:var(--night-ink-2)}
+.night .sec-head>p{color:var(--night-ink-2)}
+.board{background:var(--night-2);border:1px solid var(--night-rule);border-radius:var(--r3);overflow:hidden}
+.board-top{display:flex;justify-content:space-between;align-items:center;gap:var(--s4);padding:var(--s4) var(--s5);border-bottom:1px solid var(--night-rule)}
+.board-top .who-am{display:flex;align-items:center;gap:var(--s3);font-size:15px}
+.av{width:30px;height:30px;border-radius:50%;background:#2C3035;display:grid;place-items:center;font-size:12px;font-weight:600;color:var(--night-ink)}
+.board-top .mono{color:var(--night-ink-2)}
+.board-flags{display:flex;gap:var(--s5)}
+.live{display:inline-flex;align-items:center;gap:var(--s2)}
+.live::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--marker);animation:pulse 2s ease-in-out infinite}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--night-rule)}
+.stat{padding:var(--s5);border-right:1px solid var(--night-rule)}
+.stat:last-child{border-right:0}
+.stat .mono{color:var(--night-ink-2)}
+.stat b{display:block;font-size:clamp(34px,4vw,52px);letter-spacing:-.04em;font-weight:600;line-height:1;margin-top:var(--s3);font-variant-numeric:tabular-nums}
+.stat.mk b{color:var(--marker)}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th{text-align:left;font-family:var(--mono);font-weight:400;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--night-ink-2);padding:var(--s3) var(--s5);border-bottom:1px solid var(--night-rule)}
+.tbl td{padding:var(--s4) var(--s5);border-bottom:1px solid var(--night-rule);vertical-align:middle}
+.tbl tr:last-child td{border-bottom:0}
+.tbl .r{font-weight:600;letter-spacing:-.01em}
+.tbl .dim{color:var(--night-ink-2)}
+.tbl .mono-c{font-family:var(--mono);font-size:12.5px;color:var(--night-ink-2)}
+.tbl tbody tr{opacity:0;transform:translateY(8px);transition:opacity 600ms var(--ease-out), transform 600ms var(--ease-out);transition-delay:var(--d,0ms)}
+.board.in .tbl tbody tr{opacity:1;transform:none}
+.st{display:inline-flex;align-items:center;gap:var(--s2);height:26px;padding:0 10px;border-radius:var(--r1);border:1px solid var(--night-rule);font-family:var(--mono);font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--night-ink-2);transition:background-color 300ms ease, color 300ms ease, border-color 300ms ease}
+.st::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.7}
+.st.sent{color:var(--night-ink);border-color:#3A3F45}
+.st.viewed{color:var(--night-ink);background:#24282C;border-color:#3A3F45}
+.st.reply{background:var(--night-ink);color:var(--night);border-color:var(--night-ink)}
+.st.interview{background:var(--marker);color:var(--night);border-color:var(--marker)}
+.st .tx{display:inline-block;transition:opacity 200ms ease, filter 200ms ease}
+.st.swap .tx{opacity:0;filter:blur(3px)}
+.board-note{display:flex;justify-content:space-between;gap:var(--s4);padding:var(--s4) var(--s5);border-top:1px solid var(--night-rule);color:var(--night-ink-2);font-size:14px}
+.tracker-points{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s7);margin-top:var(--s8)}
+.tracker-points h3{font-size:19px;letter-spacing:-.015em;margin:0 0 var(--s2);font-weight:600}
+.tracker-points p{margin:0;color:var(--night-ink-2);font-size:15.5px}
+.tracker-points div{padding-top:var(--s4);border-top:1px solid var(--night-rule)}
+
+/* ---------- packages ---------- */
+.pk-bar{display:flex;justify-content:space-between;align-items:center;gap:var(--s4);margin-bottom:var(--s5)}
+.seg{position:relative;display:inline-grid;grid-template-columns:1fr 1fr;padding:4px;border:1px solid var(--rule-2);border-radius:var(--r2);background:var(--paper)}
+.seg button{position:relative;z-index:1;height:36px;padding:0 var(--s4);font-size:14px;font-weight:500;color:var(--ink-2);transition:color 220ms ease}
+.seg button[aria-pressed="true"]{color:var(--paper)}
+.seg .thumb{position:absolute;top:4px;bottom:4px;left:4px;width:calc(50% - 4px);background:var(--ink);border-radius:4px;transition:transform 320ms var(--ease-out)}
+.seg.usd .thumb{transform:translateX(100%)}
+.pk{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--ink)}
+.pk-col{position:relative;padding:var(--s6) var(--s6) var(--s7);border-right:1px solid var(--rule);display:flex;flex-direction:column}
+.pk-col:first-child{padding-left:0}
+.pk-col:last-child{border-right:0;padding-right:0}
+.pk-col.rec{background:var(--sheet);border-radius:0 0 var(--r3) var(--r3);box-shadow:var(--sh-lift);padding-left:var(--s6);padding-right:var(--s6)}
+.pk-col.rec::before{content:"";position:absolute;left:0;right:0;top:-1px;height:4px;background:var(--marker)}
+.pk-name{display:flex;justify-content:space-between;align-items:baseline;gap:var(--s3)}
+.pk-name h3{margin:0;font-size:var(--t-h3);letter-spacing:-.025em;font-weight:650}
+.pk-name .mono{color:var(--ink-3)}
+.pk-for{color:var(--ink-2);font-size:15.5px;margin:var(--s2) 0 var(--s6);min-height:3em}
+.price{display:flex;align-items:flex-end;gap:var(--s2);height:64px}
+.price b{font-size:clamp(38px,3.7vw,54px);letter-spacing:-.045em;font-weight:650;line-height:1;display:inline-flex;align-items:flex-start;gap:.06em;transition:opacity 220ms ease, transform 320ms var(--ease-out), filter 220ms ease}
+.price.swap b{opacity:0;transform:translateY(8px);filter:blur(4px)}
+.price>span{color:var(--ink-3);font-size:15px;white-space:nowrap;padding-bottom:.35em}
+.price .cur{font-style:normal;font-family:var(--mono);font-size:.42em;font-weight:400;letter-spacing:0;color:var(--ink-2);margin-top:.18em}
+.pk-list{display:grid;gap:var(--s3);margin:var(--s6) 0 var(--s7);font-size:15.5px}
+.pk-list li{display:grid;grid-template-columns:20px 1fr;gap:var(--s2);align-items:start}
+.pk-list svg{margin-top:5px}
+.pk-list .inh{color:var(--ink-2);font-weight:500}
+.pk-col .btn{margin-top:auto;justify-content:center;width:100%}
+.pk-note{display:flex;flex-wrap:wrap;gap:var(--s2) var(--s6);margin-top:var(--s6);color:var(--ink-3);font-size:14px}
+
+/* ---------- promise ---------- */
+.promise{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:var(--s7);align-items:start}
+.promise .big{font-size:clamp(32px,3.8vw,54px);line-height:1.06;letter-spacing:-.04em;font-weight:650;margin:var(--s4) 0 0}
+.promise .big em{font-style:normal;color:var(--ink-3)}
+.ledger{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--rule-2);border-radius:var(--r3);overflow:hidden;background:var(--sheet)}
+.ledger>div{padding:var(--s5)}
+.ledger>div:first-child{border-right:1px solid var(--rule)}
+.ledger h3{margin:0 0 var(--s4);font-family:var(--mono);font-size:12px;font-weight:400;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.ledger li{padding:var(--s3) 0;border-top:1px solid #EEEFEB;font-size:15.5px;line-height:1.45;display:grid;grid-template-columns:20px 1fr;gap:var(--s2)}
+.ledger li svg{margin-top:4px}
+.ledger .no li{color:var(--ink-2)}
+
+/* ---------- faq ---------- */
+.faq{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--s7)}
+.qa{border-top:1px solid var(--rule)}
+.qa-item{border-bottom:1px solid var(--rule)}
+.qa-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:var(--s4);padding:var(--s5) 0;text-align:left;font-size:19px;font-weight:600;letter-spacing:-.015em}
+.qa-q .pm{position:relative;width:14px;height:14px;flex:none}
+.qa-q .pm::before,.qa-q .pm::after{content:"";position:absolute;left:0;right:0;top:6px;height:1.5px;background:var(--ink);transition:transform 300ms var(--ease-out)}
+.qa-q .pm::after{transform:rotate(90deg)}
+.qa-q[aria-expanded="true"] .pm::after{transform:rotate(0)}
+.qa-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows 360ms var(--ease-out)}
+.qa-a>div{overflow:hidden}
+.qa-a p{margin:0 0 var(--s5);color:var(--ink-2);max-width:60ch;opacity:0;transform:translateY(-4px);transition:opacity 300ms ease, transform 360ms var(--ease-out)}
+.qa-q[aria-expanded="true"]+.qa-a{grid-template-rows:1fr}
+.qa-q[aria-expanded="true"]+.qa-a p{opacity:1;transform:none}
+@media (hover:hover) and (pointer:fine){.qa-q:hover{color:var(--ink-2)}}
+
+/* ---------- booking ---------- */
+.book{background:var(--ink);color:var(--paper);border-radius:var(--r3);padding:var(--s8);display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:var(--s8);position:relative;overflow:hidden}
+.book h2{font-size:var(--t-h2);line-height:1;letter-spacing:-.045em;font-weight:700;margin:var(--s4) 0 var(--s5)}
+.book .eyebrow{color:#9EA2A8}
+.book .lede{color:#B4B8BD;font-size:var(--t-lead);max-width:36ch;margin:0}
+.book-meta{display:grid;gap:var(--s3);margin-top:var(--s7);font-size:15px;color:#D3D6D9}
+.book-meta li{display:flex;gap:var(--s3);align-items:center}
+.cal{align-self:start;background:var(--night-2);border:1px solid var(--night-rule);border-radius:var(--r3);padding:var(--s5)}
+.cal-h{display:flex;justify-content:space-between;align-items:center;color:#9EA2A8;margin-bottom:var(--s4)}
+.days{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--s2)}
+.day{display:grid;gap:2px;justify-items:center;padding:var(--s3) 0;border:1px solid var(--night-rule);border-radius:var(--r2);transition:background-color 200ms ease, border-color 200ms ease, color 200ms ease, transform 160ms var(--ease-out);color:#C9CCD0}
+.day small{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#8D9197}
+.day b{font-size:22px;font-weight:600;letter-spacing:-.02em}
+.day:active,.slot:active{transform:scale(.97)}
+.day[aria-pressed="true"]{background:var(--night-ink);color:var(--night);border-color:var(--night-ink)}
+.day[aria-pressed="true"] small{color:#55595F}
+.slots{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s2);margin-top:var(--s4)}
+.slot{height:44px;border:1px solid var(--night-rule);border-radius:var(--r2);font-family:var(--mono);font-size:13px;color:#D3D6D9;transition:background-color 200ms ease, border-color 200ms ease, color 200ms ease, transform 160ms var(--ease-out)}
+.slot:disabled{color:#555A60;text-decoration:line-through;cursor:not-allowed}
+.slot[aria-pressed="true"]{background:var(--marker);color:var(--night);border-color:var(--marker)}
+@media (hover:hover) and (pointer:fine){
+  .day:not([aria-pressed="true"]):hover,.slot:not(:disabled):not([aria-pressed="true"]):hover{border-color:#5A5F66}
+}
+.cal-f{display:flex;justify-content:space-between;align-items:center;gap:var(--s4);margin-top:var(--s5);padding-top:var(--s4);border-top:1px solid var(--night-rule)}
+.cal-f .sel{font-size:14px;color:#9EA2A8;min-height:1.5em}
+.cal-f .sel b{color:var(--night-ink);font-weight:600}
+.btn-mk{background:var(--marker);color:var(--night)}
+.btn-mk[aria-disabled="true"]{background:#2A2E33;color:#7C8187;cursor:not-allowed}
+.btn-mk[aria-disabled="true"]:active{transform:none}
+
+/* ---------- footer ---------- */
+.foot{padding:var(--s8) 0 var(--s6)}
+.foot-grid{display:grid;grid-template-columns:minmax(0,5fr) repeat(3,minmax(0,2fr));gap:var(--s6);padding-bottom:var(--s8);border-bottom:1px solid var(--rule)}
+.foot h4{margin:0 0 var(--s4);font-family:var(--mono);font-size:11.5px;font-weight:400;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.foot li{padding:6px 0;font-size:15px}
+.foot li a{transition:color 200ms ease}
+@media (hover:hover){.foot li a:hover{color:var(--ink-2)}}
+.foot-blurb{color:var(--ink-2);max-width:36ch;margin:var(--s4) 0 0;font-size:15.5px}
+.foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:var(--s4);padding-top:var(--s5);color:var(--ink-3);font-size:13.5px}
+.wordmark{font-size:clamp(64px,22.4vw,332px);font-weight:800;letter-spacing:-.065em;line-height:.8;margin-top:var(--s8);color:transparent;-webkit-text-stroke:1px var(--rule-2);user-select:none;white-space:nowrap;overflow:hidden}
+
+/* ---------- responsive ---------- */
+@media (max-width:1080px){
+  .nav-links,.nav-loc{display:none}
+  .menu-btn{display:inline-flex}
+  .mobile-menu{display:block;position:fixed;top:72px;left:0;right:0;background:var(--paper);border-bottom:1px solid var(--rule);padding:var(--s3) var(--pad) var(--s5);transform:translateY(-8px);opacity:0;pointer-events:none;transition:opacity 220ms ease, transform 280ms var(--ease-out)}
+  .nav.open .mobile-menu{opacity:1;transform:none;pointer-events:auto}
+  .nav.open{background:var(--paper);border-bottom-color:var(--rule)}
+  .mobile-menu a{display:block;padding:var(--s3) 0;font-size:20px;font-weight:600;letter-spacing:-.02em;border-bottom:1px solid var(--rule)}
+  .hero-grid,.svc,.process,.faq,.promise,.book,.sec-head{grid-template-columns:1fr}
+  .sec-head p{justify-self:start}
+  .desk{max-width:520px;margin:0 auto var(--s8);width:100%}
+  .process-aside{position:static}
+  .tracker-points{grid-template-columns:1fr;gap:var(--s5)}
+  .pk{grid-template-columns:1fr;border-top:0}
+  .pk-col,.pk-col:first-child,.pk-col:last-child{padding:var(--s6) 0;border-right:0;border-top:1px solid var(--ink)}
+  .pk-col.rec{padding:var(--s6) var(--s5);margin:var(--s4) 0;border-radius:var(--r3)}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .foot-grid>div:first-child{grid-column:1/-1}
+  .book{padding:var(--s7) var(--s5)}
+}
+@media (max-width:640px){
+  :root{--t-body:16px;--t-lead:18px}
+  .hero{padding-top:calc(72px + var(--s7))}
+  .nav .btn-sm{display:none}
+  .section{padding:var(--s9) 0}
+  .cv{padding:24px 20px 20px}
+  .cv-name{font-size:23px}
+  .edit-tag{right:6px}
+  .ticket{left:-6px;bottom:-124px;width:236px}
+  .desk{margin-bottom:132px}
+  .stage{min-height:0}
+  .panel{padding:var(--s7) var(--s4) var(--s5)}
+  .prep-star{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .stat:nth-child(2){border-right:0}
+  .stat:nth-child(-n+2){border-bottom:1px solid var(--night-rule)}
+  .tbl th:nth-child(2),.tbl td:nth-child(2),.tbl th:nth-child(3),.tbl td:nth-child(3){display:none}
+  .tbl td,.tbl th{padding-left:var(--s4);padding-right:var(--s4)}
+  .ledger{grid-template-columns:1fr}
+  .ledger>div:first-child{border-right:0;border-bottom:1px solid var(--rule)}
+  .slots{grid-template-columns:repeat(2,1fr)}
+  .days{gap:6px}
+  .day b{font-size:19px}
+  .cal-f{flex-direction:column;align-items:stretch}
+  .cal-f .btn{justify-content:center}
+  .board-top .sample{display:none}
+  .hero-facts{gap:var(--s3)}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:1ms!important;animation:none!important;transition-delay:0ms!important}
+  .hero h1 .line>span,.fade-up,.cv,.ticket,[data-reveal],.tbl tbody tr{transform:none!important;opacity:1!important}
+  .cv{transform:rotate(-1.6deg)!important}
+  .ticket{transform:rotate(-4deg)!important}
+  .hl{background-size:100% 46%}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#top" class="brand" aria-label="Shortlist home"><span class="brand-mark" aria-hidden="true"></span>Shortlist</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#services">Services</a>
+      <a href="#process">How it works</a>
+      <a href="#tracker">Tracker</a>
+      <a href="#packages">Packages</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-right">
+      <span class="nav-loc mono">Lagos · Remote</span>
+      <a href="#book" class="btn btn-ink btn-sm">Book intake call</a>
+      <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><span></span></button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mmenu">
+    <a href="#services">Services</a>
+    <a href="#process">How it works</a>
+    <a href="#tracker">Tracker</a>
+    <a href="#packages">Packages</a>
+    <a href="#faq">FAQ</a>
+    <a href="#book">Book intake call</a>
+  </div>
+</header>
+
+<main id="top">
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow mono fade-up d0">Job-search concierge · Nigeria &amp; abroad</p>
+      <h1>
+        <span class="line"><span>Job hunting is a</span></span>
+        <span class="line"><span>full‑time job.</span></span>
+        <span class="line soft"><span><span class="hl" id="heroHl">We’ll take the shift.</span></span></span>
+      </h1>
+      <p class="hero-sub fade-up d1">We rewrite your CV, apply to roles on your behalf and prepare you for every interview. You can follow each application in your own tracker.</p>
+      <div class="hero-cta fade-up d2">
+        <a href="#book" class="btn btn-ink">Book a 20‑min intake call <span class="arr" aria-hidden="true">→</span></a>
+        <a href="#packages" class="btn btn-line">See packages</a>
+      </div>
+    </div>
+
+    <div class="desk" aria-label="Example: a CV being rewritten">
+      <article class="cv">
+        <div class="cv-head">
+          <div>
+            <div class="cv-name">Adaeze Okafor</div>
+            <div class="cv-role">Growth &amp; Brand Marketing</div>
+          </div>
+          <div class="cv-contact" aria-hidden="true"><div class="bar" style="width:120px"></div><div class="bar" style="width:92px"></div><div class="bar" style="width:104px"></div></div>
+        </div>
+        <div class="cv-sec">
+          <h4>Experience</h4>
+          <div class="cv-job">Marketing Associate <span>2021 — Present</span></div>
+          <ul class="cv-bullets">
+            <li><div class="edit" id="edit" aria-live="polite">
+              <span class="edit-tag mono" id="editTag">Edit 1 / 3</span>
+              <span class="edit-old" id="editOld">Responsible for social media pages.</span>
+              <span class="edit-new" id="editNew"></span>
+            </div></li>
+            <li>Planned and ran four product launches with the sales team.</li>
+          </ul>
+        </div>
+        <div class="cv-sec">
+          <h4>Education</h4>
+          <div class="cv-skel" aria-hidden="true"><div class="bar" style="width:70%"></div><div class="bar" style="width:46%"></div></div>
+        </div>
+        <div class="cv-foot">
+          <span class="mono">Draft 2 · for your review</span>
+          <div class="appr"><span class="chip">Comment</span><span class="chip ink"><svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.5l2.5 2.5L10 3.5" stroke="currentColor" stroke-width="1.6"/></svg>Approve</span></div>
+        </div>
+      </article>
+      <aside class="ticket" aria-hidden="true">
+        <div class="ticket-top mono"><span>Application #14</span><span>Sample</span></div>
+        <div class="ticket-role">Growth Marketing Lead</div>
+        <div class="ticket-co">Ferrule Pay · Lagos, hybrid</div>
+        <div class="ticket-steps" id="ticketSteps"><i></i><i></i><i></i><i class="mk"></i></div>
+        <div class="ticket-legend"><span>Sent</span><span>Viewed</span><span>Reply</span><span>Interview</span></div>
+      </aside>
+    </div>
+      <ul class="hero-facts fade-up d3">
+        <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.5"/></svg>Nothing goes out without your approval</li>
+        <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.5"/></svg>Every application logged</li>
+        <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.5"/></svg>Pay by card or bank transfer</li>
+      </ul>
+  </div>
+
+  <div class="strip mono" id="strip" aria-label="Roles we apply for">
+    <div class="strip-track">
+      <div class="strip-set"><span>Product management</span><span>Finance &amp; accounting</span><span>Software engineering</span><span>Operations</span><span>Sales</span><span>Data &amp; analytics</span><span>Marketing</span><span>Healthcare admin</span><span>Remote roles · UK, EU &amp; Canada</span></div>
+      <div class="strip-set" aria-hidden="true"><span>Product management</span><span>Finance &amp; accounting</span><span>Software engineering</span><span>Operations</span><span>Sales</span><span>Data &amp; analytics</span><span>Marketing</span><span>Healthcare admin</span><span>Remote roles · UK, EU &amp; Canada</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section class="section" id="services" style="padding-top:var(--s8)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div data-reveal>
+        <p class="eyebrow mono">What we do</p>
+        <h2>Three jobs, done by people who do them every day.</h2>
+      </div>
+      <p data-reveal style="--d:80ms">Buy one service on its own or let us run the whole search. Either way, you see the work before it goes out.</p>
+    </div>
+
+    <div class="svc">
+      <div data-reveal>
+        <div class="svc-tabs" role="tablist" aria-label="Services">
+          <button class="svc-tab" role="tab" id="tab-cv" aria-controls="p-cv" aria-selected="true" tabindex="0">
+            <span class="t"><span>CV &amp; LinkedIn rewrite</span></span><span class="k" aria-hidden="true">+</span>
+            <span class="d"><span>We turn duties into results, fix the format so applicant tracking systems can read it, and rewrite your LinkedIn to match.</span></span>
+          </button>
+          <button class="svc-tab" role="tab" id="tab-apps" aria-controls="p-apps" aria-selected="false" tabindex="-1">
+            <span class="t"><span>Applications on your behalf</span></span><span class="k" aria-hidden="true">+</span>
+            <span class="d"><span>We find roles that fit your brief, tailor each application and send it. You approve the shortlist first.</span></span>
+          </button>
+          <button class="svc-tab" role="tab" id="tab-prep" aria-controls="p-prep" aria-selected="false" tabindex="-1">
+            <span class="t"><span>Interview preparation</span></span><span class="k" aria-hidden="true">+</span>
+            <span class="d"><span>When an employer replies, we run a mock interview on video for that specific role and send written feedback.</span></span>
+          </button>
+        </div>
+        <ul class="svc-meta" id="svcMeta" aria-live="polite"></ul>
+      </div>
+
+      <div class="stage" data-reveal style="--d:120ms">
+        <div class="panel active" role="tabpanel" id="p-cv" aria-labelledby="tab-cv">
+          <span class="stage-label mono">Before / after · sample</span>
+          <div class="diff">
+            <div class="diff-card before"><div class="mono"><span>Before</span><span>Duty</span></div><p>Helped with customer complaints and other duties as assigned.</p></div>
+            <div class="diff-arrow mono">Rewritten</div>
+            <div class="diff-card after"><div class="mono"><span>After</span><span>Result</span></div><p>Cut complaint resolution time from <span class="hl on">three days to nine hours</span> by redesigning the support ticket flow.</p></div>
+            <div class="diff-card after"><div class="mono"><span>LinkedIn headline</span><span>After</span></div><p>Customer operations lead · fintech · Lagos &amp; remote</p></div>
+          </div>
+        </div>
+        <div class="panel" role="tabpanel" id="p-apps" aria-labelledby="tab-apps" hidden>
+          <span class="stage-label mono">This week’s shortlist · sample</span>
+          <div class="apps">
+            <div class="apps-h"><b>Roles to approve</b><span class="mono">4 of 5 selected</span></div>
+            <ul>
+              <li><span class="box on"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.5l2.5 2.5L10 3.5" stroke="#fff" stroke-width="1.8"/></svg></span><span><span class="r">Product Analyst</span><br><span class="c">Ferrule Pay · Lagos</span></span><span class="fit">Strong fit</span></li>
+              <li><span class="box on"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.5l2.5 2.5L10 3.5" stroke="#fff" stroke-width="1.8"/></svg></span><span><span class="r">Operations Associate</span><br><span class="c">Brightwater Logistics · Abuja</span></span><span class="fit">Strong fit</span></li>
+              <li><span class="box"></span><span><span class="r">Sales Manager</span><br><span class="c">Halo Retail · Port Harcourt</span></span><span class="fit">Stretch</span></li>
+              <li><span class="box on"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.5l2.5 2.5L10 3.5" stroke="#fff" stroke-width="1.8"/></svg></span><span><span class="r">Data Analyst</span><br><span class="c">Calder Analytics · Remote, UK</span></span><span class="fit">Good fit</span></li>
+              <li><span class="box on"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.5l2.5 2.5L10 3.5" stroke="#fff" stroke-width="1.8"/></svg></span><span><span class="r">Business Analyst</span><br><span class="c">Palmgrove Bank · Lagos</span></span><span class="fit">Good fit</span></li>
+            </ul>
+            <div class="apps-f"><span>Approve to send</span><span class="chip ink">Approve 4</span></div>
+          </div>
+        </div>
+        <div class="panel" role="tabpanel" id="p-prep" aria-labelledby="tab-prep" hidden>
+          <span class="stage-label mono">Mock interview · sample</span>
+          <div class="prep">
+            <div class="prep-q"><div class="mono">Likely question · Product Analyst</div><p>“Tell us about a time your analysis changed a decision.”</p></div>
+            <div class="prep-star">
+              <div><div class="mono">Situation</div><p>Churn was rising and the team blamed pricing.</p></div>
+              <div><div class="mono">Action</div><p>You split churn by signup channel and found the real cause.</p></div>
+              <div><div class="mono">Result</div><p>Lead with the number. Keep it under two minutes.</p></div>
+            </div>
+            <div class="prep-fb"><span class="dot" aria-hidden="true"></span>Recording · feedback notes sent within 24 hours</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROCESS ================= -->
+<section class="section" id="process" style="padding-top:var(--s8)">
+  <div class="wrap process">
+    <div class="process-aside" data-reveal>
+      <p class="eyebrow mono">How it works</p>
+      <h2 class="h2">From first call to first interview.</h2>
+      <p class="lede">Six steps. Some are yours, some are ours, and a few we do together.</p>
+      <div class="who-key"><span><i class="who">You</i></span><span><i class="who us">Us</i></span><span><i class="who both">Together</i></span></div>
+    </div>
+    <ol class="steps" id="steps" style="list-style:none;margin:0">
+      <span class="rail" aria-hidden="true"><i id="railFill"></i></span>
+      <li class="step"><div class="step-top"><span class="mono">Step 1</span><i class="who">You</i></div><h3>Book the intake call</h3><p>Twenty minutes on video. We ask about the roles you want, your salary range, where you want to work and what hasn’t worked so far.</p></li>
+      <li class="step"><div class="step-top"><span class="mono">Step 2</span><i class="who">You</i></div><h3>Sign and pay online</h3><p>Read the service agreement, sign it in your browser and pay by card or bank transfer. The agreement says exactly what we deliver, and by when.</p></li>
+      <li class="step"><div class="step-top"><span class="mono">Step 3</span><i class="who">You</i></div><h3>Upload your CV and work history</h3><p>Send your current CV, certificates and a short form about each past role. Rough notes are fine. Turning them into strong lines is our job.</p></li>
+      <li class="step"><div class="step-top"><span class="mono">Step 4</span><i class="who both">Together</i></div><h3>We rewrite, you approve</h3><p>Your first draft arrives within five working days. Comment on any line. Nothing is sent to an employer until you approve it.</p></li>
+      <li class="step"><div class="step-top"><span class="mono">Step 5</span><i class="who us">Us</i></div><h3>Applications go out</h3><p>We shortlist roles that match your brief, tailor each application and send it. Every one shows up in your tracker with the date and status.</p></li>
+      <li class="step"><div class="step-top"><span class="mono">Step 6</span><i class="who both">Together</i></div><h3>Prepare for the interview</h3><p>When an employer replies, we run a mock interview built around that role and send notes on what to tighten.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= TRACKER ================= -->
+<section class="section night" id="tracker">
+  <div class="wrap">
+    <div class="sec-head">
+      <div data-reveal>
+        <p class="eyebrow mono">Your tracker</p>
+        <h2>Every application, on the record.</h2>
+      </div>
+      <p data-reveal style="--d:80ms">No “we’re working on it” emails. Log in at any time to see which roles we applied to, when we applied and what happened next.</p>
+    </div>
+
+    <div class="board" id="board" data-reveal>
+      <div class="board-top">
+        <div class="who-am"><span class="av">AO</span><span>Adaeze’s search · Week 3</span></div>
+        <span class="board-flags"><span class="mono live">Live</span><span class="mono sample">Sample data</span></span>
+      </div>
+      <div class="stats">
+        <div class="stat"><span class="mono">Sent</span><b data-count="27">0</b></div>
+        <div class="stat"><span class="mono">Viewed</span><b data-count="11">0</b></div>
+        <div class="stat"><span class="mono">Replies</span><b data-count="4">0</b></div>
+        <div class="stat mk"><span class="mono">Interviews</span><b data-count="2">0</b></div>
+      </div>
+      <table class="tbl">
+        <thead><tr><th scope="col">Role</th><th scope="col">Company</th><th scope="col">Sent</th><th scope="col">Status</th></tr></thead>
+        <tbody id="rows">
+          <tr style="--d:0ms"><td><span class="r">Product Analyst</span></td><td class="dim">Ferrule Pay · Lagos</td><td class="mono-c">03 Oct</td><td><span class="st sent" data-flow="sent,viewed,reply,interview"><span class="tx">Sent</span></span></td></tr>
+          <tr style="--d:70ms"><td><span class="r">Data Analyst</span></td><td class="dim">Calder Analytics · Remote UK</td><td class="mono-c">03 Oct</td><td><span class="st sent" data-flow="sent,viewed,reply"><span class="tx">Sent</span></span></td></tr>
+          <tr style="--d:140ms"><td><span class="r">Operations Associate</span></td><td class="dim">Brightwater Logistics · Abuja</td><td class="mono-c">02 Oct</td><td><span class="st sent" data-flow="sent,viewed"><span class="tx">Sent</span></span></td></tr>
+          <tr style="--d:210ms"><td><span class="r">Business Analyst</span></td><td class="dim">Palmgrove Bank · Lagos</td><td class="mono-c">01 Oct</td><td><span class="st sent" data-flow="sent,viewed,interview"><span class="tx">Sent</span></span></td></tr>
+          <tr style="--d:280ms"><td><span class="r">Growth Associate</span></td><td class="dim">Odun Health · Lagos</td><td class="mono-c">30 Sep</td><td><span class="st sent" data-flow="sent"><span class="tx">Sent</span></span></td></tr>
+        </tbody>
+      </table>
+      <div class="board-note"><span>Updated by your Shortlist specialist</span><span class="mono">Sample · names invented</span></div>
+    </div>
+
+    <div class="tracker-points">
+      <div data-reveal><h3>You see every role</h3><p>Role, employer, date sent and the exact CV version we used.</p></div>
+      <div data-reveal style="--d:80ms"><h3>You see what happened next</h3><p>Viewed, replied, interview or no response. We update statuses as they change.</p></div>
+      <div data-reveal style="--d:160ms"><h3>You can pause at any time</h3><p>Got an offer, or need a break? Pause your applications from the tracker.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PACKAGES ================= -->
+<section class="section" id="packages">
+  <div class="wrap">
+    <div class="sec-head">
+      <div data-reveal>
+        <p class="eyebrow mono">Packages</p>
+        <h2>Pick how much of the search you hand over.</h2>
+      </div>
+      <p data-reveal style="--d:80ms">Every package starts with an intake call. Prices are fixed and written into your agreement before you pay.</p>
+    </div>
+
+    <div class="pk-bar" data-reveal>
+      <span class="mono" style="color:var(--ink-3)">Show prices in</span>
+      <div class="seg" id="seg" role="group" aria-label="Currency">
+        <span class="thumb" aria-hidden="true"></span>
+        <button type="button" aria-pressed="true" data-cur="ngn">Naira ₦</button>
+        <button type="button" aria-pressed="false" data-cur="usd">Dollars $</button>
+      </div>
+    </div>
+
+    <div class="pk">
+      <div class="pk-col" data-reveal>
+        <div class="pk-name"><h3>CV Rewrite</h3><span class="mono">One‑off</span></div>
+        <p class="pk-for">For people applying themselves who need documents that get read.</p>
+        <div class="price"><b data-ngn="45,000" data-usd="35"><i class="cur">₦</i><span class="n">45,000</span></b><span>once</span></div>
+        <ul class="pk-list">
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>CV rewritten for applicant tracking systems</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>LinkedIn headline and About section</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Cover letter template you can adapt</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Two rounds of revisions</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Delivered in 5 working days</li>
+        </ul>
+        <a href="#book" class="btn btn-line">Start with a rewrite</a>
+      </div>
+      <div class="pk-col rec" data-reveal style="--d:80ms">
+        <div class="pk-name"><h3>Active Search</h3><span class="mono">Recommended</span></div>
+        <p class="pk-for">For people who want applications going out every week without doing it themselves.</p>
+        <div class="price"><b data-ngn="150,000" data-usd="110"><i class="cur">₦</i><span class="n">150,000</span></b><span>per month</span></div>
+        <ul class="pk-list">
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg><span class="inh">Everything in CV Rewrite</span></li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>30 tailored applications a month</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>You approve every shortlist</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Live application tracker</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>15‑minute check‑in call each week</li>
+        </ul>
+        <a href="#book" class="btn btn-ink">Start Active Search <span class="arr" aria-hidden="true">→</span></a>
+      </div>
+      <div class="pk-col" data-reveal style="--d:160ms">
+        <div class="pk-name"><h3>Full Concierge</h3><span class="mono">Per month</span></div>
+        <p class="pk-for">For senior or international searches that need volume and interview coaching.</p>
+        <div class="price"><b data-ngn="280,000" data-usd="210"><i class="cur">₦</i><span class="n">280,000</span></b><span>per month</span></div>
+        <ul class="pk-list">
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg><span class="inh">Everything in Active Search</span></li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>60 tailored applications a month</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Three mock interviews with written feedback</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Salary negotiation notes before offers</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Priority WhatsApp line to your specialist</li>
+        </ul>
+        <a href="#book" class="btn btn-line">Talk about Concierge</a>
+      </div>
+    </div>
+    <div class="pk-note" data-reveal><span>Card or bank transfer, processed by Paystack</span><span>Cancel monthly plans before your next billing date</span><span>Refund terms are written into your agreement</span></div>
+  </div>
+</section>
+
+<!-- ================= PROMISE ================= -->
+<section class="section" style="padding-top:var(--s7)">
+  <div class="wrap promise">
+    <div data-reveal>
+      <p class="eyebrow mono">Our promise</p>
+      <p class="big">We can’t promise you a job. <em>No honest service can.</em> We promise the work, and you can check every part of it.</p>
+    </div>
+    <div class="ledger" data-reveal style="--d:100ms">
+      <div>
+        <h3>We will</h3>
+        <ul>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Deliver the documents listed in your agreement, on the dates listed</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Send the number of applications in your package</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Log every application where you can see it</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Keep your documents and details private</li>
+        </ul>
+      </div>
+      <div class="no">
+        <h3>We won’t</h3>
+        <ul>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.5"/></svg>Guarantee interviews or job offers</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.5"/></svg>Apply anywhere you haven’t approved</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.5"/></svg>Invent experience or qualifications</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.5"/></svg>Ask employers for a fee on your behalf</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="section" id="faq" style="padding-top:var(--s8)">
+  <div class="wrap faq">
+    <div data-reveal>
+      <p class="eyebrow mono">Questions</p>
+      <h2 class="h2">Before you book.</h2>
+    </div>
+    <div class="qa" data-reveal style="--d:80ms">
+      <div class="qa-item"><button class="qa-q" aria-expanded="true" aria-controls="a1" id="q1">Who is this for?<span class="pm" aria-hidden="true"></span></button><div class="qa-a" id="a1" role="region" aria-labelledby="q1"><div><p>Professionals in Nigeria looking for roles at home, and people applying to remote or overseas roles in the UK, EU and Canada. If you have at least one year of work experience, we can help.</p></div></div></div>
+      <div class="qa-item"><button class="qa-q" aria-expanded="false" aria-controls="a2" id="q2">Do you guarantee I’ll get a job?<span class="pm" aria-hidden="true"></span></button><div class="qa-a" id="a2" role="region" aria-labelledby="q2"><div><p>No. Hiring decisions belong to employers. We guarantee the work in your agreement: the documents, the number of applications and the preparation sessions.</p></div></div></div>
+      <div class="qa-item"><button class="qa-q" aria-expanded="false" aria-controls="a3" id="q3">Do you apply without asking me?<span class="pm" aria-hidden="true"></span></button><div class="qa-a" id="a3" role="region" aria-labelledby="q3"><div><p>Never. You approve a shortlist of roles each week, and only those applications go out.</p></div></div></div>
+      <div class="qa-item"><button class="qa-q" aria-expanded="false" aria-controls="a4" id="q4">How do I pay?<span class="pm" aria-hidden="true"></span></button><div class="qa-a" id="a4" role="region" aria-labelledby="q4"><div><p>By card or bank transfer through Paystack, after you’ve signed the agreement online. You’ll get a receipt by email.</p></div></div></div>
+      <div class="qa-item"><button class="qa-q" aria-expanded="false" aria-controls="a5" id="q5">What if I don’t like the rewrite?<span class="pm" aria-hidden="true"></span></button><div class="qa-a" id="a5" role="region" aria-labelledby="q5"><div><p>Every package includes revision rounds. Comment on any line and we’ll rework it until it reads like you on your best day.</p></div></div></div>
+      <div class="qa-item"><button class="qa-q" aria-expanded="false" aria-controls="a6" id="q6">What happens to my documents?<span class="pm" aria-hidden="true"></span></button><div class="qa-a" id="a6" role="region" aria-labelledby="q6"><div><p>They’re stored privately and only shared with employers you’ve approved. Ask us at any time and we’ll delete them.</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BOOK ================= -->
+<section class="section" id="book" style="padding-top:var(--s7)">
+  <div class="wrap">
+    <div class="book" data-reveal>
+      <div>
+        <p class="eyebrow mono">Intake call</p>
+        <h2>Tell us what you’re aiming for.</h2>
+        <p class="lede">In 20 minutes we’ll learn what you want and tell you honestly whether we can help, and which package fits.</p>
+        <ul class="book-meta">
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M10.5 7l4-2.5v7L10.5 9" stroke="currentColor" stroke-width="1.3"/></svg>Video call on Google Meet</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.3"/><path d="M8 4.5V8l2.5 1.5" stroke="currentColor" stroke-width="1.3"/></svg>20 minutes · times shown in West Africa Time</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.5"/></svg>No payment needed to book</li>
+        </ul>
+      </div>
+      <div class="cal">
+        <div class="cal-h"><span class="mono">Choose a day</span><span class="mono" id="calMonth"></span></div>
+        <div class="days" id="days"></div>
+        <div class="slots" id="slots"></div>
+        <div class="cal-f">
+          <span class="sel" id="sel" aria-live="polite">Pick a time to continue</span>
+          <a href="#book" class="btn btn-mk" id="go" aria-disabled="true">Continue <span class="arr" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="#top" class="brand"><span class="brand-mark" aria-hidden="true"></span>Shortlist</a>
+        <p class="foot-blurb">A job-search support service. We are not a recruitment agency and we don’t take fees from employers.</p>
+      </div>
+      <div><h4>Service</h4><ul><li><a href="#services">What we do</a></li><li><a href="#process">How it works</a></li><li><a href="#packages">Packages</a></li><li><a href="#tracker">Tracker</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li><a href="mailto:hello@shortlist.ng">hello@shortlist.ng</a></li><li><a href="#book">WhatsApp</a></li><li>Mon–Fri · 9:00–18:00 WAT</li><li>Lekki, Lagos</li></ul></div>
+      <div><h4>Legal</h4><ul><li><a href="#">Service agreement</a></li><li><a href="#">Refund policy</a></li><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li></ul></div>
+    </div>
+    <div class="foot-bottom"><span>© 2026 Shortlist. All rights reserved.</span><span>RC number: to be added</span></div>
+    <div class="wordmark" aria-hidden="true">Shortlist</div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+
+  /* ---- smooth scroll ---- */
+  let lenis = null;
+  if (!reduce && window.Lenis) {
+    lenis = new Lenis({ duration: 1.1, easing: t => 1 - Math.pow(1 - t, 4) });
+    const raf = t => { lenis.raf(t); requestAnimationFrame(raf); };
+    requestAnimationFrame(raf);
+  }
+  $$('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+    const id = a.getAttribute('href');
+    if (id.length < 2 || a.id === 'go') return;
+    const el = $(id); if (!el) return;
+    e.preventDefault();
+    nav.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false');
+    if (lenis) lenis.scrollTo(el, { offset: -72 }); else el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+  }));
+
+  /* ---- nav ---- */
+  const nav = $('#nav'), menuBtn = $('.menu-btn');
+  const onScroll = () => nav.classList.toggle('scrolled', scrollY > 12);
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  menuBtn.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+  });
+
+  /* ---- load sequence ---- */
+  requestAnimationFrame(() => {
+    document.documentElement.classList.add('loaded');
+    setTimeout(() => $('#heroHl').classList.add('on'), reduce ? 0 : 900);
+  });
+
+  /* ---- reveals ---- */
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { rootMargin: '0px 0px -10% 0px' });
+  $$('[data-reveal]').forEach(el => io.observe(el));
+
+  /* ---- marquee pause offscreen ---- */
+  const strip = $('#strip');
+  new IntersectionObserver(([e]) => strip.classList.toggle('paused', !e.isIntersecting)).observe(strip);
+
+  /* ---- hero: live CV edit ---- */
+  const edits = [
+    { old: 'Responsible for social media pages.', neu: 'Grew the brand’s Instagram from 4,200 to 31,000 followers in nine months.', hl: '4,200 to 31,000 followers' },
+    { old: 'Good team player with excellent communication skills.', neu: 'Led a three-person content team across Lagos and Accra.', hl: 'three-person content team' },
+    { old: 'Handled email marketing.', neu: 'Rebuilt the email programme; open rate rose from 14% to 38%.', hl: '14% to 38%' }
+  ];
+  const oldEl = $('#editOld'), newEl = $('#editNew'), tag = $('#editTag'), edit = $('#edit');
+  let heroVisible = true;
+  new IntersectionObserver(([e]) => heroVisible = e.isIntersecting).observe(edit);
+  const whenVisible = async () => { while (!heroVisible || document.hidden) await wait(400); };
+  const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+  const render = (txt, hl, typed, on) => {
+    const shown = txt.slice(0, typed);
+    const i = txt.indexOf(hl);
+    if (i < 0 || typed <= i) return esc(shown);
+    const a = shown.slice(0, i), b = shown.slice(i, Math.min(typed, i + hl.length)), c = typed > i + hl.length ? shown.slice(i + hl.length) : '';
+    return esc(a) + `<span class="hl${on ? ' on' : ''}">${esc(b)}</span>` + esc(c);
+  };
+  const ticketBars = $$('#ticketSteps i');
+  async function ticketLoop() {
+    while (true) {
+      for (let i = 0; i < ticketBars.length; i++) { await whenVisible(); await wait(i ? 900 : 1600); ticketBars[i].classList.add('on'); }
+      await wait(3200);
+      ticketBars.forEach(b => b.classList.remove('on'));
+      await wait(700);
+    }
+  }
+  async function editLoop() {
+    if (reduce) { const e = edits[0]; oldEl.style.display = 'none'; newEl.style.position = 'static'; newEl.innerHTML = render(e.neu, e.hl, e.neu.length, true); tag.textContent = 'Rewritten'; return; }
+    await wait(1700);
+    let n = 0;
+    while (true) {
+      const e = edits[n % edits.length];
+      tag.textContent = `Edit ${(n % edits.length) + 1} / ${edits.length}`;
+      oldEl.textContent = e.old; oldEl.classList.remove('struck', 'gone'); newEl.innerHTML = '';
+      await whenVisible(); await wait(900);
+      oldEl.classList.add('struck'); await wait(800);
+      oldEl.classList.add('gone'); await wait(260);
+      for (let t = 1; t <= e.neu.length; t++) {
+        newEl.innerHTML = render(e.neu, e.hl, t, false) + '<span class="caret"></span>';
+        await wait(e.neu[t - 1] === ' ' ? 34 : 22);
+      }
+      await wait(250);
+      newEl.innerHTML = render(e.neu, e.hl, e.neu.length, false);
+      await wait(30);
+      const h = $('.hl', newEl); h && h.classList.add('on');
+      tag.textContent = 'Rewritten';
+      await wait(3400); await whenVisible();
+      newEl.style.transition = 'opacity 220ms ease, filter 220ms ease'; newEl.style.opacity = 0; newEl.style.filter = 'blur(3px)';
+      await wait(240); newEl.style.opacity = ''; newEl.style.filter = ''; newEl.innerHTML = '';
+      n++;
+    }
+  }
+  editLoop();
+  if (!reduce) ticketLoop(); else ticketBars.forEach(b => b.classList.add('on'));
+
+  /* ---- services tabs ---- */
+  const meta = {
+    'p-cv':   [['Turnaround', '5 working days'], ['Revisions', '2 rounds'], ['You get', 'CV · LinkedIn · cover letter']],
+    'p-apps': [['Volume', '30–60 a month'], ['Approval', 'You sign off each shortlist'], ['Visibility', 'Logged in your tracker']],
+    'p-prep': [['Format', 'Video mock interview'], ['Feedback', 'Written, within 24 hours'], ['Built for', 'The specific role']]
+  };
+  const tabs = $$('.svc-tab'), metaEl = $('#svcMeta');
+  const setMeta = id => { metaEl.innerHTML = meta[id].map(([k, v]) => `<li><span>${k}</span><span>${v}</span></li>`).join(''); };
+  function select(tab, focus) {
+    tabs.forEach(t => {
+      const on = t === tab;
+      t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1;
+      const p = $('#' + t.getAttribute('aria-controls'));
+      if (on) { p.hidden = false; requestAnimationFrame(() => p.classList.add('active')); }
+      else { p.classList.remove('active'); setTimeout(() => { if (t.getAttribute('aria-selected') === 'false') p.hidden = true; }, 400); }
+    });
+    setMeta(tab.getAttribute('aria-controls'));
+    if (focus) tab.focus();
+  }
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => select(t));
+    t.addEventListener('keydown', e => {
+      const k = e.key; let j = null;
+      if (k === 'ArrowDown' || k === 'ArrowRight') j = (i + 1) % tabs.length;
+      if (k === 'ArrowUp' || k === 'ArrowLeft') j = (i - 1 + tabs.length) % tabs.length;
+      if (k === 'Home') j = 0; if (k === 'End') j = tabs.length - 1;
+      if (j !== null) { e.preventDefault(); select(tabs[j], true); }
+    });
+  });
+  setMeta('p-cv');
+
+  /* ---- process rail ---- */
+  const steps = $$('.step'), stepsEl = $('#steps'), rail = $('#railFill');
+  function onSteps() {
+    const r = stepsEl.getBoundingClientRect(), mid = innerHeight * 0.55;
+    const p = Math.min(1, Math.max(0, (mid - r.top) / r.height));
+    rail.style.transform = `scaleY(${reduce ? 1 : p})`;
+    steps.forEach(s => { const sr = s.getBoundingClientRect(); s.classList.toggle('on', sr.top < mid); });
+  }
+  addEventListener('scroll', onSteps, { passive: true }); addEventListener('resize', onSteps); onSteps();
+
+  /* ---- tracker ---- */
+  const board = $('#board');
+  const label = { sent: 'Sent', viewed: 'Viewed', reply: 'Replied', interview: 'Interview' };
+  new IntersectionObserver(async ([e], obs) => {
+    if (!e.isIntersecting) return; obs.disconnect();
+    board.classList.add('in');
+    $$('[data-count]', board).forEach(b => {
+      const end = +b.dataset.count, t0 = performance.now(), d = reduce ? 1 : 1400;
+      const tick = t => { const k = Math.min(1, (t - t0) / d), v = Math.round(end * (1 - Math.pow(1 - k, 3))); b.textContent = v; if (k < 1) requestAnimationFrame(tick); };
+      requestAnimationFrame(tick);
+    });
+    const chips = $$('.st', board);
+    const flows = chips.map(c => c.dataset.flow.split(','));
+    const setChip = async (c, s) => {
+      if (!reduce) { c.classList.add('swap'); await wait(200); }
+      c.className = 'st ' + s; $('.tx', c).textContent = label[s];
+    };
+    if (reduce) { chips.forEach((c, i) => setChip(c, flows[i].at(-1))); return; }
+    await wait(900);
+    const maxLen = Math.max(...flows.map(f => f.length));
+    for (let step = 1; step < maxLen; step++) {
+      for (let i = 0; i < chips.length; i++) {
+        if (flows[i][step]) { setChip(chips[i], flows[i][step]); await wait(320); }
+      }
+      await wait(500);
+    }
+  }, { threshold: .35 }).observe(board);
+
+  /* ---- currency ---- */
+  const seg = $('#seg');
+  $$('button', seg).forEach(b => b.addEventListener('click', async () => {
+    const cur = b.dataset.cur;
+    if (b.getAttribute('aria-pressed') === 'true') return;
+    $$('button', seg).forEach(x => x.setAttribute('aria-pressed', x === b));
+    seg.classList.toggle('usd', cur === 'usd');
+    const prices = $$('.price');
+    prices.forEach(p => p.classList.add('swap'));
+    await wait(reduce ? 0 : 200);
+    prices.forEach(p => { const v = $('b', p); $('.n', v).textContent = v.dataset[cur]; $('.cur', v).textContent = cur === 'usd' ? '$' : '₦'; p.classList.remove('swap'); });
+  }));
+
+  /* ---- faq ---- */
+  $$('.qa-q').forEach(q => q.addEventListener('click', () => {
+    q.setAttribute('aria-expanded', String(q.getAttribute('aria-expanded') !== 'true'));
+  }));
+
+  /* ---- booking widget (visual only; wire to Calendly/Cal.com later) ---- */
+  const daysEl = $('#days'), slotsEl = $('#slots'), selEl = $('#sel'), go = $('#go');
+  const days = []; const d = new Date(); d.setDate(d.getDate() + 1);
+  while (days.length < 5) { if (d.getDay() % 6 !== 0) days.push(new Date(d)); d.setDate(d.getDate() + 1); }
+  $('#calMonth').textContent = days[0].toLocaleDateString('en-GB', { month: 'long', year: 'numeric' });
+  const times = ['09:30', '11:00', '13:30', '16:00'];
+  let chosenDay = 0, chosenTime = null;
+  const taken = (di, ti) => (di * 7 + ti * 3) % 5 === 0;
+  function drawDays() {
+    daysEl.innerHTML = days.map((x, i) => `<button type="button" class="day" aria-pressed="${i === chosenDay}" aria-label="${x.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' })}"><small>${x.toLocaleDateString('en-GB', { weekday: 'short' })}</small><b>${x.getDate()}</b></button>`).join('');
+    $$('.day', daysEl).forEach((b, i) => b.addEventListener('click', () => { chosenDay = i; chosenTime = null; drawDays(); drawSlots(); update(); }));
+  }
+  function drawSlots() {
+    slotsEl.innerHTML = times.map((t, i) => `<button type="button" class="slot" aria-pressed="${chosenTime === i}" ${taken(chosenDay, i) ? 'disabled aria-label="' + t + ', booked"' : ''}>${t}</button>`).join('');
+    $$('.slot', slotsEl).forEach((b, i) => b.addEventListener('click', () => { chosenTime = i; drawSlots(); update(); }));
+  }
+  function update() {
+    if (chosenTime === null) { selEl.textContent = 'Pick a time to continue'; go.setAttribute('aria-disabled', 'true'); return; }
+    const x = days[chosenDay];
+    selEl.innerHTML = `<b>${x.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'short' })}</b> at <b>${times[chosenTime]}</b> WAT`;
+    go.setAttribute('aria-disabled', 'false');
+  }
+  go.addEventListener('click', e => { e.preventDefault(); });
+  drawDays(); drawSlots();
+})();
+</script>
+</body>
+</html>
