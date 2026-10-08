@@ -10,7 +10,7 @@ type ScoreCardProps = {
 
 export default function ScoreCard({ card }: ScoreCardProps) {
   return (
-    <article className="flex flex-col gap-4 rounded-lg bg-card p-4 shadow-[0px_4px_4px_0px_rgba(42,42,42,0.32),0px_0px_0px_1px_#0e0e0e,inset_0px_1px_0px_0px_rgba(255,255,255,0.08),inset_0px_0px_0px_1px_rgba(255,255,255,0.08)] transition-colors duration-150 ease-power3-out hover:bg-[#252525]">
+    <article className="flex flex-col gap-4 rounded-lg bg-card p-4 shadow-[0px_4px_4px_0px_rgba(42,42,42,0.32),0px_0px_0px_1px_var(--edge-outer),inset_0px_1px_0px_0px_rgba(255,255,255,0.08),inset_0px_0px_0px_1px_rgba(255,255,255,0.08)] transition-colors duration-150 ease-power3-out hover:bg-[var(--card-hover)]">
       <div className="flex flex-col gap-2">
         <h3>{card.title}</h3>
         <p className="text-soft">{card.description}</p>
@@ -31,7 +31,7 @@ export default function ScoreCard({ card }: ScoreCardProps) {
           <span
             role="img"
             aria-label={`${card.stars} out of 5 stars`}
-            className="flex items-center gap-px rounded-full border border-white/4 bg-white/6 px-[3px] py-[2px] text-line-strong"
+            className="flex items-center gap-px rounded-full border border-tint/4 bg-tint/6 px-[3px] py-[2px] text-line-strong"
           >
             {Array.from({ length: 5 }, (_, index) =>
               index < card.stars ? (

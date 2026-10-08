@@ -94,7 +94,7 @@ export default function Profile() {
               <Avatar
                 src={person.avatar}
                 alt=""
-                className="size-[50px] shadow-[0px_6.25px_6.25px_0px_rgba(15,15,15,0.24),0px_0px_0px_1.563px_#232323]"
+                className="size-[50px] shadow-[0px_6.25px_6.25px_0px_rgba(15,15,15,0.24),0px_0px_0px_1.563px_var(--edge)]"
               />
               <div className="flex min-w-0 flex-col gap-2">
                 <h2 className="truncate">{person.name}</h2>

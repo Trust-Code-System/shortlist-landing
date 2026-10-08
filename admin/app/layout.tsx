@@ -3,6 +3,7 @@ import { Geist } from "next/font/google";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL, pageMetadata } from "@/lib/seo";
 import ScrollToTop from "@/components/_common/scroll-to-top";
 import { SIDEBAR_WIDTH_SCRIPT } from "@/lib/sidebar";
+import { THEME_SCRIPT } from "@/lib/theme";
 import "./globals.css";
 
 const geist = Geist({
@@ -35,7 +36,7 @@ export default function RootLayout({
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `history.scrollRestoration="manual";${SIDEBAR_WIDTH_SCRIPT}`,
+            __html: `history.scrollRestoration="manual";${SIDEBAR_WIDTH_SCRIPT}${THEME_SCRIPT}`,
           }}
         />
       </head>

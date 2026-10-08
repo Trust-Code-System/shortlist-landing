@@ -88,7 +88,7 @@ export default function CommandMenu() {
               keywords={["New Client", "Add", "Create"]}
               onSelect={() => run(() => setNewCompanyOpen(true))}
             >
-              <span className="bg-muted flex size-6 shrink-0 items-center justify-center rounded-md shadow-[0px_0px_0px_1px_#232323]">
+              <span className="bg-muted flex size-6 shrink-0 items-center justify-center rounded-md shadow-[0px_0px_0px_1px_var(--edge)]">
                 <PlusIcon aria-hidden className="text-soft size-3" />
               </span>
               New Client

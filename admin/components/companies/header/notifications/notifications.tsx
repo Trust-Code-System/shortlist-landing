@@ -121,7 +121,7 @@ export default function Notifications() {
           </ScrollArea>
         ) : (
           <div className="flex flex-col items-center gap-2 px-6 py-12 text-center">
-            <span className="bg-muted flex size-10 items-center justify-center rounded-full shadow-[0px_0px_0px_1px_#232323]">
+            <span className="bg-muted flex size-10 items-center justify-center rounded-full shadow-[0px_0px_0px_1px_var(--edge)]">
               <BellIcon aria-hidden className="text-soft size-4" />
             </span>
             <span className="lead-style mt-1 block font-medium">

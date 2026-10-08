@@ -122,7 +122,7 @@ export default function CompanyRow({
           <span className="tabular-nums">
             {formatDate(company.lastInteraction.date)}
           </span>
-          <span aria-hidden className="mx-[3px] h-2 w-px bg-white/15" />
+          <span aria-hidden className="mx-[3px] h-2 w-px bg-tint/15" />
           {company.lastInteraction.label}
         </span>
       </TableCell>
@@ -130,7 +130,7 @@ export default function CompanyRow({
         <Button
           variant="ghost"
           size="icon-sm"
-          className={cn("text-foreground", active && "bg-white/6")}
+          className={cn("text-foreground", active && "bg-tint/6")}
           aria-label={`Open ${company.name} details`}
           onClick={onOpen}
         >

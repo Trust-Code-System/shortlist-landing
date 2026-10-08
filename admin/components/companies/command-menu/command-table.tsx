@@ -65,7 +65,7 @@ export function CommandCompanyRow({
       className={cn(COMMAND_TABLE_GRID, "text-foreground h-11 gap-x-4")}
     >
       <span className="flex min-w-0 items-center gap-2.5">
-        <span className="bg-muted flex size-6 shrink-0 items-center justify-center rounded-md shadow-[0px_0px_0px_1px_#232323]">
+        <span className="bg-muted flex size-6 shrink-0 items-center justify-center rounded-md shadow-[0px_0px_0px_1px_var(--edge)]">
           {company.logo ? (
             <Asset
               type="image"
@@ -118,7 +118,7 @@ export function CommandCompanyRow({
         <span className="shrink-0 tabular-nums">
           {formatDate(company.lastInteraction.date)}
         </span>
-        <span aria-hidden className="mx-[3px] h-2 w-px shrink-0 bg-white/15" />
+        <span aria-hidden className="mx-[3px] h-2 w-px shrink-0 bg-tint/15" />
         <span className="truncate">{company.lastInteraction.label}</span>
       </span>
     </CommandItem>

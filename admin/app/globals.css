@@ -3,6 +3,7 @@
 @plugin "tailwind-scrollbar";
 
 @custom-variant dark (&:is(.dark *));
+@custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));
 
 @theme inline {
   --color-background: var(--background);
@@ -45,6 +46,7 @@
   --color-trend-muted: var(--trend-muted);
   --color-track: var(--track);
   --color-status: var(--status);
+  --color-tint: var(--tint);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -58,7 +60,7 @@
 }
 
 @theme static {
-  --shadow-overlay: 0px 16px 40px 0px rgba(0, 0, 0, 0.5), 0px 0px 0px 1px #0e0e0e;
+  --shadow-overlay: 0px 16px 40px 0px var(--overlay-shadow), 0px 0px 0px 1px var(--edge-outer);
 
   --ease-power1-in: cubic-bezier(0.11, 0, 0.5, 0);
   --ease-power1-out: cubic-bezier(0.5, 1, 0.89, 1);
@@ -152,12 +154,115 @@
   --tag-neutral-bg: #2a2a2a;
   --tag-neutral-border: #363636;
   --tag-neutral-text: #cfcfcf;
+  --tint: #ffffff;
+  --edge: #232323;
+  --edge-outer: #0e0e0e;
+  --edge-strong: #414141;
+  --hover-1: #333333;
+  --card-hover: #252525;
+  --ring-outer: rgba(0, 0, 0, 0.4);
+  --icon-muted: #898b8d;
+  --check-off: #323232;
+  --overlay-shadow: rgba(0, 0, 0, 0.5);
+  --overlay-dim: rgba(0, 0, 0, 0.6);
+  --primary-hover: #f6ee7a;
+  --chart-1: #3987e5;
+  --chart-2: #d95926;
+  --chart-3: #199e70;
   --max-width-global: 76.25rem;
   --padding-global: 1rem;
   --padding-section-sm: 1.5rem;
   --padding-section-md: 2rem;
   --padding-section-lg: 2.75rem;
   --padding-section-page: 6rem;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --background: #f7f7f4;
+  --foreground: #141619;
+  --card: #ffffff;
+  --card-foreground: #141619;
+  --popover: #ffffff;
+  --popover-foreground: #141619;
+  --primary: #f2e85a;
+  --primary-foreground: #141619;
+  --secondary: #ffffff;
+  --secondary-foreground: #141619;
+  --muted: #eeefeb;
+  --muted-foreground: #63676d;
+  --accent: #eeefeb;
+  --accent-foreground: #141619;
+  --destructive: #b42318;
+  --border: #e3e4e0;
+  --input: #d5d7d1;
+  --ring: #8a8e94;
+  --sidebar: #f1f2ee;
+  --sidebar-foreground: #55595f;
+  --sidebar-primary: #ffffff;
+  --sidebar-primary-foreground: #141619;
+  --sidebar-accent: #ecede9;
+  --sidebar-accent-foreground: #141619;
+  --sidebar-border: #e1e2dd;
+  --sidebar-ring: #8a8e94;
+  --line-strong: #d8dad4;
+  --subtle: #63676d;
+  --faint: #73777d;
+  --soft: #464a51;
+  --chip: #3a3d42;
+  --icon: #2a2d31;
+  --success: #16a34a;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --trend: #15803d;
+  --trend-muted: #b9dcc6;
+  --track: #e6e7e3;
+  --status: #0f9f7a;
+  --tag-blue-bg: #eaf1fb;
+  --tag-blue-border: #c9daf2;
+  --tag-blue-text: #1e4e8c;
+  --tag-purple-bg: #f1eefb;
+  --tag-purple-border: #d8d0f2;
+  --tag-purple-text: #4c3a9a;
+  --tag-green-bg: #e8f5ec;
+  --tag-green-border: #c3e3ce;
+  --tag-green-text: #1e6b3c;
+  --tag-moss-bg: #edf3e6;
+  --tag-moss-border: #cfe0bd;
+  --tag-moss-text: #3d5e22;
+  --tag-red-bg: #fbecec;
+  --tag-red-border: #f0c9c9;
+  --tag-red-text: #9b2c2c;
+  --tag-orange-bg: #fcefe6;
+  --tag-orange-border: #f2d1ba;
+  --tag-orange-text: #9a4a1c;
+  --tag-amber-bg: #fdf3e4;
+  --tag-amber-border: #f1dab2;
+  --tag-amber-text: #8a5a12;
+  --tag-teal-bg: #e6f5f2;
+  --tag-teal-border: #bfe3db;
+  --tag-teal-text: #11675a;
+  --tag-yellow-bg: #fbf6d8;
+  --tag-yellow-border: #eadf9c;
+  --tag-yellow-text: #6e5f0b;
+  --tag-neutral-bg: #f0f1ed;
+  --tag-neutral-border: #dadcd6;
+  --tag-neutral-text: #3a3d42;
+  --tint: #141619;
+  --edge: #e3e4e0;
+  --edge-outer: #d6d8d2;
+  --edge-strong: #cfd1cb;
+  --hover-1: #e6e7e3;
+  --card-hover: #f6f6f3;
+  --ring-outer: rgba(20, 22, 25, 0.1);
+  --icon-muted: #7a7e84;
+  --check-off: #c4c7c0;
+  --overlay-shadow: rgba(20, 22, 25, 0.14);
+  --overlay-dim: rgba(20, 22, 25, 0.28);
+  --primary-hover: #ebe04a;
+  --chart-1: #2a78d6;
+  --chart-2: #eb6834;
+  --chart-3: #1baf7a;
 }
 
 @variant sm {
@@ -192,7 +297,7 @@
   * {
     @apply border-border outline-ring/50;
     scrollbar-width: thin;
-    scrollbar-color: rgb(255 255 255 / 0.2) transparent;
+    scrollbar-color: color-mix(in srgb, var(--tint) 20%, transparent) transparent;
   }
   body {
     @apply bg-background text-foreground font-normal;

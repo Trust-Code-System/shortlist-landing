@@ -47,7 +47,7 @@ export default function FilterMenu({
           {label && (
             <>
               <span className="px-[9px] font-normal text-subtle">{label}</span>
-              <span aria-hidden className="h-full w-px bg-white/8" />
+              <span aria-hidden className="h-full w-px bg-tint/8" />
             </>
           )}
           <span
@@ -59,7 +59,7 @@ export default function FilterMenu({
             {current?.label ?? value}
             <ChevronDownIcon
               aria-hidden
-              className="size-3 text-[#898b8d] transition-transform duration-200 ease-power3-out group-data-[state=open]:rotate-180"
+              className="size-3 text-[var(--icon-muted)] transition-transform duration-200 ease-power3-out group-data-[state=open]:rotate-180"
             />
           </span>
         </Button>

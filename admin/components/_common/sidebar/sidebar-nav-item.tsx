@@ -6,25 +6,31 @@ import { cn } from "@/lib/utils";
 type SidebarNavItemProps = {
   icon: ComponentType<SVGProps<SVGSVGElement>>;
   label: string;
+  href?: string;
   count?: number;
   active?: boolean;
   tone?: "default" | "quiet";
   iconClassName?: string;
+  onNavigate?: () => void;
 };
 
 export default function SidebarNavItem({
   icon: Icon,
   label,
+  href,
   count,
   active = false,
   tone = "default",
   iconClassName,
+  onNavigate,
 }: SidebarNavItemProps) {
   return (
     <li className={cn(active && "mb-0.75")}>
       <Button
         variant="nav"
         size="md"
+        href={href}
+        onClick={onNavigate}
         data-active={active}
         aria-current={active ? "page" : undefined}
         className={cn(

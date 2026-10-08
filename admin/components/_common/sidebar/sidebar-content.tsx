@@ -1,10 +1,13 @@
 "use client";
 
+import type { ComponentType, SVGProps } from "react";
+import { usePathname } from "next/navigation";
 import Button from "@/components/_ui/button";
 import { ScrollArea } from "@/components/_ui/scroll-area";
 import SidebarNavItem from "./sidebar-nav-item";
 import SidebarSection from "./sidebar-section";
 import { useCompaniesStore } from "@/stores/companies-store";
+import { APPLICATIONS, INTAKE_CALLS, INTERVIEWS, THREADS, risksFor } from "@/data/ops";
 import Logo from "@/public/assets/images/_common/logo.svg";
 import ClipboardIcon from "@/public/assets/images/companies/sidebar/clipboard.svg";
 import ListIcon from "@/public/assets/images/companies/sidebar/list.svg";
@@ -22,6 +25,13 @@ import UserPlusIcon from "@/public/assets/images/companies/sidebar/user-plus.svg
 import MessageQuestionIcon from "@/public/assets/images/companies/sidebar/message-question.svg";
 import WalletIcon from "@/public/assets/images/companies/sidebar/wallet.svg";
 
+type NavItem = {
+  icon: ComponentType<SVGProps<SVGSVGElement>>;
+  label: string;
+  href: string;
+  count?: number;
+};
+
 const UNPAID_STAGES = ["Intake booked", "Agreement sent"];
 
 function shortNaira(value: number) {
@@ -31,21 +41,58 @@ function shortNaira(value: number) {
 }
 
 export default function SidebarContent() {
+  const pathname = usePathname();
   const companies = useCompaniesStore((state) => state.companies);
+  const setSidebarOpen = useCompaniesStore((state) => state.setSidebarOpen);
   const count = (stage: string) =>
     companies.filter((company) => company.tags.some((tag) => tag === stage))
       .length;
   const collected = companies
     .filter(
       (company) =>
-        !company.tags.some((tag) => UNPAID_STAGES.includes(tag)) &&
-        !company.tags.some((tag) => tag === "Paused"),
+        !company.tags.some(
+          (tag) => UNPAID_STAGES.includes(tag) || tag === "Paused",
+        ),
     )
     .reduce((sum, company) => sum + company.pipelineValue, 0);
-  const applications = companies.reduce(
-    (sum, company) => sum + company.openDeals,
-    0,
-  );
+  const atRisk = new Set(risksFor(companies).map((risk) => risk.clientId)).size;
+
+  const sections: { title?: string; items: NavItem[] }[] = [
+    {
+      items: [
+        { icon: UsersIcon, label: "Clients", href: "/", count: companies.length },
+        { icon: ClipboardIcon, label: "Intake calls", href: "/intake-calls", count: INTAKE_CALLS.filter((call) => call.status === "Confirmed" || call.status === "Rescheduled").length },
+        { icon: BookClosedIcon, label: "Agreements", href: "/agreements", count: count("Agreement sent") },
+        { icon: ListIcon, label: "Applications", href: "/applications", count: APPLICATIONS.length },
+        { icon: TargetIcon, label: "Interviews", href: "/interviews", count: INTERVIEWS.filter((interview) => !interview.outcome).length },
+        { icon: MailIcon, label: "Messages", href: "/messages", count: THREADS.filter((thread) => thread.unread).length },
+      ],
+    },
+    {
+      title: "Team",
+      items: [
+        { icon: UsersIcon, label: "Career specialists", href: "/team/specialists" },
+        { icon: TargetAltIcon, label: "Interview coaches", href: "/team/coaches" },
+      ],
+    },
+    {
+      title: "Reporting",
+      items: [
+        { icon: BarChartAltIcon, label: "Monthly revenue", href: "/reports/revenue" },
+        { icon: AlertTriangleIcon, label: "At-risk clients", href: "/reports/at-risk", count: atRisk },
+      ],
+    },
+    {
+      title: "Markets",
+      items: [
+        { icon: DotYellow, label: "Nigeria", href: "/markets/nigeria" },
+        { icon: DotPink, label: "UK & Ireland", href: "/markets/uk-ireland" },
+        { icon: DotPurple, label: "Canada & remote", href: "/markets/canada-remote" },
+      ],
+    },
+  ];
+
+  const close = () => setSidebarOpen(false);
 
   return (
     <div className="flex h-full min-h-0 flex-col">
@@ -63,61 +110,29 @@ export default function SidebarContent() {
 
       <ScrollArea className="min-h-0 flex-1">
         <nav aria-label="Primary">
-          <SidebarSection className="border-sidebar-border border-b">
-            <SidebarNavItem
-              icon={UsersIcon}
-              label="Clients"
-              count={companies.length}
-              active
-            />
-            <SidebarNavItem
-              icon={ClipboardIcon}
-              label="Intake calls"
-              count={count("Intake booked")}
-            />
-            <SidebarNavItem
-              icon={BookClosedIcon}
-              label="Agreements"
-              count={count("Agreement sent")}
-            />
-            <SidebarNavItem
-              icon={ListIcon}
-              label="Applications"
-              count={applications}
-            />
-            <SidebarNavItem
-              icon={TargetIcon}
-              label="Interviews"
-              count={count("Interviewing")}
-            />
-            <SidebarNavItem icon={MailIcon} label="Messages" />
-          </SidebarSection>
-
-          <SidebarSection
-            title="Team"
-            className="border-sidebar-border border-b"
-          >
-            <SidebarNavItem icon={UsersIcon} label="Career specialists" />
-            <SidebarNavItem icon={TargetAltIcon} label="Interview coaches" />
-          </SidebarSection>
-
-          <SidebarSection
-            title="Reporting"
-            className="border-sidebar-border border-b"
-          >
-            <SidebarNavItem icon={BarChartAltIcon} label="Monthly revenue" />
-            <SidebarNavItem
-              icon={AlertTriangleIcon}
-              label="At-risk clients"
-              count={count("Paused")}
-            />
-          </SidebarSection>
-
-          <SidebarSection title="Markets">
-            <SidebarNavItem icon={DotYellow} label="Nigeria" />
-            <SidebarNavItem icon={DotPink} label="UK & Ireland" />
-            <SidebarNavItem icon={DotPurple} label="Canada & remote" />
-          </SidebarSection>
+          {sections.map((section, index) => (
+            <SidebarSection
+              key={section.title ?? "main"}
+              title={section.title}
+              className={
+                index < sections.length - 1
+                  ? "border-sidebar-border border-b"
+                  : undefined
+              }
+            >
+              {section.items.map((item) => (
+                <SidebarNavItem
+                  key={item.href}
+                  icon={item.icon}
+                  label={item.label}
+                  href={item.href}
+                  count={item.count}
+                  active={pathname === item.href}
+                  onNavigate={close}
+                />
+              ))}
+            </SidebarSection>
+          ))}
         </nav>
       </ScrollArea>
 
@@ -131,15 +146,21 @@ export default function SidebarContent() {
       </SidebarSection>
 
       <div className="border-sidebar-border bg-sidebar-accent flex shrink-0 items-center justify-between gap-2 border-b p-4">
-        <div className="flex flex-col gap-2">
+        <div className="flex min-w-0 flex-col gap-2">
           <span className="lead-style block font-medium tracking-[-0.01em] tabular-nums">
             {shortNaira(collected)}
           </span>
-          <span className="caption-style text-subtle block">
-            Active this month
+          <span className="caption-style text-subtle block whitespace-nowrap">
+            Active value
           </span>
         </div>
-        <Button variant="muted" size="md">
+        <Button
+          variant="muted"
+          size="md"
+          href="/payments"
+          onClick={close}
+          aria-current={pathname === "/payments" ? "page" : undefined}
+        >
           <WalletIcon aria-hidden className="size-3.5" />
           Payments
         </Button>

@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { COMPANIES, type Company, type SortKey } from "@/data/companies";
 import { NOTIFICATIONS } from "@/data/notifications";
-import { DEFAULT_FILTERS } from "@/lib/companies";
+import { ALL_MARKETS, DEFAULT_FILTERS } from "@/lib/companies";
 
 type CompaniesState = {
   companies: Company[];
@@ -19,6 +19,8 @@ type CompaniesState = {
   searchOpen: boolean;
   unreadNotificationIds: string[];
   activeTab: string;
+  market: string;
+  setMarket: (market: string) => void;
   setSortBy: (sortBy: SortKey) => void;
   setOwner: (owner: string) => void;
   setStage: (stage: string) => void;
@@ -53,7 +55,9 @@ export const useCompaniesStore = create<CompaniesState>((set) => ({
   unreadNotificationIds: NOTIFICATIONS.filter((item) => item.unread).map(
     (item) => item.id,
   ),
-  activeTab: "clients",
+  activeTab: "all",
+  market: ALL_MARKETS,
+  setMarket: (market) => set({ market }),
   setSortBy: (sortBy) => set({ sortBy }),
   setOwner: (owner) => set({ owner }),
   setStage: (stage) => set({ stage }),

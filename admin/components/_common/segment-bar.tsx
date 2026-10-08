@@ -42,7 +42,7 @@ export default function SegmentBar({
       aria-valuemax={100}
       aria-valuenow={percent}
       className={cn(
-        "flex h-[14px] items-center gap-[2px] overflow-hidden rounded-[2px] bg-white/8 px-[2px]",
+        "flex h-[14px] items-center gap-[2px] overflow-hidden rounded-[2px] bg-tint/8 px-[2px]",
         className,
       )}
     >

@@ -28,10 +28,12 @@ import LogoUpload from "./logo-upload";
 import {
   DEFAULT_TREND,
   INTERACTION_TYPES,
+  MARKETS,
   OWNERS,
   SEGMENTS,
   STAGES,
   type Company,
+  type Market,
   type Segment,
   type Stage,
 } from "@/data/companies";
@@ -46,6 +48,7 @@ type FormState = {
   segment: Segment;
   stage: Stage;
   owner: string;
+  market: Market;
   pipelineValue: string;
   openDeals: string;
   winProbability: number;
@@ -59,6 +62,7 @@ const EMPTY_FORM: FormState = {
   segment: SEGMENTS[0],
   stage: STAGES[0],
   owner: OWNERS[0].name,
+  market: MARKETS[0],
   pipelineValue: "",
   openDeals: "0",
   winProbability: 0,
@@ -93,6 +97,7 @@ export default function NewCompanyDialog() {
       logo: form.logo ?? undefined,
       tags: [form.segment, form.stage],
       owner: form.owner,
+      market: form.market,
       openDeals: Math.max(0, Math.round(Number(form.openDeals) || 0)),
       pipelineValue: Math.max(0, Math.round(Number(form.pipelineValue) || 0)),
       winProbability: form.winProbability,
@@ -193,6 +198,7 @@ export default function NewCompanyDialog() {
           </FormSection>
 
           <FormSection title="Specialist & search">
+            <div className="grid gap-4 sm:grid-cols-2">
             <Field label="Specialist" htmlFor="company-owner">
               <Select
                 value={form.owner}
@@ -213,6 +219,24 @@ export default function NewCompanyDialog() {
                 </SelectContent>
               </Select>
             </Field>
+            <Field label="Market" htmlFor="company-market">
+              <Select
+                value={form.market}
+                onValueChange={(value) => update("market", value as Market)}
+              >
+                <SelectTrigger id="company-market">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {MARKETS.map((market) => (
+                    <SelectItem key={market} value={market}>
+                      {market}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </Field>
+            </div>
 
             <div className="grid gap-4 sm:grid-cols-2">
               <Field label="Monthly value" htmlFor="company-pipeline">
@@ -273,9 +297,9 @@ export default function NewCompanyDialog() {
                 <SegmentBar
                   percent={form.winProbability}
                   segments={40}
-                  className="h-3 w-full border border-white/4 px-px"
+                  className="h-3 w-full border border-tint/4 px-px"
                   segmentClassName="h-2"
-                  trackClassName="bg-white/8"
+                  trackClassName="bg-tint/8"
                 />
               </div>
             </Field>

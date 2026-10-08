@@ -1,4 +1,4 @@
-import type { Company, SortKey } from "@/data/companies";
+import type { Company, SortKey, Stage } from "@/data/companies";
 
 export type CompanyFilters = {
   sortBy: SortKey;
@@ -33,11 +33,32 @@ export function activeFilterCount({
 
 const TAG_CHAR_BUDGET = 30;
 
+export const ALL_MARKETS = "all";
+
+export const CLIENT_VIEWS: { value: string; label: string; stages?: Stage[] }[] = [
+  { value: "all", label: "All clients" },
+  { value: "onboarding", label: "Onboarding", stages: ["Intake booked", "Agreement sent", "CV in progress"] },
+  { value: "searching", label: "Searching", stages: ["Applying", "Interviewing"] },
+  { value: "offers", label: "Offers", stages: ["Offer received"] },
+  { value: "paused", label: "Paused", stages: ["Paused"] },
+];
+
+export type ClientScope = { market?: string; view?: string };
+
+export function inScope(company: Company, { market, view }: ClientScope = {}) {
+  if (market && market !== ALL_MARKETS && company.market !== market) return false;
+  const stages = CLIENT_VIEWS.find((item) => item.value === view)?.stages;
+  if (stages && !company.tags.some((tag) => (stages as string[]).includes(tag))) return false;
+  return true;
+}
+
 export function filterCompanies(
   companies: Company[],
   { sortBy, owner, stage, activityWindow }: CompanyFilters,
+  scope: ClientScope = {},
 ): Company[] {
   const filtered = companies.filter((company) => {
+    if (!inScope(company, scope)) return false;
     if (owner !== ALL_OWNERS && company.owner !== owner) return false;
     if (stage !== ANY_STAGE && !company.tags.some((tag) => tag === stage)) {
       return false;
@@ -72,6 +93,7 @@ export function companiesCsvRows(companies: Company[]) {
       "Response Rate (%)",
       "Last Touchpoint Date",
       "Last Touchpoint",
+      "Market",
     ],
     ...companies.map((company) => [
       company.name,
@@ -82,6 +104,7 @@ export function companiesCsvRows(companies: Company[]) {
       company.winProbability,
       company.lastInteraction.date,
       company.lastInteraction.label,
+      company.market,
     ]),
   ];
 }

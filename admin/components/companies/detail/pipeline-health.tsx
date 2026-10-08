@@ -34,9 +34,9 @@ export default function PipelineHealth({ company }: PipelineHealthProps) {
               percent={stage.value}
               segments={63}
               tone={stage.tone}
-              className="h-3 w-full border border-white/4 px-px"
+              className="h-3 w-full border border-tint/4 px-px"
               segmentClassName="h-2"
-              trackClassName="bg-white/8"
+              trackClassName="bg-tint/8"
             />
           </div>
         ))}

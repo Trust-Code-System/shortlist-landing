@@ -10,6 +10,10 @@ export const STAGES = [
   "Paused",
 ] as const;
 
+export const MARKETS = ["Nigeria", "UK & Ireland", "Canada & remote"] as const;
+
+export type Market = (typeof MARKETS)[number];
+
 export type Segment = (typeof SEGMENTS)[number];
 export type Stage = (typeof STAGES)[number];
 export type Tag = Segment | Stage;
@@ -115,6 +119,7 @@ export type Company = {
   trend: number[];
   lastInteraction: { date: string; label: string };
   activityDays: number;
+  market: Market;
   logo?: string;
 };
 
@@ -154,6 +159,7 @@ const COMPANY_RECORDS: Company[] = [
     winProbability: 38,
     trend: TREND_A,
     lastInteraction: { date: "2026-10-07", label: "Shortlist approved" },
+    market: "Nigeria",
     activityDays: 1,
   },
   {
@@ -166,6 +172,7 @@ const COMPANY_RECORDS: Company[] = [
     winProbability: 46,
     trend: TREND_C,
     lastInteraction: { date: "2026-10-06", label: "Mock interview" },
+    market: "UK & Ireland",
     activityDays: 2,
   },
   {
@@ -178,6 +185,7 @@ const COMPANY_RECORDS: Company[] = [
     winProbability: 0,
     trend: DEFAULT_TREND,
     lastInteraction: { date: "2026-10-05", label: "CV draft sent" },
+    market: "Nigeria",
     activityDays: 3,
   },
   {
@@ -190,6 +198,7 @@ const COMPANY_RECORDS: Company[] = [
     winProbability: 52,
     trend: TREND_D,
     lastInteraction: { date: "2026-10-07", label: "Interview invite" },
+    market: "Nigeria",
     activityDays: 1,
   },
   {
@@ -202,6 +211,7 @@ const COMPANY_RECORDS: Company[] = [
     winProbability: 0,
     trend: DEFAULT_TREND,
     lastInteraction: { date: "2026-10-06", label: "Agreement sent" },
+    market: "Nigeria",
     activityDays: 2,
   },
   {
@@ -214,6 +224,7 @@ const COMPANY_RECORDS: Company[] = [
     winProbability: 61,
     trend: TREND_C,
     lastInteraction: { date: "2026-10-04", label: "Offer review" },
+    market: "Canada & remote",
     activityDays: 4,
   },
   {
@@ -226,6 +237,7 @@ const COMPANY_RECORDS: Company[] = [
     winProbability: 0,
     trend: DEFAULT_TREND,
     lastInteraction: { date: "2026-10-03", label: "Call booked" },
+    market: "Nigeria",
     activityDays: 5,
   },
   {
@@ -238,6 +250,7 @@ const COMPANY_RECORDS: Company[] = [
     winProbability: 27,
     trend: TREND_B,
     lastInteraction: { date: "2026-09-30", label: "Applications sent" },
+    market: "UK & Ireland",
     activityDays: 8,
   },
   {
@@ -250,6 +263,7 @@ const COMPANY_RECORDS: Company[] = [
     winProbability: 17,
     trend: TREND_SLOW,
     lastInteraction: { date: "2026-09-12", label: "Check-in call" },
+    market: "Nigeria",
     activityDays: 26,
   },
   {
@@ -262,6 +276,7 @@ const COMPANY_RECORDS: Company[] = [
     winProbability: 33,
     trend: TREND_A,
     lastInteraction: { date: "2026-10-02", label: "Applications sent" },
+    market: "Canada & remote",
     activityDays: 6,
   },
   {
@@ -274,6 +289,7 @@ const COMPANY_RECORDS: Company[] = [
     winProbability: 0,
     trend: DEFAULT_TREND,
     lastInteraction: { date: "2026-09-29", label: "Revision 2" },
+    market: "Nigeria",
     activityDays: 9,
   },
   {
@@ -286,6 +302,7 @@ const COMPANY_RECORDS: Company[] = [
     winProbability: 44,
     trend: TREND_C,
     lastInteraction: { date: "2026-10-01", label: "Interview invite" },
+    market: "Nigeria",
     activityDays: 7,
   },
   {
@@ -298,6 +315,7 @@ const COMPANY_RECORDS: Company[] = [
     winProbability: 50,
     trend: TREND_D,
     lastInteraction: { date: "2026-10-06", label: "Mock interview" },
+    market: "UK & Ireland",
     activityDays: 2,
   },
   {
@@ -310,6 +328,7 @@ const COMPANY_RECORDS: Company[] = [
     winProbability: 31,
     trend: TREND_B,
     lastInteraction: { date: "2026-09-25", label: "Shortlist approved" },
+    market: "Nigeria",
     activityDays: 13,
   },
   {
@@ -322,6 +341,7 @@ const COMPANY_RECORDS: Company[] = [
     winProbability: 0,
     trend: DEFAULT_TREND,
     lastInteraction: { date: "2026-10-01", label: "CV draft sent" },
+    market: "UK & Ireland",
     activityDays: 7,
   },
   {
@@ -334,6 +354,7 @@ const COMPANY_RECORDS: Company[] = [
     winProbability: 0,
     trend: DEFAULT_TREND,
     lastInteraction: { date: "2026-10-07", label: "Call booked" },
+    market: "Nigeria",
     activityDays: 1,
   },
   {
@@ -346,6 +367,7 @@ const COMPANY_RECORDS: Company[] = [
     winProbability: 0,
     trend: DEFAULT_TREND,
     lastInteraction: { date: "2026-10-05", label: "Agreement sent" },
+    market: "Canada & remote",
     activityDays: 3,
   },
   {
@@ -358,6 +380,7 @@ const COMPANY_RECORDS: Company[] = [
     winProbability: 22,
     trend: TREND_SLOW,
     lastInteraction: { date: "2026-08-28", label: "Renewal failed" },
+    market: "Nigeria",
     activityDays: 41,
   },
 ];

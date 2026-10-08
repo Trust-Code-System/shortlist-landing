@@ -32,13 +32,12 @@ export default function CompaniesToolbar() {
   );
 
   function exportCsv() {
-    const { companies } = useCompaniesStore.getState();
-    const visible = filterCompanies(companies, {
-      sortBy,
-      owner,
-      stage,
-      activityWindow,
-    });
+    const { companies, market, activeTab } = useCompaniesStore.getState();
+    const visible = filterCompanies(
+      companies,
+      { sortBy, owner, stage, activityWindow },
+      { market, view: activeTab },
+    );
     downloadCsv(`clients-${TODAY}.csv`, companiesCsvRows(visible));
   }
 

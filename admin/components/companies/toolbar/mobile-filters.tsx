@@ -57,14 +57,19 @@ export default function MobileFilters({ className }: MobileFiltersProps) {
     (state) => state.setActivityWindow,
   );
   const resetFilters = useCompaniesStore((state) => state.resetFilters);
+  const market = useCompaniesStore((state) => state.market);
+  const view = useCompaniesStore((state) => state.activeTab);
 
   const filters = { sortBy, owner, stage, activityWindow };
   const activeCount = activeFilterCount(filters);
   const resultCount = useMemo(
     () =>
-      filterCompanies(companies, { sortBy, owner, stage, activityWindow })
-        .length,
-    [companies, sortBy, owner, stage, activityWindow],
+      filterCompanies(
+        companies,
+        { sortBy, owner, stage, activityWindow },
+        { market, view },
+      ).length,
+    [companies, sortBy, owner, stage, activityWindow, market, view],
   );
 
   return (
