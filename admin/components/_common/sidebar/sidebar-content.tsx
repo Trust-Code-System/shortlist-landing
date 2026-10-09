@@ -2,6 +2,7 @@
 
 import type { ComponentType, SVGProps } from "react";
 import { usePathname } from "next/navigation";
+import { Collapsible } from "radix-ui";
 import Button from "@/components/_ui/button";
 import { ScrollArea } from "@/components/_ui/scroll-area";
 import SidebarNavItem from "./sidebar-nav-item";
@@ -24,6 +25,7 @@ import DotPurple from "@/public/assets/images/companies/sidebar/dot-purple.svg";
 import UserPlusIcon from "@/public/assets/images/companies/sidebar/user-plus.svg";
 import MessageQuestionIcon from "@/public/assets/images/companies/sidebar/message-question.svg";
 import WalletIcon from "@/public/assets/images/companies/sidebar/wallet.svg";
+import ChevronDownIcon from "@/public/assets/images/_common/chevron-down.svg";
 
 type NavItem = {
   icon: ComponentType<SVGProps<SVGSVGElement>>;
@@ -151,6 +153,35 @@ export default function SidebarContent() {
   ];
 
   const close = () => setSidebarOpen(false);
+  const futureSections = sections.slice(1);
+  const comingSoonCount = futureSections.reduce(
+    (count, section) => count + section.items.length,
+    2, // Inactive support items: Invite teammates and Help.
+  );
+  const onComingSoonPage = futureSections.some((section) =>
+    section.items.some((item) => item.href === pathname),
+  );
+
+  const renderSection = (section: (typeof sections)[number]) => (
+    <SidebarSection
+      key={section.title ?? "main"}
+      title={section.title}
+      className="border-sidebar-border border-b"
+    >
+      {section.items.map((item) => (
+        <SidebarNavItem
+          key={item.href}
+          icon={item.icon}
+          label={item.label}
+          href={item.href}
+          count={item.count}
+          comingSoon={item.comingSoon}
+          active={pathname === item.href}
+          onNavigate={close}
+        />
+      ))}
+    </SidebarSection>
+  );
 
   return (
     <div className="flex h-full min-h-0 flex-col">
@@ -168,46 +199,50 @@ export default function SidebarContent() {
 
       <ScrollArea className="min-h-0 flex-1">
         <nav aria-label="Primary">
-          {sections.map((section, index) => (
-            <SidebarSection
-              key={section.title ?? "main"}
-              title={section.title}
-              className={
-                index < sections.length - 1
-                  ? "border-sidebar-border border-b"
-                  : undefined
-              }
-            >
-              {section.items.map((item) => (
+          {renderSection(sections[0])}
+          <Collapsible.Root key={pathname} defaultOpen={onComingSoonPage}>
+            <div className="p-3">
+              <Collapsible.Trigger asChild>
+                <Button
+                  variant="nav"
+                  size="md"
+                  className="group text-soft hover:bg-sidebar-primary h-9 gap-2"
+                >
+                  <ChevronDownIcon
+                    aria-hidden
+                    className="size-3.5 shrink-0 -rotate-90 transition-transform duration-150 group-data-[state=open]:rotate-0 motion-reduce:transition-none"
+                  />
+                  <span className="min-w-0 flex-1 truncate text-left">
+                    Coming soon
+                  </span>
+                  <span className="bg-muted text-soft rounded-full px-1.5 py-1 text-[10px] leading-none">
+                    {comingSoonCount}
+                  </span>
+                </Button>
+              </Collapsible.Trigger>
+            </div>
+            <Collapsible.Content>
+              {futureSections.map(renderSection)}
+              <SidebarSection title="Support">
                 <SidebarNavItem
-                  key={item.href}
-                  icon={item.icon}
-                  label={item.label}
-                  href={item.href}
-                  count={item.count}
-                  comingSoon={item.comingSoon}
-                  active={pathname === item.href}
-                  onNavigate={close}
+                  icon={UserPlusIcon}
+                  label="Invite teammates"
+                  tone="quiet"
+                  comingSoon
                 />
-              ))}
-            </SidebarSection>
-          ))}
+                <SidebarNavItem
+                  icon={MessageQuestionIcon}
+                  label="Help"
+                  tone="quiet"
+                  comingSoon
+                />
+              </SidebarSection>
+            </Collapsible.Content>
+          </Collapsible.Root>
         </nav>
       </ScrollArea>
 
       <SidebarSection className="border-sidebar-border shrink-0 border-t border-b">
-        <SidebarNavItem
-          icon={UserPlusIcon}
-          label="Invite teammates"
-          tone="quiet"
-          comingSoon
-        />
-        <SidebarNavItem
-          icon={MessageQuestionIcon}
-          label="Help"
-          tone="quiet"
-          comingSoon
-        />
         <li>
           <form action={logout}>
             <Button
