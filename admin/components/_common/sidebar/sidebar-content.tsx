@@ -8,7 +8,7 @@ import SidebarNavItem from "./sidebar-nav-item";
 import SidebarSection from "./sidebar-section";
 import { useCompaniesStore } from "@/stores/companies-store";
 import { logout } from "@/app/login/actions";
-import Logo from "@/public/assets/images/_common/logo.svg";
+import ShortlistLogo from "@/components/_common/shortlist-logo";
 import ClipboardIcon from "@/public/assets/images/companies/sidebar/clipboard.svg";
 import ListIcon from "@/public/assets/images/companies/sidebar/list.svg";
 import BookClosedIcon from "@/public/assets/images/companies/sidebar/book-closed.svg";
@@ -154,10 +154,10 @@ export default function SidebarContent() {
 
   return (
     <div className="flex h-full min-h-0 flex-col">
-      <div className="border-sidebar-border bg-sidebar-accent flex shrink-0 items-center gap-2 border-b p-3">
-        <Logo aria-hidden className="size-8 shrink-0 overflow-visible" />
+      <div className="border-sidebar-border bg-sidebar-accent flex shrink-0 items-center gap-2.5 border-b p-3">
+        <ShortlistLogo />
         <div className="flex min-w-0 flex-col gap-1">
-          <span className="lead-style block truncate font-medium tracking-[-0.01em]">
+          <span className="block truncate text-[17px] font-semibold tracking-[-0.35px]">
             Shortlist
           </span>
           <span className="caption-style text-subtle block truncate">

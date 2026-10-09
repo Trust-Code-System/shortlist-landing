@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import LoginForm from "./login-form";
 import ThemeToggle from "@/components/_common/theme-toggle";
+import ShortlistLogo from "@/components/_common/shortlist-logo";
 import styles from "./login.module.css";
 
 export const metadata: Metadata = { title: "Sign in · Shortlist Admin" };
@@ -16,25 +17,7 @@ export default async function LoginPage({
     <main className={styles.page}>
       <header className={styles.header}>
         <span className={styles.brand}>
-          <span className={styles.brandMark} aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none">
-              <rect
-                x="5"
-                y="3"
-                width="14"
-                height="18"
-                rx="3"
-                stroke="currentColor"
-                strokeWidth="1.6"
-              />
-              <path
-                d="M9 8h6M9 12h6M9 16h3"
-                stroke="currentColor"
-                strokeWidth="1.6"
-                strokeLinecap="round"
-              />
-            </svg>
-          </span>
+          <ShortlistLogo />
           <span>
             <span className={styles.brandName}>Shortlist</span>
             <span className={styles.brandCaption}>Client operations</span>
