@@ -1,0 +1,5 @@
+# Local screenshots and verification output are not application source.
+/shots/
+# Future local development state must never be published.
+/.local-workflow/
+/node_modules/

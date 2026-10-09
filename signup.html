@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Payment · Shortlist</title>
+    <title>Create an account · Shortlist</title>
     <meta name="robots" content="noindex" />
     <script src="assets/customer-theme.js"></script>
     <script src="assets/client-preview.js"></script>
@@ -16,11 +16,11 @@
     <link rel="stylesheet" href="assets/client-phase.css" />
     <script src="assets/customer-controls.js" defer></script>
   </head>
-  <body class="customer" data-client-flow="payment">
+  <body class="customer" data-client-flow="signup">
     <a class="skip-link" href="#main">Skip to content</a>
     <div class="demo" role="note">
-      <b>Local preview.</b> Test the payment flow. No payment is processed, no
-      email is sent, and nothing is charged.
+      <b>Local preview.</b> Your name and email are saved only on this browser.
+      No live account is created.
     </div>
     <header class="fhead">
       <div class="wrap">
@@ -35,23 +35,13 @@
     </header>
     <main class="flow" id="main">
       <section class="panel active">
-        <p class="eyebrow">Payment</p>
-        <h1>Complete your payment.</h1>
+        <p class="eyebrow">Start here</p>
+        <h1>Create your account.</h1>
         <p class="lede">
-          Preview your package payment. No card details are collected and
-          nothing is charged.
+          One place for your documents, review status, preparation invite, and
+          payment.
         </p>
-        <form id="paymentForm" novalidate>
-          <div class="field">
-            <label for="package"
-              >Package <span class="opt">Sample prices</span></label
-            ><select class="select" id="package">
-              <option value="readiness">Readiness · ₦60,000</option>
-              <option value="starter">Starter · ₦45,000</option>
-              <option value="standard" selected>Standard · ₦180,000</option>
-              <option value="full">Full Service · ₦300,000</option>
-            </select>
-          </div>
+        <form id="signupForm" novalidate>
           <div class="field">
             <label for="name">Full name</label
             ><input
@@ -65,7 +55,7 @@
             <p class="err" id="err-name"></p>
           </div>
           <div class="field">
-            <label for="email">Email for your receipt</label
+            <label for="email">Email address</label
             ><input
               class="input"
               id="email"
@@ -78,56 +68,52 @@
             <p class="err" id="err-email"></p>
           </div>
           <p class="hint">
-            Amounts are sample prices for this preview. No receipt email is
-            sent.
+            This previews account creation on this browser. It doesn’t create a
+            live account or send an email.
           </p>
-          <button
-            type="submit"
-            class="btn btn-ink"
-            id="payBtn"
-            style="margin-top: 24px"
-          >
-            <span class="lbl-t" id="payButtonText">Preview payment</span
-            ><span class="spin" aria-hidden="true"></span>
+          <button type="submit" class="btn btn-ink" style="margin-top: 24px">
+            Continue to your portal <span data-icon="arrow"></span>
           </button>
-          <p class="phase-form-error" id="formError" role="alert"></p>
+          <p id="formError" class="phase-form-error" role="alert"></p>
         </form>
-        <section
-          class="phase-done"
-          id="paymentDone"
-          tabindex="-1"
-          aria-labelledby="paymentDoneTitle"
-          hidden
-        >
-          <h2 id="paymentDoneTitle">Payment preview saved.</h2>
-          <p>
-            No money was charged. Preview reference: <b id="receiptRef"></b>.
-          </p>
-          <div class="phase-actions">
-            <a class="btn btn-line btn-sm" href="tracker.html#plan"
-              >View payment details</a
-            ><a class="btn btn-ink btn-sm" href="upload.html">Upload your CV</a>
-          </div>
-        </section>
+        <p class="hint" style="margin-top: 24px">
+          Already have an account? <a href="signin.html">Sign in</a>.
+        </p>
       </section>
       <aside class="aside">
         <div class="sum">
-          <div class="sum-h"><b>Payment summary</b><span>Preview</span></div>
+          <div class="sum-h"><b>Your next steps</b></div>
           <div class="sum-b">
-            <p class="sum-title" id="sumPackage">Standard</p>
-            <p class="phase-price" id="sumPrice">₦180,000</p>
-            <p class="hint">Sample price · NGN · one-time payment</p>
-            <div class="phase-soon">
-              <span class="coming-soon-badge">Coming soon</span>
-              <h3>Plan changes &amp; subscriptions</h3>
-              <p>
-                Upgrades, pausing services, cancellations and recurring billing
-                aren’t available yet.
-              </p>
+            <div class="workflow-step">
+              <span>1</span>
+              <div>
+                <b>Upload your CV</b>
+                <p>Add your CV and any supporting qualifications.</p>
+              </div>
             </div>
-          </div>
-          <div class="sum-foot">
-            This is a payment preview. No payment provider is connected.
+            <div class="workflow-step">
+              <span>2</span>
+              <div>
+                <b>Admin review</b>
+                <p>The team checks your submitted documents.</p>
+              </div>
+            </div>
+            <div class="workflow-step">
+              <span>3</span>
+              <div>
+                <b>Get ready together</b>
+                <p>
+                  Your Google Meet preparation invite appears in your portal.
+                </p>
+              </div>
+            </div>
+            <div class="workflow-step">
+              <span>4</span>
+              <div>
+                <b>Complete payment</b>
+                <p>Keep payment information together in your portal.</p>
+              </div>
+            </div>
           </div>
         </div>
       </aside>

@@ -1,430 +1,730 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Your tracker · Shortlist</title>
-<meta name="description" content="Follow every application Shortlist sends for you.">
-<meta name="robots" content="noindex">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&family=Fragment+Mono&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/base.css">
-<link rel="stylesheet" href="assets/flow.css">
-<link rel="stylesheet" href="assets/portal.css">
-<!--
-  SAMPLE DATA: this is what a signed-in client sees. To go live, load the
-  client's own applications, documents, interviews and billing from the
-  backend after authentication; approvals and plan changes become API calls.
--->
-</head>
-<body data-title="Your tracker · Shortlist">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="assets/customer-theme.js"></script>
+    <script src="assets/client-preview.js"></script>
+    <title>Your tracker · Shortlist</title>
+    <meta
+      name="description"
+      content="Your CV, document review, preparation invite and payment, together in your Shortlist portal."
+    />
+    <meta name="robots" content="noindex" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&family=Fragment+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/base.css" />
+    <link rel="stylesheet" href="assets/flow.css" />
+    <link rel="stylesheet" href="assets/portal.css" />
+    <link rel="stylesheet" href="assets/customer.css" />
+    <link rel="stylesheet" href="assets/customer-palette.css" />
+    <link rel="stylesheet" href="assets/customer-shell.css" />
+    <link rel="stylesheet" href="assets/client-phase.css" />
+    <script src="assets/customer-controls.js" defer></script>
+    <link rel="stylesheet" href="assets/customer-workspace.css" />
+    <script src="assets/customer-workspace.js" defer></script>
+    <!-- UI preview only. Account, files, verified payment and preparation invites need authenticated backend data before launch. -->
+  </head>
+  <body class="customer workspace" data-title="Your tracker · Shortlist">
+    <a class="skip-link" href="#main">Skip to content</a>
 
-<div class="demo" role="note"><b>Preview.</b> Sample tracker for an example client. Nothing here is sent to employers.</div>
-
-<header class="phead">
-  <div class="wrap phead-row">
-    <a href="index.html" class="brand" aria-label="Shortlist home"><span class="brand-mark" aria-hidden="true"></span>Shortlist</a>
-    <div class="puser">
-      <span class="name">Adaeze Okafor</span>
-      <span class="av" aria-hidden="true">AO</span>
-      <a href="signin.html">Sign out</a>
+    <div class="demo" role="note">
+      <b>Client portal preview</b> · Saved on this browser. No live account,
+      file upload or payment is created.
     </div>
-  </div>
-  <div class="phead-tabs">
-    <div class="wrap">
-      <nav class="ptabs" role="tablist" aria-label="Tracker sections">
-        <button class="ptab" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Overview<span class="n" id="approveBadge">6</span></button>
-        <button class="ptab" role="tab" id="tab-applications" aria-controls="applications" aria-selected="false" tabindex="-1">Applications</button>
-        <button class="ptab" role="tab" id="tab-documents" aria-controls="documents" aria-selected="false" tabindex="-1">Documents</button>
-        <button class="ptab" role="tab" id="tab-interviews" aria-controls="interviews" aria-selected="false" tabindex="-1">Interviews</button>
-        <button class="ptab" role="tab" id="tab-plan" aria-controls="plan" aria-selected="false" tabindex="-1">Plan &amp; billing</button>
-      </nav>
-    </div>
-  </div>
-</header>
 
-<main class="pmain">
-
-  <!-- OVERVIEW -->
-  <section class="ppanel active" id="overview" role="tabpanel" aria-labelledby="tab-overview">
-    <div class="hello">
-      <div>
-        <p class="eyebrow mono">Week 3 of your search · Standard package</p>
-        <h1 tabindex="-1">Good morning, Adaeze.</h1>
-        <p id="helloLine">You have roles waiting for your approval.</p>
+    <header class="phead" id="clientSidebar">
+      <div class="wrap phead-row">
+        <a href="index.html" class="brand" aria-label="Shortlist home"
+          ><span class="brand-mark" aria-hidden="true"></span>Shortlist</a
+        >
+        <p class="workspace-label">Client portal</p>
       </div>
-      <a class="btn btn-line btn-sm" href="upload.html">Update my preferences</a>
+      <div class="phead-tabs">
+        <div class="wrap">
+          <nav
+            class="ptabs"
+            role="tablist"
+            aria-label="Your job search"
+            aria-orientation="vertical"
+          >
+            <button
+              class="ptab"
+              role="tab"
+              id="tab-overview"
+              aria-controls="overview"
+              aria-selected="true"
+            >
+              <span data-icon="home"></span><span>For you</span>
+            </button>
+            <button
+              class="ptab"
+              role="tab"
+              id="tab-applications"
+              aria-controls="applications"
+              aria-selected="false"
+              tabindex="-1"
+            >
+              <span data-icon="briefcase"></span><span>Applications</span
+              ><span class="nav-soon">Coming soon</span>
+            </button>
+            <button
+              class="ptab"
+              role="tab"
+              id="tab-documents"
+              aria-controls="documents"
+              aria-selected="false"
+              tabindex="-1"
+            >
+              <span data-icon="file"></span><span>Documents</span>
+            </button>
+            <button
+              class="ptab"
+              role="tab"
+              id="tab-interviews"
+              aria-controls="interviews"
+              aria-selected="false"
+              tabindex="-1"
+            >
+              <span data-icon="calendar"></span><span>Preparation</span>
+            </button>
+            <button
+              class="ptab"
+              role="tab"
+              id="tab-plan"
+              aria-controls="plan"
+              aria-selected="false"
+              tabindex="-1"
+            >
+              <span data-icon="card"></span><span>Payments</span>
+            </button>
+            <button
+              class="ptab"
+              role="tab"
+              id="tab-employer-interviews"
+              aria-controls="employer-interviews"
+              aria-selected="false"
+              tabindex="-1"
+              title="Employer interviews · Coming soon"
+            >
+              <span data-icon="briefcase"></span><span>Employer interviews</span
+              ><span class="nav-soon">Coming soon</span>
+            </button>
+          </nav>
+        </div>
+      </div>
+      <div class="sidebar-bottom">
+        <div class="sidebar-support">
+          <b>One step at a time.</b>
+          <p>
+            Start with your CV and supporting documents. Your preparation invite
+            comes after the team’s review.
+          </p>
+          <button
+            type="button"
+            class="btn btn-line btn-sm"
+            data-goto="documents"
+          >
+            Your documents <span data-icon="arrow"></span>
+          </button>
+        </div>
+        <div class="puser">
+          <span class="av" aria-hidden="true" data-client-initials>AO</span
+          ><span class="name" data-client-name>Adaeze Okafor</span
+          ><a href="signin.html"
+            >Sign out <span class="sr-only">of the demo</span></a
+          >
+        </div>
+        <div class="sidebar-plan">
+          <div><b>Your payment</b><small>Preview mode</small></div>
+          <button type="button" class="btn btn-line btn-sm" data-goto="plan">
+            <span data-icon="card"></span>Payments
+          </button>
+        </div>
+      </div>
+    </header>
+    <div
+      class="sidebar-resizer"
+      id="sidebarResizer"
+      role="separator"
+      aria-orientation="vertical"
+      aria-label="Resize sidebar"
+      aria-controls="clientSidebar main"
+      aria-valuemin="200"
+      aria-valuemax="400"
+      aria-valuenow="254"
+      tabindex="0"
+    >
+      <span aria-hidden="true"></span>
+    </div>
+    <dialog
+      class="navigation-drawer"
+      id="navigationDrawer"
+      aria-label="Your job search navigation"
+    >
+      <button
+        type="button"
+        class="drawer-close"
+        id="closeNavigation"
+        aria-label="Close navigation"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          aria-hidden="true"
+        >
+          <path d="m6 6 12 12M6 18 18 6" />
+        </svg>
+      </button>
+    </dialog>
+
+    <div class="workspace-bar">
+      <div class="workspace-crumb">
+        <button
+          type="button"
+          class="header-icon navigation-toggle"
+          id="openNavigation"
+          aria-label="Open navigation"
+          aria-controls="navigationDrawer"
+          aria-expanded="false"
+        >
+          <svg
+            class="ico"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            aria-hidden="true"
+          >
+            <path d="M4 6h16M4 12h16M4 18h16" />
+          </svg></button
+        ><b id="currentSection">For you</b
+        ><span class="workspace-status">Your next steps</span>
+      </div>
+      <div class="workspace-bar-right">
+        <button
+          type="button"
+          class="header-icon"
+          id="headerSearch"
+          aria-label="Find your documents"
+        >
+          <span data-icon="search"></span></button
+        ><button
+          type="button"
+          class="header-icon"
+          disabled
+          aria-label="Messages · Coming soon"
+          title="Messages · Coming soon"
+        >
+          <span data-icon="message"></span></button
+        ><button
+          type="button"
+          class="client-profile"
+          id="profileButton"
+          data-goto="overview"
+          aria-label="Adaeze Okafor, view your overview"
+        >
+          <span class="av" aria-hidden="true" data-client-initials>AO</span
+          ><span data-client-name>Adaeze Okafor</span>
+        </button>
+      </div>
     </div>
 
-    <div class="kpis" aria-label="This month so far">
-      <div class="kpi"><span class="mono">Sent</span><b id="kSent">21</b></div>
-      <div class="kpi"><span class="mono">Viewed</span><b>9</b></div>
-      <div class="kpi"><span class="mono">Replies</span><b>4</b></div>
-      <div class="kpi hi"><span class="mono">Interviews</span><b>2</b></div>
-    </div>
-
-    <div class="grid2">
-      <div class="stack">
-        <div class="card mark" id="approveCard">
-          <div class="card-h"><h2>This week’s shortlist</h2><span class="mono" id="approveCount">6 roles</span></div>
-          <div class="card-b" id="approveBody">
-            <p style="margin:0 0 var(--s4);color:var(--ink-2)">Roles matched to your agreed countries and criteria. Tick the ones you’d like us to apply for. Nothing goes out without your authorisation.</p>
-            <div class="alist" id="alist"></div>
+    <main class="pmain" id="main" tabindex="-1">
+      <section
+        class="ppanel active"
+        id="overview"
+        role="tabpanel"
+        aria-labelledby="tab-overview"
+      >
+        <div class="hello">
+          <div>
+            <p class="eyebrow">Your next steps</p>
+            <h1 tabindex="-1">
+              Good to see you, <span data-client-first>Adaeze</span>.
+            </h1>
+            <p>
+              Your documents, review status, preparation, and payment—all
+              together.
+            </p>
           </div>
-          <div class="afoot" id="approveFoot">
-            <span class="note" id="selNote">5 selected</span>
-            <div style="display:flex;gap:var(--s2)">
-              <button type="button" class="btn btn-line btn-sm" id="skipAll">Skip this week</button>
-              <button type="button" class="btn btn-ink btn-sm" id="approveBtn">Approve 5 roles</button>
+          <a class="btn btn-ink btn-sm" href="upload.html"
+            ><span data-icon="file"></span>Upload your CV</a
+          >
+        </div>
+        <div class="kpis" aria-label="Your onboarding progress">
+          <div class="kpi">
+            <div class="metric-label">
+              <span class="mono">Your documents</span
+              ><span data-icon="file"></span>
+            </div>
+            <b id="uploadStatus">Not yet</b
+            ><small class="metric-note">CV and supporting information</small>
+          </div>
+          <div class="kpi">
+            <div class="metric-label">
+              <span class="mono">Admin review</span
+              ><span data-icon="eye"></span>
+            </div>
+            <b id="reviewStatus">Not yet</b
+            ><small class="metric-note">After your document submission</small>
+          </div>
+          <div class="kpi">
+            <div class="metric-label">
+              <span class="mono">Preparation</span
+              ><span data-icon="calendar"></span>
+            </div>
+            <b id="prepStatus">Not yet</b
+            ><small class="metric-note">Your Google Meet invitation</small>
+          </div>
+          <div class="kpi">
+            <div class="metric-label">
+              <span class="mono">Payment</span><span data-icon="card"></span>
+            </div>
+            <b id="paymentStatus">Not yet</b
+            ><small class="metric-note">Your package payment</small>
+          </div>
+        </div>
+        <div class="grid2">
+          <div class="stack">
+            <div class="card">
+              <div class="card-h">
+                <h2>Let’s get you ready</h2>
+                <span class="review-tag">Your next steps</span>
+              </div>
+              <div class="card-b">
+                <div class="workflow-step" id="signupPrompt">
+                  <span>1</span>
+                  <div>
+                    <b>Create your account</b>
+                    <p>
+                      Start your account preview and keep your details together.
+                    </p>
+                    <a class="btn btn-line btn-sm" href="signup.html"
+                      >Create an account <span data-icon="arrow"></span
+                    ></a>
+                  </div>
+                </div>
+                <div class="workflow-step">
+                  <span>2</span>
+                  <div>
+                    <b>Upload your CV and documents</b>
+                    <p id="overviewFiles">CV and supporting documents</p>
+                    <a class="btn btn-ink btn-sm" href="upload.html"
+                      >Add your documents <span data-icon="arrow"></span
+                    ></a>
+                  </div>
+                </div>
+                <div class="workflow-step">
+                  <span>3</span>
+                  <div>
+                    <b>The admin reviews your submission</b>
+                    <p data-review-copy>Upload your documents first.</p>
+                  </div>
+                </div>
+                <div class="workflow-step">
+                  <span>4</span>
+                  <div>
+                    <b>Look out for your preparation invite</b>
+                    <p>
+                      Your Google Meet link will appear in Preparation once your
+                      session is arranged.
+                    </p>
+                    <button
+                      type="button"
+                      class="btn btn-line btn-sm"
+                      data-goto="interviews"
+                    >
+                      View preparation <span data-icon="arrow"></span>
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-
-        <div class="card">
-          <div class="card-h"><h2>Latest updates</h2><button type="button" class="mono" style="color:var(--ink-3)" data-goto="applications">All applications →</button></div>
-          <div class="card-b">
-            <ol class="tl">
-              <li><div><b>Interview invite from Copperline Ltd</b><span>Senior Growth Marketer · Tue 13 Oct, 16:00 · added to Interviews</span></div></li>
-              <li><div><b>Northlake Health invited you to interview</b><span>Brand Manager · Toronto, Canada · Yesterday</span></div></li>
-              <li><div><b>Straits Analytics replied</b><span>Growth Marketing Lead · asked for a portfolio link · Mon 5 Oct</span></div></li>
-              <li><div><b>6 applications sent</b><span>From last week’s approved shortlist · Fri 2 Oct</span></div></li>
-            </ol>
-          </div>
-        </div>
-      </div>
-
-      <div class="stack">
-        <div class="card">
-          <div class="card-h"><h2>Next interview</h2><span class="mono">In 5 days</span></div>
-          <div class="card-b">
-            <div class="iv">
-              <div class="date-tile" aria-hidden="true"><small>Tue</small><b>13</b></div>
-              <div>
-                <h3>Senior Growth Marketer</h3>
-                <p>Copperline Ltd · Panel · Video · 16:00 WAT</p>
-                <p style="margin-top:var(--s3)">Mock interview with <b style="color:var(--ink)">Bisi Coker</b> on Mon 12 Oct, 18:00.</p>
-                <button type="button" class="btn btn-line btn-sm" style="margin-top:var(--s4)" data-goto="interviews">See prep checklist</button>
+          <div class="stack">
+            <div class="card">
+              <div class="card-h">
+                <h2>Your payment</h2>
+                <span class="mono">Preview</span>
+              </div>
+              <div class="card-b">
+                <p class="phase-status">
+                  Preview your package payment and view its details in one
+                  place.
+                </p>
+                <a class="btn btn-line btn-sm" href="checkout.html"
+                  >Continue to payment <span data-icon="arrow"></span
+                ></a>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-h">
+                <h2>Account</h2>
+                <span class="mono" id="accountStatus">Get started</span>
+              </div>
+              <div class="card-b">
+                <div class="person">
+                  <span class="av" aria-hidden="true" data-client-initials
+                    >AO</span
+                  >
+                  <div>
+                    <b data-client-name>Adaeze Okafor</b
+                    ><small>Client portal preview</small>
+                  </div>
+                </div>
+                <div class="phase-soon">
+                  <span class="coming-soon-badge"
+                    ><span data-icon="lock"></span>Coming soon</span
+                  >
+                  <h3>More tools, when they’re ready</h3>
+                  <p>
+                    Applications, employer interviews, CV rewriting, messages,
+                    and plan changes are part of a later release.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
-
-        <div class="card">
-          <div class="card-h"><h2>Your specialist</h2></div>
-          <div class="card-b">
-            <div class="person"><span class="av soft" aria-hidden="true">NE</span><div><b>Ngozi Eze</b><small>Senior Career Specialist</small></div></div>
-            <dl class="kv">
-              <div><dt>Next check-in</dt><dd>Fri 9 Oct · 10:00</dd></div>
-              <div><dt>WhatsApp</dt><dd>+234 803 214 4410</dd></div>
-              <div><dt>Email</dt><dd><a href="mailto:ngozi@shortlist.ng">ngozi@shortlist.ng</a></dd></div>
-            </dl>
+      </section>
+      <section
+        class="ppanel"
+        id="applications"
+        role="tabpanel"
+        aria-labelledby="tab-applications"
+        hidden
+      >
+        <div class="hello">
+          <div>
+            <p class="eyebrow">Your workspace</p>
+            <h1 tabindex="-1">Applications</h1>
+            <p>This part of your workspace is on its way.</p>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- APPLICATIONS -->
-  <section class="ppanel" id="applications" role="tabpanel" aria-labelledby="tab-applications" hidden>
-    <div class="hello">
-      <div>
-        <p class="eyebrow mono">Every application, on the record</p>
-        <h1 tabindex="-1">Applications</h1>
-        <p>Each role, the date we applied and what happened next.</p>
-      </div>
-      <div class="filters" role="group" aria-label="Filter applications" id="appFilters">
-        <button type="button" class="fchip" data-f="all" aria-pressed="true">All</button>
-        <button type="button" class="fchip" data-f="progress" aria-pressed="false">In progress</button>
-        <button type="button" class="fchip" data-f="interview" aria-pressed="false">Interviews</button>
-        <button type="button" class="fchip" data-f="closed" aria-pressed="false">Not progressed</button>
-      </div>
-    </div>
-    <div class="card">
-      <div class="ptable-wrap">
-        <table class="ptable">
-          <thead><tr><th scope="col">Role</th><th scope="col">Employer</th><th scope="col">Location</th><th scope="col">Sent</th><th scope="col">Status</th></tr></thead>
-          <tbody id="appRows"></tbody>
-        </table>
-      </div>
-    </div>
-    <p class="hint" style="margin-top:var(--s4)" id="appCount"></p>
-  </section>
-
-  <!-- DOCUMENTS -->
-  <section class="ppanel" id="documents" role="tabpanel" aria-labelledby="tab-documents" hidden>
-    <div class="hello">
-      <div>
-        <p class="eyebrow mono">Your documents</p>
-        <h1 tabindex="-1">Documents</h1>
-        <p>Drafts from your specialist and the files you sent us.</p>
-      </div>
-      <a class="btn btn-line btn-sm" href="upload.html">Upload a document</a>
-    </div>
-    <div class="grid2">
-      <div class="card">
-        <div class="card-h"><h2>From Shortlist</h2><span class="mono">Rewritten for you</span></div>
-        <div class="card-b">
-          <div class="docs">
-            <div class="doc-row"><span class="doc-ic" aria-hidden="true">PDF</span><div><b>CV, version 3</b><small id="cvState">Sent Mon 5 Oct · waiting for your review</small></div><div class="doc-actions"><button type="button" class="btn btn-line btn-sm" id="commentCv">Comment</button><button type="button" class="btn btn-ink btn-sm" id="approveCv">Approve</button></div></div>
-            <div class="doc-row"><span class="doc-ic" aria-hidden="true">PDF</span><div><b>CV, version 2</b><small>Sat 26 Sep · 7 comments resolved</small></div><div class="doc-actions"><span class="st closed">Superseded</span></div></div>
-            <div class="doc-row"><span class="doc-ic" aria-hidden="true">DOC</span><div><b>Cover letter template</b><small>Adapt the opening line for each role</small></div><div class="doc-actions"><span class="st viewed">Ready</span></div></div>
-            <div class="doc-row"><span class="doc-ic" aria-hidden="true">TXT</span><div><b>LinkedIn headline and About</b><small>Paste into your profile</small></div><div class="doc-actions"><span class="st viewed">Ready</span></div></div>
+        <div class="coming-soon-card">
+          <div class="coming-soon-preview" inert aria-hidden="true">
+            <div class="ghost-toolbar"></div>
+            <div class="ghost-row"><span></span><span></span><span></span></div>
+            <div class="ghost-row"><span></span><span></span><span></span></div>
+            <div class="ghost-row"><span></span><span></span><span></span></div>
+            <div class="ghost-row"><span></span><span></span><span></span></div>
+            <div class="ghost-row"><span></span><span></span><span></span></div>
+          </div>
+          <div class="coming-soon-cover">
+            <span class="coming-soon-badge"
+              ><span data-icon="lock"></span>Coming soon</span
+            >
+            <h2>A little more to look forward to.</h2>
+            <p>
+              Your application tracker will be available in a future release.
+              For now, focus on your documents and preparation.
+            </p>
+            <button
+              type="button"
+              class="btn btn-line btn-sm"
+              data-goto="overview"
+            >
+              Back to your overview <span data-icon="arrow"></span>
+            </button>
           </div>
         </div>
-      </div>
-      <div class="card">
-        <div class="card-h"><h2>From you</h2><span class="mono">Private</span></div>
-        <div class="card-b">
-          <div class="docs">
-            <div class="doc-row"><span class="doc-ic" aria-hidden="true">DOCX</span><div><b>Adaeze-Okafor-CV-2025.docx</b><small>Uploaded Tue 15 Sep · 180 KB</small></div></div>
-            <div class="doc-row"><span class="doc-ic" aria-hidden="true">PDF</span><div><b>BSc-Mass-Communication.pdf</b><small>Uploaded Tue 15 Sep · 1.2 MB</small></div></div>
+      </section>
+      <section
+        class="ppanel"
+        id="documents"
+        role="tabpanel"
+        aria-labelledby="tab-documents"
+        hidden
+      >
+        <div class="hello">
+          <div>
+            <p class="eyebrow">Your workspace</p>
+            <h1 tabindex="-1">Your documents</h1>
+            <p>
+              Your CV and supporting information, ready for the team’s review.
+            </p>
           </div>
-          <p class="hint" style="margin-top:var(--s4)">Only shared with employers you approve. Ask your specialist to delete any file at any time.</p>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- INTERVIEWS -->
-  <section class="ppanel" id="interviews" role="tabpanel" aria-labelledby="tab-interviews" hidden>
-    <div class="hello">
-      <div>
-        <p class="eyebrow mono">Get ready</p>
-        <h1 tabindex="-1">Interviews</h1>
-        <p>Every interview gets a mock with a coach, built around that role.</p>
-      </div>
-    </div>
-    <div class="grid2">
-      <div class="card">
-        <div class="card-h"><h2>Tue 13 Oct · Copperline Ltd</h2><span class="mono">Panel · Video</span></div>
-        <div class="card-b">
-          <div class="iv">
-            <div class="date-tile" aria-hidden="true"><small>Tue</small><b>13</b></div>
-            <div>
-              <h3>Senior Growth Marketer</h3>
-              <p>16:00 WAT · 45 minutes · Head of Marketing and two team leads</p>
+        <div class="applications-tools">
+          <label class="search-field"
+            ><span data-icon="search"></span
+            ><span class="sr-only">Search your uploaded documents</span
+            ><input
+              id="docSearch"
+              type="search"
+              placeholder="Find a document…"
+              autocomplete="off" /></label
+          ><a class="btn btn-ink btn-sm" href="upload.html"
+            >Upload documents <span data-icon="arrow"></span
+          ></a>
+        </div>
+        <div class="grid2">
+          <div class="card">
+            <div class="card-h">
+              <h2>Your submission</h2>
+              <span class="mono" id="docCount">No documents added yet</span>
+            </div>
+            <div class="card-b">
+              <ul class="phase-file-list" id="uploadedFiles"></ul>
+              <div class="phase-empty" id="documentEmpty">
+                <span data-icon="file"></span>
+                <h3>Your CV belongs here.</h3>
+                <p>
+                  Add your CV and any certificates or qualifications you’d like
+                  the team to review.
+                </p>
+                <a class="btn btn-line btn-sm" href="upload.html"
+                  >Add your documents</a
+                >
+              </div>
+              <p class="hint" id="documentSearchEmpty" hidden>
+                No files match your search.
+              </p>
             </div>
           </div>
-          <div class="block" style="margin-top:var(--s6)">
-            <h2 style="font-size:16px">Prep checklist</h2>
-            <div class="prep-list" id="prep">
-              <label class="check"><input type="checkbox" checked><span>Read the job description again and mark three must-haves</span></label>
-              <label class="check"><input type="checkbox" checked><span>Prepare the Instagram growth story (4,200 → 31,000) in under two minutes</span></label>
-              <label class="check"><input type="checkbox"><span>Mock interview with Bisi Coker · Mon 12 Oct, 18:00</span></label>
-              <label class="check"><input type="checkbox"><span>Two questions to ask the panel about how they measure growth</span></label>
-              <label class="check"><input type="checkbox"><span>Test your camera and microphone 15 minutes before</span></label>
-            </div>
-            <p class="hint" id="prepCount" style="margin-top:var(--s3)"></p>
-          </div>
-        </div>
-      </div>
-      <div class="stack">
-        <div class="card">
-          <div class="card-h"><h2>Mon 19 Oct · Northlake Health</h2><span class="mono">Screening</span></div>
-          <div class="card-b"><div class="iv"><div class="date-tile" aria-hidden="true"><small>Mon</small><b>19</b></div><div><h3>Brand Manager</h3><p>16:00 WAT (11:00 Toronto) · Video · HR screening call</p><p style="margin-top:var(--s3)"><span class="st pending">Mock to be booked</span></p></div></div></div>
-        </div>
-        <div class="card">
-          <div class="card-h"><h2>Past</h2></div>
-          <div class="card-b"><ol class="tl"><li><div><b>Straits Analytics · Screening</b><span>Wed 30 Sep · moved to next round</span></div></li></ol></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PLAN -->
-  <section class="ppanel" id="plan" role="tabpanel" aria-labelledby="tab-plan" hidden>
-    <div class="hello">
-      <div>
-        <p class="eyebrow mono">Your plan</p>
-        <h1 tabindex="-1">Plan &amp; billing</h1>
-        <p>Your package, service period and agreement.</p>
-      </div>
-    </div>
-    <div class="grid2">
-      <div class="stack">
-        <div class="card">
-          <div class="card-h"><h2>Standard package</h2><span class="st" id="planState">Active</span></div>
-          <div class="card-b">
-            <dl class="kv" style="margin-top:0">
-              <div><dt>Price</dt><dd>₦180,000, paid once (sample)</dd></div>
-              <div><dt>Applications</dt><dd>As stated in your agreement</dd></div>
-              <div><dt>Service period</dt><dd id="nextBill">Ends Fri 4 Dec 2026 (sample)</dd></div>
-              <div><dt>Payment</dt><dd>Card, through Paystack</dd></div>
-              <div><dt>Agreement</dt><dd>Signed Mon 14 Sep · <a href="agreement.html">Read it</a></dd></div>
-            </dl>
-            <div class="cta-row" style="margin-top:var(--s5)">
-              <button type="button" class="btn btn-line btn-sm" id="pauseBtn">Pause applications</button>
-              <a class="btn btn-line btn-sm" href="mailto:hello@shortlist.ng?subject=Change%20my%20package">Change package</a>
-              <button type="button" class="btn btn-sm" style="color:var(--error)" id="cancelBtn">End service early</button>
+          <div class="card">
+            <div class="card-h"><h2>Admin review</h2></div>
+            <div class="card-b">
+              <p class="phase-status" data-review-copy></p>
+              <div class="phase-soon">
+                <span class="coming-soon-badge"
+                  ><span data-icon="lock"></span>Coming soon</span
+                >
+                <h3>Rewritten CVs &amp; profile drafts</h3>
+                <p>
+                  CV version approvals, cover letters, LinkedIn drafts and
+                  commenting will be available later.
+                </p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="card">
-        <div class="card-h"><h2>Payments</h2><span class="mono">Receipt by email</span></div>
-        <div class="ptable-wrap">
-          <table class="ptable" style="min-width:0">
-            <thead><tr><th scope="col">Date</th><th scope="col">Amount</th><th scope="col">Status</th></tr></thead>
-            <tbody>
-              <tr><td class="num">Mon 14 Sep</td><td class="num">₦180,000</td><td><span class="st viewed">Paid</span></td></tr>
-              <tr><td class="num">Mon 14 Sep</td><td class="num dim">Service agreement</td><td><span class="st replied">Signed</span></td></tr>
-            </tbody>
-          </table>
+      </section>
+      <section
+        class="ppanel"
+        id="interviews"
+        role="tabpanel"
+        aria-labelledby="tab-interviews"
+        hidden
+      >
+        <div class="hello">
+          <div>
+            <p class="eyebrow">Your workspace</p>
+            <h1 tabindex="-1">Preparation</h1>
+            <p>Your preparation session and Google Meet invitation.</p>
+          </div>
         </div>
+        <div class="grid2">
+          <div class="card">
+            <div class="card-h">
+              <h2>Your preparation invite</h2>
+              <span class="mono">Google Meet</span>
+            </div>
+            <div class="card-b">
+              <div class="phase-empty" id="prepEmpty">
+                <span data-icon="video"></span>
+                <h3>A little preparation goes a long way.</h3>
+                <p>
+                  Once the admin has reviewed your documents and arranged your
+                  session, your invitation will appear here. There’s no
+                  preparation session booked in this preview yet.
+                </p>
+                <button
+                  type="button"
+                  class="btn btn-line btn-sm"
+                  data-goto="documents"
+                >
+                  View document status
+                </button>
+              </div>
+              <div id="prepInvite" hidden>
+                <h3 id="inviteTitle">Your preparation session</h3>
+                <p class="phase-status" id="inviteDate"></p>
+                <a
+                  class="btn btn-ink btn-sm"
+                  id="meetLink"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Join Google Meet <span data-icon="arrow"></span
+                ></a>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-h"><h2>Before your session</h2></div>
+            <div class="card-b">
+              <div class="workflow-step">
+                <span data-icon="check"></span>
+                <div>
+                  <b>Have your CV nearby</b>
+                  <p>
+                    Bring any questions about your experience or qualifications.
+                  </p>
+                </div>
+              </div>
+              <div class="workflow-step">
+                <span data-icon="video"></span>
+                <div>
+                  <b>Check your camera and microphone</b>
+                  <p>
+                    Find a quiet spot and test your connection before joining.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        class="ppanel"
+        id="plan"
+        role="tabpanel"
+        aria-labelledby="tab-plan"
+        hidden
+      >
+        <div class="hello">
+          <div>
+            <p class="eyebrow">Your workspace</p>
+            <h1 tabindex="-1">Payments</h1>
+            <p>Your package payment and preview receipt.</p>
+          </div>
+        </div>
+        <div class="grid2">
+          <div class="card">
+            <div class="card-h">
+              <h2>Payment details</h2>
+              <span class="review-tag">Preview only</span>
+            </div>
+            <div class="card-b">
+              <div class="phase-empty" id="paymentEmpty">
+                <span data-icon="card"></span>
+                <h3>No payment preview yet.</h3>
+                <p>
+                  Preview your payment flow here. Nothing is charged and no
+                  receipt email is sent.
+                </p>
+                <a class="btn btn-ink btn-sm" href="checkout.html"
+                  >Continue to payment <span data-icon="arrow"></span
+                ></a>
+              </div>
+              <div id="paymentHistory" hidden>
+                <dl class="kv">
+                  <div>
+                    <dt>Package</dt>
+                    <dd id="paymentPackage"></dd>
+                  </div>
+                  <div>
+                    <dt>Amount</dt>
+                    <dd id="paymentAmount"></dd>
+                  </div>
+                  <div>
+                    <dt>Date</dt>
+                    <dd id="paymentDate"></dd>
+                  </div>
+                  <div>
+                    <dt>Reference</dt>
+                    <dd id="paymentRef"></dd>
+                  </div>
+                  <div>
+                    <dt>Status</dt>
+                    <dd>
+                      <span class="st replied">Preview · not charged</span>
+                    </dd>
+                  </div>
+                </dl>
+                <a
+                  class="btn btn-line btn-sm"
+                  href="checkout.html"
+                  style="margin-top: 16px"
+                  >Preview another payment</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-h"><h2>Plan management</h2></div>
+            <div class="card-b">
+              <div class="phase-soon" style="margin-top: 0">
+                <span class="coming-soon-badge"
+                  ><span data-icon="lock"></span>Coming soon</span
+                >
+                <h3>Package changes &amp; subscriptions</h3>
+                <p>
+                  Service pauses, upgrades, cancellations, agreement management
+                  and recurring billing aren’t available yet.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        class="ppanel"
+        id="employer-interviews"
+        role="tabpanel"
+        aria-labelledby="tab-employer-interviews"
+        hidden
+      >
+        <div class="hello">
+          <div>
+            <p class="eyebrow">Your workspace</p>
+            <h1 tabindex="-1">Employer interviews</h1>
+            <p>This part of your workspace is on its way.</p>
+          </div>
+        </div>
+        <div class="coming-soon-card">
+          <div class="coming-soon-preview" inert aria-hidden="true">
+            <div class="ghost-toolbar"></div>
+            <div class="ghost-row"><span></span><span></span><span></span></div>
+            <div class="ghost-row"><span></span><span></span><span></span></div>
+            <div class="ghost-row"><span></span><span></span><span></span></div>
+            <div class="ghost-row"><span></span><span></span><span></span></div>
+            <div class="ghost-row"><span></span><span></span><span></span></div>
+          </div>
+          <div class="coming-soon-cover">
+            <span class="coming-soon-badge"
+              ><span data-icon="lock"></span>Coming soon</span
+            >
+            <h2>A little more to look forward to.</h2>
+            <p>
+              Employer interview tracking and interview history are part of a
+              later release. Your preparation invite is available in
+              Preparation.
+            </p>
+            <button
+              type="button"
+              class="btn btn-line btn-sm"
+              data-goto="overview"
+            >
+              Back to your overview <span data-icon="arrow"></span>
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="ffoot">
+      <div class="wrap">
+        <span
+          >© 2026 Shortlist · Need help?
+          <a href="mailto:hello@shortlist.ng">hello@shortlist.ng</a></span
+        ><span
+          ><a href="refunds.html">Refund policy</a> ·
+          <a href="privacy.html">Privacy</a> ·
+          <a href="terms.html">Terms</a></span
+        >
       </div>
-    </div>
-  </section>
-</main>
+    </footer>
 
-<footer class="ffoot"><div class="wrap"><span>© 2026 Shortlist · Need help? <a href="mailto:hello@shortlist.ng">hello@shortlist.ng</a></span><span><a href="refunds.html">Refund policy</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></span></div></footer>
-
-<dialog class="modal" id="cancelModal" aria-labelledby="cancelTitle">
-  <div class="modal-b">
-    <h2 id="cancelTitle">End your service early?</h2>
-    <p>Applications stop today. Whether a refund applies depends on our <a href="refunds.html" style="text-decoration:underline">refund policy</a> and the work already delivered. Your specialist will confirm the details by email.</p>
-    <p style="margin:0">Want a break instead? You can pause applications and restart later.</p>
-  </div>
-  <div class="modal-f">
-    <button type="button" class="btn btn-line btn-sm" value="keep" id="keepBtn">Keep my service</button>
-    <button type="button" class="btn btn-danger btn-sm" id="confirmCancel">End service</button>
-  </div>
-</dialog>
-
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
-
-<script src="assets/flow.js"></script>
-<script>
-(() => {
-  const { $, $$, esc, reduce } = Flow;
-
-  /* ---- tabs with deep links ---- */
-  const tabs = $$('.ptab');
-  function show(id, focus) {
-    tabs.forEach(t => {
-      const on = t.getAttribute('aria-controls') === id;
-      t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1;
-      const p = $('#' + t.getAttribute('aria-controls'));
-      p.hidden = !on; p.classList.toggle('active', on);
-    });
-    if (location.hash !== '#' + id) history.replaceState(null, '', '#' + id);
-    window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
-    if (focus) $(`#${id} h1`)?.focus({ preventScroll: true });
-  }
-  tabs.forEach((t, i) => {
-    t.addEventListener('click', () => show(t.getAttribute('aria-controls'), true));
-    t.addEventListener('keydown', e => {
-      const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0; if (!d) return;
-      e.preventDefault(); const n = tabs[(i + d + tabs.length) % tabs.length]; n.focus(); show(n.getAttribute('aria-controls'), false);
-    });
-  });
-  $$('[data-goto]').forEach(b => b.addEventListener('click', () => show(b.dataset.goto, true)));
-  const start = location.hash.slice(1);
-  if (start && $('#' + start)?.classList.contains('ppanel')) show(start, false);
-
-  const toastEl = $('#toast'); let toastT;
-  function toast(msg) { toastEl.textContent = msg; toastEl.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => toastEl.classList.remove('show'), 3200); }
-
-  /* ---- applications ---- */
-  const APPS = [
-    ['Senior Growth Marketer', 'Copperline Ltd', 'London, UK', '29 Sep', 'interview', 'Interview'],
-    ['Brand Manager', 'Northlake Health', 'Toronto, Canada', '1 Oct', 'interview', 'Interview'],
-    ['Growth Marketing Lead', 'Straits Analytics', 'Singapore', '25 Sep', 'replied', 'Replied'],
-    ['Content Lead', 'Rheinwerk GmbH', 'Berlin, Germany', '2 Oct', 'viewed', 'Viewed'],
-    ['Marketing Manager', 'Harbourline Pty', 'Sydney, Australia', '2 Oct', 'viewed', 'Viewed'],
-    ['Brand Manager', 'Westmere Bank', 'Manchester, UK', '2 Oct', 'sent', 'Sent'],
-    ['Growth Marketing Lead', 'Fairhaven Tech', 'Vancouver, Canada', '2 Oct', 'sent', 'Sent'],
-    ['Digital Marketing Lead', 'Lumen Health', 'Remote, UK', '24 Sep', 'viewed', 'Viewed'],
-    ['Content Lead', 'Kuala Digital', 'Kuala Lumpur, Malaysia', '22 Sep', 'closed', 'Not progressed'],
-    ['Brand Manager', 'Maple & Pine Consulting', 'Toronto, Canada', '22 Sep', 'sent', 'Sent'],
-  ];
-  const GROUP = { progress: ['sent', 'viewed', 'replied'], interview: ['interview'], closed: ['closed'] };
-  let filter = 'all';
-  function drawApps() {
-    const rows = APPS.filter(a => filter === 'all' || GROUP[filter].includes(a[4]));
-    $('#appRows').innerHTML = rows.map(a => `<tr><td class="r">${esc(a[0])}</td><td>${esc(a[1])}</td><td class="dim">${esc(a[2])}</td><td class="num">${a[3] === 'Today' ? 'Today' : esc(a[3])}</td><td><span class="st ${a[4]}">${esc(a[5])}</span></td></tr>`).join('')
-      || `<tr><td colspan="5" class="dim" style="text-align:center;padding:var(--s7)">No applications in this view yet.</td></tr>`;
-    $('#appCount').textContent = `${rows.length} of ${APPS.length} applications`;
-  }
-  $$('#appFilters .fchip').forEach(b => b.addEventListener('click', () => {
-    filter = b.dataset.f; $$('#appFilters .fchip').forEach(x => x.setAttribute('aria-pressed', x === b)); drawApps();
-  }));
-  drawApps();
-
-  /* ---- shortlist approval ---- */
-  const SHORT = [
-    ['Growth Marketing Manager', 'Harbourside Group', 'Leeds, UK', 'Strong fit', true],
-    ['Senior Brand Executive', 'Northlake Health', 'Toronto, Canada', 'Strong fit', true],
-    ['Content Marketing Lead', 'Calder Analytics', 'Remote, UK', 'Good fit', true],
-    ['Lifecycle Marketing Manager', 'Straits Analytics', 'Singapore', 'Good fit', true],
-    ['Marketing Lead', 'Harbourline Pty', 'Melbourne, Australia', 'Good fit', true],
-    ['Head of Marketing', 'Rheinwerk GmbH', 'Munich, Germany', 'Stretch', false],
-  ];
-  $('#alist').innerHTML = SHORT.map((s, i) => `
-    <label class="arow"><span class="check"><input type="checkbox" data-i="${i}" ${s[4] ? 'checked' : ''}></span>
-      <span><b>${esc(s[0])}</b><small>${esc(s[1])} · ${esc(s[2])}</small></span><span class="fit">${esc(s[3])}</span></label>`).join('');
-  const boxes = () => $$('#alist input');
-  function syncSel() {
-    const n = boxes().filter(b => b.checked).length;
-    $('#selNote').textContent = `${n} of ${SHORT.length} selected`;
-    $('#approveBtn').textContent = n ? `Approve ${n} role${n > 1 ? 's' : ''}` : 'Select roles to approve';
-    $('#approveBtn').disabled = !n;
-  }
-  $('#alist').addEventListener('change', syncSel); syncSel();
-
-  function closeShortlist(html, badge) {
-    $('#approveBody').innerHTML = `<div class="done-note">${html}</div>`;
-    $('#approveFoot').remove(); $('#approveCard').classList.remove('mark');
-    $('#approveCount').textContent = 'Done for this week';
-    $('#approveBadge').remove();
-    $('#helloLine').textContent = badge;
-  }
-  $('#approveBtn').addEventListener('click', () => {
-    const chosen = boxes().filter(b => b.checked).map(b => SHORT[+b.dataset.i]);
-    chosen.forEach(s => APPS.unshift([s[0], s[1], s[2], 'Today', 'sent', 'Sent']));
-    $('#kSent').textContent = 21 + chosen.length;
-    drawApps();
-    closeShortlist(`<svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#F2E85A"/><path d="M6 10.4l2.7 2.6L14 7.6" stroke="#141619" stroke-width="1.7"/></svg><span><b>${chosen.length} applications go out today.</b> They’ll appear in Applications as each one is sent. Next shortlist arrives Monday.</span>`, 'You’re all caught up for this week.');
-    toast(`Approved ${chosen.length} roles. Ngozi has been notified.`);
-  });
-  $('#skipAll').addEventListener('click', () => {
-    closeShortlist('<span><b>Skipped this week.</b> Tell Ngozi what didn’t fit and she’ll adjust next Monday’s shortlist.</span>', 'No shortlist this week. Your next one arrives Monday.');
-    toast('Shortlist skipped for this week.');
-  });
-
-  /* ---- documents ---- */
-  $('#approveCv').addEventListener('click', e => {
-    $('#cvState').textContent = 'Approved today · this version is used for applications';
-    e.target.closest('.doc-actions').innerHTML = '<span class="st replied">Approved</span>';
-    toast('CV version 3 approved.');
-  });
-  $('#commentCv').addEventListener('click', () => toast('Comments open in the document. (Preview: not connected yet.)'));
-
-  /* ---- prep ---- */
-  function prepCount() { const all = $$('#prep input'), n = all.filter(b => b.checked).length; $('#prepCount').textContent = `${n} of ${all.length} done`; }
-  $('#prep').addEventListener('change', prepCount); prepCount();
-
-  /* ---- plan ---- */
-  let paused = false;
-  $('#pauseBtn').addEventListener('click', () => {
-    paused = !paused;
-    $('#planState').textContent = paused ? 'Paused' : 'Active';
-    $('#planState').className = 'st' + (paused ? ' pending' : '');
-    $('#pauseBtn').textContent = paused ? 'Restart applications' : 'Pause applications';
-    $('#nextBill').textContent = paused ? 'On hold while paused' : 'Ends Fri 4 Dec 2026 (sample)';
-    toast(paused ? 'Applications paused. Your specialist has been notified.' : 'Applications restarted.');
-  });
-  const modal = $('#cancelModal');
-  $('#cancelBtn').addEventListener('click', () => modal.showModal());
-  $('#keepBtn').addEventListener('click', () => modal.close());
-  $('#confirmCancel').addEventListener('click', () => {
-    modal.close();
-    $('#planState').textContent = 'Ending'; $('#planState').className = 'st closed';
-    $('#nextBill').textContent = 'Ending at your request';
-    $('#pauseBtn').disabled = true; $('#cancelBtn').disabled = true;
-    toast('Request sent. Your specialist will confirm by email.');
-  });
-})();
-</script>
-</body>
+    <script src="assets/flow.js"></script>
+    <script src="assets/customer.js"></script>
+    <script src="assets/client-portal.js"></script>
+  </body>
 </html>

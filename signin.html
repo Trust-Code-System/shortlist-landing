@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="assets/customer-theme.js"></script>
 <title>Sign in · Shortlist</title>
 <meta name="description" content="Sign in to your Shortlist tracker.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,9 +12,13 @@
 <link rel="stylesheet" href="assets/base.css">
 <link rel="stylesheet" href="assets/flow.css">
 <link rel="stylesheet" href="assets/portal.css">
+<link rel="stylesheet" href="assets/customer.css">
+<link rel="stylesheet" href="assets/customer-palette.css">
+<link rel="stylesheet" href="assets/customer-shell.css">
+<script src="assets/customer-controls.js" defer></script>
 <!-- NOT CONNECTED YET: send a one-time sign-in link from the server (e.g. Supabase Auth magic link). -->
 </head>
-<body data-title="Sign in · Shortlist">
+<body class="customer sign-in" data-title="Sign in · Shortlist">
 
 <div class="demo" role="note"><b>Preview.</b> Sign-in isn’t connected yet. Use the demo link to see a sample tracker.</div>
 
@@ -26,35 +31,49 @@
 </header>
 
 <main class="auth">
+  <div class="auth-main">
   <div class="auth-card">
     <section id="askStep">
-      <p class="eyebrow mono">Your tracker</p>
-      <h1 tabindex="-1">Sign in to Shortlist.</h1>
-      <p>We’ll email you a sign-in link. No password to remember.</p>
+      <p class="eyebrow mono">Your next chapter</p>
+      <h1 tabindex="-1">Welcome back.</h1>
+      <p>Your documents, your preparation, your next steps.<br>Sign in with a link sent to your email.</p>
       <form id="signForm" novalidate>
         <div class="field">
-          <label for="email">Email</label>
+          <label for="email">Email address</label>
           <input class="input" id="email" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com">
           <p class="err" id="err-email"></p>
         </div>
-        <button type="submit" class="btn btn-ink" id="sendLink" style="margin-top:var(--s4)"><span class="lbl-t">Email me a sign-in link</span><span class="spin" aria-hidden="true"></span></button>
+        <button type="submit" class="btn btn-ink" id="sendLink" style="margin-top:var(--s4)"><span class="lbl-t">Continue with email</span><span class="arr" aria-hidden="true">→</span><span class="spin" aria-hidden="true"></span></button>
       </form>
-      <div class="auth-alt">New to Shortlist? <a href="book.html">Book an intake call</a> first. Your tracker opens after you sign up.</div>
+      <div class="auth-alt">New here? <a href="signup.html">Create an account.</a><br>Start with your CV, preparation, and payment.</div>
+      <div class="auth-demo-link">Just having a look?<br><a href="tracker.html">Explore the demo workspace <span data-icon="arrow"></span></a></div>
     </section>
 
     <section id="sentStep" hidden>
       <div class="done-mark" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M5 9l9 6 9-6M5 8.5h18v12H5z" stroke="#141619" stroke-width="2"/></svg></div>
-      <h1 tabindex="-1">Check your email.</h1>
+      <h1 tabindex="-1">You’ve tried the sign-in flow.</h1>
       <p id="sentLine"></p>
       <a class="btn btn-ink" href="tracker.html">Open the demo tracker <span class="arr" aria-hidden="true">→</span></a>
-      <div class="auth-alt">Didn’t get it? Check spam, or <button type="button" id="again" style="text-decoration:underline;text-underline-offset:3px">use a different email</button>.</div>
+      <div class="auth-alt"><button type="button" id="again" style="text-decoration:underline;text-underline-offset:3px">Try a different email</button></div>
     </section>
   </div>
+  <div class="auth-note"><span data-icon="lock"></span>No passwords. One simple sign-in link.</div>
+  </div>
+  <aside class="auth-side" aria-label="About your Shortlist workspace">
+    <div class="auth-hero">
+      <p class="eyebrow">A more thoughtful job search</p>
+      <h2>Your next step.<br><em>A little more clarity.</em></h2>
+      <p>Share your documents, follow their review, and get ready for your preparation session.</p>
+    </div>
+    <div class="auth-product" aria-label="Your onboarding journey"><div class="auth-product-title"><b>Your next steps</b><span>All together</span></div><div class="auth-match"><span data-icon="file"></span><div><b>Upload your CV</b><small>Add your supporting documents</small></div></div><div class="auth-match"><span data-icon="eye"></span><div><b>Admin review</b><small>The team checks your submission</small></div></div><div class="auth-match"><span data-icon="video"></span><div><b>Preparation invite</b><small>Your Google Meet link, in your portal</small></div></div><div class="auth-product-foot"><span data-icon="card"></span>Keep your payment details together.</div></div>
+    <p class="auth-caption">Your career deserves care. We bring the structure and support; you decide the direction.</p>
+  </aside>
 </main>
 
 <footer class="ffoot"><div class="wrap"><span>© 2026 Shortlist</span><span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></span></div></footer>
 
 <script src="assets/flow.js"></script>
+<script src="assets/customer.js"></script>
 <script>
 (() => {
   const { $, wait, validate, liveClear, busy, isEmail, esc } = Flow;
@@ -72,7 +91,7 @@
       return;
     }
     await wait(900); busy(b, false);
-    $('#sentLine').innerHTML = `If <b>${esc(v)}</b> belongs to a Shortlist client, a sign-in link is on its way. It works once and expires in 15 minutes.`;
+    $('#sentLine').innerHTML = `In the live service, <b>${esc(v)}</b> would receive a one-time sign-in link. This is a preview, so no email has been sent. You can explore the demo below.`;
     $('#askStep').hidden = true; $('#sentStep').hidden = false; $('#sentStep h1').focus();
   });
   $('#again').addEventListener('click', () => { $('#sentStep').hidden = true; $('#askStep').hidden = false; $('#email').focus(); });

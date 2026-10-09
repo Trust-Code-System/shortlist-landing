@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="assets/customer-theme.js"></script>
 <title>Book your intake call · Shortlist</title>
 <meta name="description" content="Book a free 20-minute intake call with Shortlist.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,6 +12,10 @@
 <link rel="stylesheet" href="assets/base.css">
 <link rel="stylesheet" href="assets/flow.css">
 <link rel="stylesheet" href="assets/portal.css">
+<link rel="stylesheet" href="assets/customer.css">
+<link rel="stylesheet" href="assets/customer-palette.css">
+<link rel="stylesheet" href="assets/customer-shell.css">
+<script src="assets/customer-controls.js" defer></script>
 <!--
   NOT CONNECTED YET: booking is front-end only.
   To go live, replace submitBooking() with a call to the chosen tool
@@ -19,7 +24,7 @@
   in place of isTaken().
 -->
 </head>
-<body data-title="Book your intake call · Shortlist">
+<body class="customer" data-title="Book your intake call · Shortlist">
 
 <div class="demo" id="demoBar" role="note"><b>Preview.</b> Bookings aren’t connected to a calendar yet, so no invite is sent.</div>
 
@@ -194,6 +199,7 @@
 <footer class="ffoot"><div class="wrap"><span>© 2026 Shortlist</span><span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></span></div></footer>
 
 <script src="assets/flow.js"></script>
+<script src="assets/customer.js"></script>
 <script>
 (() => {
   const { $, $$, wait, goTo, validate, liveClear, busy, isEmail, digits, esc, qs } = Flow;
