@@ -1,4 +1,4 @@
-/* Shortlist — shared helpers for the booking and checkout flows. */
+/* Shortlist: shared helpers for the booking and checkout flows. */
 (() => {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const $ = (s, r = document) => r.querySelector(s);
@@ -29,7 +29,7 @@
     if (bar) bar.style.transform = `scaleX(${(idx + 1) / order.length})`;
     window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
     if (focus) { const h = $(`[data-step="${id}"] h1`); if (h) { h.tabIndex = -1; setTimeout(() => h.focus({ preventScroll: true }), 60); } }
-    document.title = `${cur ? cur.dataset.label + ' — ' : ''}${document.body.dataset.title}`;
+    document.title = `${cur ? cur.dataset.label + ' · ' : ''}${document.body.dataset.title}`;
   }
 
   /* Field errors: an element #err-<id> holds the message; aria wiring is set here. */

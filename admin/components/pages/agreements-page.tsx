@@ -87,7 +87,7 @@ export default function AgreementsPage() {
           { label: "Signed", value: signed.length, hint: "Stored with timestamp and version" },
           { label: "Awaiting signature", value: unsigned.length, hint: "Sent after the intake call" },
           { label: "Overdue", value: AGREEMENTS.filter((item) => item.status === "Overdue").length, hint: "Unsigned for 2 days or more" },
-          { label: "Agreement version", value: "v0.1", hint: "Draft — needs legal review" },
+          { label: "Agreement version", value: "v0.1", hint: "Draft, needs legal review" },
         ]}
       />
       <DataTable

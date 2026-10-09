@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Start your package — Shortlist</title>
+<title>Start your package · Shortlist</title>
 <meta name="description" content="Choose your Shortlist package, sign your agreement and pay securely.">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,12 +17,11 @@
      Never put the secret key in this file.
   2. Verify every payment on a server (Paystack "verify transaction" API or webhook) before
      starting work. The browser callback alone is not proof of payment.
-  3. Monthly packages need a Paystack Plan + subscription for automatic renewals.
   4. Store the signed agreement (name, timestamp, IP, agreement version) server-side.
   The agreement text below is a DRAFT placeholder and must be reviewed by a lawyer.
 -->
 </head>
-<body data-title="Start your package — Shortlist">
+<body data-title="Start your package · Shortlist">
 
 <div class="demo" id="demoBar" role="note"><b>Preview.</b> Payments are in demo mode. No money is taken and no card details are requested.</div>
 
@@ -47,7 +46,7 @@
     <section class="panel active" data-step="package" aria-labelledby="h-package">
       <p class="eyebrow mono">After your intake call</p>
       <h1 id="h-package">Start your package.</h1>
-      <p class="lede">Confirm the package we agreed on the call and your details. Next you’ll read and sign the agreement, then pay.</p>
+      <p class="lede">Confirm the package we recommended on your intake call and your details. Next you’ll read and sign the agreement, then pay.</p>
 
       <form id="pkgForm" novalidate>
         <div class="block" style="margin-top:0">
@@ -114,7 +113,7 @@
           <h4>1. What we will do</h4>
           <p id="docServices"></p>
           <h4>2. What we don’t promise</h4>
-          <p>We do not guarantee that you will be invited to interview or offered a job. Employers make their own decisions. We are a job-search support service, not a recruitment agency, and we do not take fees from employers.</p>
+          <p>We do not guarantee interviews, job offers, employment, employer sponsorship or visa approval, and we do not provide visa or immigration services. Employers make their own hiring decisions. We are a career support service, not a recruitment agency, and we do not take fees from employers.</p>
           <h4>3. Your approval</h4>
           <p>We will not send any application, CV or message to an employer that you have not approved. You can approve or reject roles from your tracker or by message.</p>
           <h4>4. Your responsibilities</h4>
@@ -231,22 +230,30 @@
 <script>
 (() => {
   const { $, $$, wait, goTo, validate, liveClear, busy, isEmail, digits, esc, qs } = Flow;
-  const PAYSTACK_PUBLIC_KEY = ''; // pk_test_… / pk_live_… — public key only
+  const PAYSTACK_PUBLIC_KEY = ''; // pk_test_… / pk_live_… (public key only)
   const DEMO = !PAYSTACK_PUBLIC_KEY;
   if (!DEMO) { $('#demoBar').remove(); $('#demoNote').remove(); }
 
+  /* SAMPLE PRICES for the preview only. The client's copy leaves prices and durations blank ("₦ / $ amount", "X weeks"). */
   const PKGS = {
-    rewrite:   { name: 'CV Rewrite',     ngn: 45000,  usd: 35,  monthly: false, blurb: 'CV, LinkedIn and cover letter template',
-                 incl: ['CV rewritten for applicant tracking systems', 'LinkedIn headline and About section', 'Two rounds of revisions', 'Delivered in 5 working days'],
-                 services: 'Rewrite your CV for applicant tracking systems, rewrite your LinkedIn headline and About section, and provide a cover letter template. You get two rounds of revisions. The first draft is delivered within five working days of receiving your documents.' },
-    active:    { name: 'Active Search',  ngn: 150000, usd: 110, monthly: true,  blurb: '30 tailored applications a month', tag: 'Recommended',
-                 incl: ['Everything in CV Rewrite', '30 tailored applications a month', 'You approve every shortlist', 'Live application tracker', 'Weekly 15-minute check-in'],
-                 services: 'Provide everything in CV Rewrite, plus up to 30 tailored applications each month to roles you have approved, a live tracker showing every application, and a 15-minute check-in call each week.' },
-    concierge: { name: 'Full Concierge', ngn: 280000, usd: 210, monthly: true,  blurb: '60 applications and interview coaching',
-                 incl: ['Everything in Active Search', '60 tailored applications a month', 'Three mock interviews with feedback', 'Salary negotiation notes', 'Priority WhatsApp line'],
-                 services: 'Provide everything in Active Search, with up to 60 tailored applications each month, three video mock interviews with written feedback, salary negotiation notes before offers, and a priority WhatsApp line to your specialist.' },
+    readiness: { name: 'Readiness', ngn: 60000, usd: 45, search: false, blurb: 'Strengthen your profile first',
+                 incl: ['International CV rewrite', 'Review of relevant skills and qualifications', 'Written improvement roadmap', 'Reassessment call after completing the package'],
+                 plain: 'We rewrite your CV, review your skills and qualifications, and give you a written roadmap, then reassess with you.',
+                 services: 'Rewrite your CV for your target market, review your relevant skills and qualifications, give you a written improvement roadmap, and hold a reassessment call once you complete the package. Completing it does not guarantee acceptance into another package.' },
+    starter:   { name: 'Starter', ngn: 45000, usd: 35, search: false, blurb: 'A professionally presented CV',
+                 incl: ['International CV rewrite', 'Professionally presented work experience and achievements'],
+                 plain: 'We rewrite your CV so your experience and achievements are presented for international employers.',
+                 services: 'Rewrite your CV for your target roles and job market, presenting your work experience and achievements professionally.' },
+    standard:  { name: 'Standard', ngn: 180000, usd: 140, search: true, blurb: 'Help managing your job search',
+                 incl: ['International CV rewrite', 'LinkedIn profile optimisation', 'Personalised job search', 'Agreed applications submitted for you', 'Personal progress tracker', 'Weekly progress updates'],
+                 plain: 'We rewrite your CV and LinkedIn, search for roles that match your agreed criteria, and submit agreed applications, all logged in your tracker.',
+                 services: 'Rewrite your CV, optimise your LinkedIn profile, run a personalised job search based on your agreed criteria, submit the agreed number of applications on your behalf, keep your progress tracker up to date, and send weekly progress updates.' },
+    full:      { name: 'Full Service', ngn: 300000, usd: 230, search: true, blurb: 'Job search plus interview preparation', tag: 'With interviews',
+                 incl: ['Everything in Standard', 'Mock interview sessions', 'Personalised interview feedback and coaching'],
+                 plain: 'Everything in Standard, plus mock interviews with personalised feedback and coaching.',
+                 services: 'Provide everything in the Standard package, plus the number of mock interview sessions stated in this agreement, with personalised feedback and coaching.' },
   };
-  const state = { plan: PKGS[qs.get('plan')] ? qs.get('plan') : 'active', cur: 'ngn', signedAt: null, ref: null };
+  const state = { plan: PKGS[qs.get('plan')] ? qs.get('plan') : 'standard', cur: 'ngn', signedAt: null, ref: null };
   const money = (cur, n) => cur === 'ngn' ? '₦' + n.toLocaleString('en-NG') : '$' + n.toLocaleString('en-US');
   const price = () => money(state.cur, PKGS[state.plan][state.cur]);
   const moneyHTML = (cur, n) => `<i class="cur">${cur === 'ngn' ? '₦' : '$'}</i>${n.toLocaleString(cur === 'ngn' ? 'en-NG' : 'en-US')}`;
@@ -259,7 +266,7 @@
     pkgEl.innerHTML = Object.entries(PKGS).map(([k, p]) => `
       <label class="choice"><input type="radio" name="pkg" value="${k}" ${k === state.plan ? 'checked' : ''}>
         <span class="choice-box"><span><span class="choice-t">${p.name}${p.tag ? `<span class="tag">${p.tag}</span>` : ''}</span><span class="choice-d">${p.blurb}</span></span>
-        <span class="pkg-price"><b>${moneyHTML(state.cur, p[state.cur])}</b><small>${p.monthly ? 'per month' : 'one-off'}</small></span></span></label>`).join('');
+        <span class="pkg-price"><b>${moneyHTML(state.cur, p[state.cur])}</b><small>sample price</small></span></span></label>`).join('');
   }
   pkgEl.addEventListener('change', e => { state.plan = e.target.value; render(); });
 
@@ -275,30 +282,20 @@
   function render() {
     const p = PKGS[state.plan];
     $('#sumPkg').textContent = p.name;
-    $('#sumBilling').textContent = p.monthly ? 'Monthly' : 'One-off';
-    $('#sumPrice').textContent = price() + (p.monthly ? ' / month' : '');
-    $('#sumCycle').textContent = p.monthly ? 'Renews monthly' : 'Pay once';
+    $('#sumBilling').textContent = 'Fixed term';
+    $('#sumPrice').textContent = price();
+    $('#sumCycle').textContent = 'Pay once · duration in your agreement';
     $('#sumTotal').innerHTML = moneyHTML(state.cur, p[state.cur]);
     $('#sumIncl').innerHTML = p.incl.map(i => `<li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>${i}</li>`).join('');
     $('#payLbl').textContent = `Pay ${price()}`;
-    $('#payNote').textContent = p.monthly
-      ? `You pay ${price()} today for your first month. It renews monthly until you cancel.`
-      : `You pay ${price()} once. There’s nothing more to pay for this package.`;
+    $('#payNote').textContent = `You pay ${price()} once, after signing. The service period for your package is stated in your agreement.`;
 
-    $('#plainDeliver').textContent = p.monthly
-      ? `We rewrite your CV and send up to ${state.plan === 'active' ? 30 : 60} tailored applications a month, logged in your tracker.`
-      : 'We rewrite your CV and LinkedIn, with two rounds of revisions, within five working days.';
-    $('#plainCancel').textContent = p.monthly
-      ? 'Cancel any time before your next billing date and you won’t be charged again.'
-      : 'If we haven’t started your rewrite, you can cancel for a full refund.';
+    $('#plainDeliver').textContent = p.plain;
+    $('#plainCancel').textContent = 'Refunds follow our refund policy, which you receive before paying and which matches this agreement.';
     $$('[data-fill="pkg"]').forEach(el => el.textContent = p.name);
     $('#docServices').textContent = 'We will ' + p.services.charAt(0).toLowerCase() + p.services.slice(1);
-    $('#docFees').textContent = p.monthly
-      ? `The fee is ${price()} per month, paid in advance. Payment is processed by Paystack. The first payment is due when you sign; later payments are taken on the same date each month.`
-      : `The fee is ${price()}, paid once in advance when you sign. Payment is processed by Paystack.`;
-    $('#docCancel').textContent = p.monthly
-      ? 'You can cancel at any time by email or from your tracker. Cancelling stops future payments; the current month is not refunded once applications for that month have started.'
-      : 'You can cancel for a full refund until we start your first draft. Once work has started, refunds are at our discretion and pro-rated to the work delivered.';
+    $('#docFees').textContent = `The fee is ${price()}, paid once in advance after you sign. Payment is processed by Paystack. The service period for your package is stated in this agreement.`;
+    $('#docCancel').textContent = 'If you cancel before we start work, we refund the full fee. Once work has started, any refund is calculated on the deliverables still outstanding, as set out in our refund policy. Refunds are not available because of hiring, sponsorship or visa outcomes.';
   }
 
   /* ---- step 1 ---- */
@@ -394,13 +391,12 @@
     $('#rList').innerHTML = [
       ['Package', p.name], ['Amount paid', price() + (DEMO ? ' (demo)' : '')],
       ['Method', method === 'card' ? 'Card' : 'Bank transfer'], ['Agreement', 'Signed ' + fmtStamp(state.signedAt)],
-      ...(p.monthly ? [['Next payment', fmtDate(new Date(new Date().setMonth(new Date().getMonth() + 1)))]] : []),
     ].map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('');
     const steps = [
       ['Upload your CV and work history', 'Your current CV, certificates and a short form about each past role. Takes about 10 minutes.', '<a class="btn btn-ink btn-sm" href="upload.html">Start upload</a>'],
-      ['Get your first draft', 'Within five working days of your upload. Comment on any line.', ''],
-      p.monthly ? ['Approve your first shortlist', 'We send roles that fit your brief. Applications go out once you approve them.', '']
-                : ['Use your two revision rounds', 'We rework anything that doesn’t sound like you on your best day.', ''],
+      ['Get your first CV draft', 'Your specialist sends it through your tracker. Comment on any line.', ''],
+      p.search ? ['Agree your target roles and countries', 'Then we search and submit the agreed applications. Every one is logged in your tracker.', '']
+               : ['Review your rewritten CV', 'Comment on any line. We finalise it within your service period.', ''],
     ];
     $('#nextList').innerHTML = steps.map(([t, d, x], i) => `<li><span class="num">0${i + 1}</span><div><b>${t}</b><span>${d}</span></div>${x}</li>`).join('');
     $('#totalLbl').textContent = 'Paid today';

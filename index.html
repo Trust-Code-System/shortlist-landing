@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Shortlist — Job-search concierge</title>
-<meta name="description" content="Shortlist rewrites your CV, applies to roles on your behalf and prepares you for interviews, with a live tracker of every application.">
+<title>Shortlist · International career support</title>
+<meta name="description" content="Your job search abroad, handled professionally. International CV rewriting, targeted job searching, applications submitted on your behalf and interview coaching. Book a free intake call.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&family=Fragment+Mono&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/base.css">
 <!--
-  PLACEHOLDERS — confirm with client before launch:
+  PLACEHOLDERS: confirm with client before launch:
   • Business name "Shortlist", contact details, address
   • All package names, prices (₦ and $) and inclusions
   • Tracker rows, CV samples and company names are invented sample content
@@ -443,6 +443,98 @@ ul{list-style:none;margin:0;padding:0}
   .ticket{transform:rotate(-4deg)!important}
   .hl{background-size:100% 46%}
 }
+
+/* ---------- client copy sections ---------- */
+.closer.in .hl{background-size:100% 46%;transition-delay:400ms}
+.pk4 .pk-name{flex-direction:column-reverse;align-items:flex-start;gap:var(--s1)}
+.hero-note{margin:var(--s5) 0 0;font-size:15px;color:var(--ink-3);font-style:italic}
+
+.pains{display:grid;border-top:1px solid var(--rule)}
+.pains li{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--s5) var(--s7);padding:var(--s5) 0;border-bottom:1px solid var(--rule)}
+.pains h3{margin:0;font-size:clamp(19px,1.8vw,24px);letter-spacing:-.025em;font-weight:650;line-height:1.2}
+.pains p{margin:0;color:var(--ink-2);max-width:52ch}
+.closer{margin-top:var(--s8);display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:var(--s7);align-items:end}
+.closer .big{margin:0;font-size:clamp(28px,3.2vw,44px);line-height:1.08;letter-spacing:-.04em;font-weight:650}
+.closer p:not(.big){margin:0;color:var(--ink-2);font-size:var(--t-lead)}
+
+.fit{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:var(--s8);align-items:start}
+.sub{margin:0 0 var(--s4);font-family:var(--mono);font-size:12px;font-weight:400;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.crit{display:grid;border-top:1px solid var(--rule)}
+.crit li{display:grid;gap:4px;padding:var(--s4) 0;border-bottom:1px solid var(--rule)}
+.crit b{font-weight:600;letter-spacing:-.01em;font-size:17px}
+.crit span{color:var(--ink-2);font-size:15.5px}
+.fit-note{margin:var(--s5) 0 0;color:var(--ink-2)}
+.outcomes{display:grid;gap:var(--s3)}
+.outcome{background:var(--sheet);border:1px solid var(--rule);border-radius:var(--r3);padding:var(--s4) var(--s5);display:grid;gap:var(--s2);justify-items:start}
+.outcome p{margin:0;color:var(--ink-2);font-size:15.5px}
+.principle{margin:var(--s6) 0;padding:0 0 0 var(--s5);border-left:3px solid var(--marker)}
+.principle p{margin:0 0 var(--s2);font-size:clamp(20px,2vw,26px);line-height:1.25;letter-spacing:-.025em;font-weight:600}
+.principle cite{font-style:normal;color:var(--ink-3)}
+
+.who-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--s8);align-items:start}
+.who-grid .lede{color:var(--ink-2);font-size:var(--t-lead);margin:var(--s5) 0 0;max-width:36ch}
+.who-card{background:var(--sheet);border:1px solid var(--rule);border-radius:var(--r3);padding:var(--s6)}
+.who-card h3{margin:0 0 var(--s4);font-size:19px;letter-spacing:-.02em;font-weight:650}
+.who-card ul{display:grid;gap:var(--s3)}
+.who-card li{display:grid;grid-template-columns:20px 1fr;gap:var(--s2);font-size:16px}
+.who-card li svg{margin-top:5px}
+.who-foot{margin:var(--s5) 0 0;padding-top:var(--s4);border-top:1px solid #ECEDE9;color:var(--ink-2);font-size:15px}
+.who-cta{margin:var(--s4) 0 0;padding:var(--s4);background:#FBF9E3;border-radius:var(--r2);font-size:15.5px}
+.who-cta a{text-decoration:underline;text-underline-offset:3px}
+
+.pk4{grid-template-columns:repeat(4,1fr)}
+.pk4 .pk-col{padding:var(--s6) var(--s5) var(--s6)}
+.pk4 .pk-col:first-child{padding-left:0}
+.pk4 .pk-col:last-child{padding-right:var(--s5)}
+.pk-who{margin:var(--s3) 0 var(--s2);font-weight:600;letter-spacing:-.01em;font-size:16px;line-height:1.35}
+.pk4 .pk-for{min-height:0;margin:0 0 var(--s5);font-size:15px}
+.pk4 .pk-list{margin:0 0 var(--s5);font-size:15px}
+.pk-terms{margin:auto 0 var(--s4);display:grid;border-top:1px solid var(--rule)}
+.pk-terms>div{display:flex;justify-content:space-between;gap:var(--s3);padding:var(--s3) 0;border-bottom:1px dashed var(--rule);font-size:14.5px}
+.pk-terms dt{color:var(--ink-3)}
+.pk-terms dd{margin:0;font-family:var(--mono);font-size:12.5px;color:var(--ink-2)}
+.pk4 .pk-col .btn{margin-top:0;font-size:15px;padding:0 var(--s4)}
+.pk-fine{margin:var(--s3) 0 0;font-size:13px;color:var(--ink-3);font-style:italic}
+p.pk-note{display:block;max-width:70ch}
+
+.expect{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s4)}
+.expect li{background:var(--sheet);border:1px solid var(--rule);border-radius:var(--r3);padding:var(--s5);display:grid;gap:var(--s2);align-content:start}
+.expect b{font-size:18px;letter-spacing:-.02em;font-weight:650}
+.expect span{color:var(--ink-2);font-size:15.5px}
+.expect a{text-decoration:underline;text-underline-offset:3px}
+.scope-note{margin:var(--s5) 0 0;color:var(--ink-2);max-width:48ch}
+.faq-lede{color:var(--ink-2);font-size:var(--t-lead);margin:var(--s4) 0 0;max-width:30ch}
+.qa-a p a{text-decoration:underline;text-underline-offset:3px}
+.book-honest{margin-top:var(--s3)!important;color:#D3D6D9!important}
+
+.track-list li{grid-template-columns:1fr auto!important;row-gap:2px}
+.track-list .r{grid-column:1}
+.track-list .c{grid-column:1;font-size:13.5px}
+.track-list .tag-st{grid-column:2;grid-row:1/3;align-self:center}
+.tag-st{display:inline-flex;align-items:center;height:24px;padding:0 9px;border-radius:var(--r1);border:1px solid var(--rule-2);font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-2)}
+.tag-st.ink{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.tag-st.mk{background:var(--marker);color:var(--ink);border-color:#D9CD2E}
+
+.foot-reg{margin-top:var(--s4)!important;display:grid;gap:2px}
+.foot-reg li{padding:2px 0!important;font-size:14px!important;color:var(--ink-3)}
+.foot-disc{margin:var(--s6) 0 0;padding-top:var(--s5);border-top:1px solid var(--rule);font-size:14px;color:var(--ink-2);max-width:90ch}
+
+@media (max-width:1080px){
+  .pk4{grid-template-columns:1fr 1fr;border-top:0;column-gap:var(--s6)}
+  .pk4 .pk-col,.pk4 .pk-col:first-child,.pk4 .pk-col:last-child{display:flex;padding:var(--s6) 0;border-right:0;border-top:1px solid var(--ink)}
+  .pk4 .pk-col.rec{padding:var(--s6) var(--s5);border-radius:0 0 var(--r3) var(--r3)}
+  .expect{grid-template-columns:1fr 1fr}
+}
+@media (max-width:900px){
+  .fit,.who-grid,.closer{grid-template-columns:1fr;gap:var(--s6)}
+  .pains li{grid-template-columns:1fr;gap:var(--s2)}
+}
+@media (max-width:640px){
+  .pk4{grid-template-columns:1fr}
+  .pk4 .pk-col.rec{margin:var(--s4) 0}
+  .expect{grid-template-columns:1fr}
+  .who-card{padding:var(--s5)}
+}
 </style>
 </head>
 <body>
@@ -452,27 +544,24 @@ ul{list-style:none;margin:0;padding:0}
   <div class="wrap">
     <a href="#top" class="brand" aria-label="Shortlist home"><span class="brand-mark" aria-hidden="true"></span>Shortlist</a>
     <nav class="nav-links" aria-label="Primary">
-      <a href="#services">Services</a>
       <a href="#process">How it works</a>
-      <a href="#tracker">Tracker</a>
+      <a href="#services">Our services</a>
       <a href="#packages">Packages</a>
       <a href="#faq">FAQ</a>
     </nav>
     <div class="nav-right">
-      <span class="nav-loc mono">Lagos · Remote</span>
       <a href="signin.html" class="nav-signin">Sign in</a>
-      <a href="book.html" class="btn btn-ink btn-sm">Book intake call</a>
+      <a href="book.html" class="btn btn-ink btn-sm">Book a free call</a>
       <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><span></span></button>
     </div>
   </div>
   <div class="mobile-menu" id="mmenu">
-    <a href="#services">Services</a>
     <a href="#process">How it works</a>
-    <a href="#tracker">Tracker</a>
+    <a href="#services">Our services</a>
     <a href="#packages">Packages</a>
     <a href="#faq">FAQ</a>
     <a href="signin.html">Sign in to your tracker</a>
-    <a href="book.html">Book intake call</a>
+    <a href="book.html">Book a free call</a>
   </div>
 </header>
 
@@ -481,31 +570,32 @@ ul{list-style:none;margin:0;padding:0}
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
-      <p class="eyebrow mono fade-up d0">Job-search concierge · Nigeria &amp; abroad</p>
+      <p class="eyebrow mono fade-up d0">International career support</p>
       <h1>
-        <span class="line"><span>Job hunting is a</span></span>
-        <span class="line"><span style="white-space:nowrap">full-time job.</span></span>
-        <span class="line soft"><span><span class="hl" id="heroHl">We’ll take the shift.</span></span></span>
+        <span class="line"><span>Your job search</span></span>
+        <span class="line"><span>abroad, handled</span></span>
+        <span class="line soft"><span><span class="hl" id="heroHl">professionally.</span></span></span>
       </h1>
-      <p class="hero-sub fade-up d1">We rewrite your CV, apply to roles on your behalf and prepare you for every interview. You can follow each application in your own tracker.</p>
+      <p class="hero-sub fade-up d1">We help you compete for international job opportunities with a professionally written CV, targeted job searching, applications submitted on your behalf, and practical interview coaching.</p>
       <div class="hero-cta fade-up d2">
-        <a href="book.html" class="btn btn-ink">Book a 20-min intake call <span class="arr" aria-hidden="true">→</span></a>
+        <a href="book.html" class="btn btn-ink">Book your free intake call <span class="arr" aria-hidden="true">→</span></a>
         <a href="#packages" class="btn btn-line">See packages</a>
       </div>
+      <p class="hero-note fade-up d3">No false promises. Just professional support, honest advice, and a clear process.</p>
     </div>
 
-    <div class="desk" aria-label="Example: a CV being rewritten">
+    <div class="desk" aria-label="Example: a CV being rewritten for international roles">
       <article class="cv">
         <div class="cv-head">
           <div>
             <div class="cv-name">Adaeze Okafor</div>
-            <div class="cv-role">Growth &amp; Brand Marketing</div>
+            <div class="cv-role">Marketing Manager · targeting UK &amp; Canada</div>
           </div>
           <div class="cv-contact" aria-hidden="true"><div class="bar" style="width:120px"></div><div class="bar" style="width:92px"></div><div class="bar" style="width:104px"></div></div>
         </div>
         <div class="cv-sec">
           <h4>Experience</h4>
-          <div class="cv-job">Marketing Associate <span>2021 — Present</span></div>
+          <div class="cv-job">Marketing Associate <span>2021 to present</span></div>
           <ul class="cv-bullets">
             <li><div class="edit" id="edit" aria-live="polite">
               <span class="edit-tag mono" id="editTag">Edit 1 / 3</span>
@@ -526,23 +616,47 @@ ul{list-style:none;margin:0;padding:0}
       </article>
       <aside class="ticket" aria-hidden="true">
         <div class="ticket-top mono"><span>Application #14</span><span>Sample</span></div>
-        <div class="ticket-role">Growth Marketing Lead</div>
-        <div class="ticket-co">Ferrule Pay · Lagos, hybrid</div>
+        <div class="ticket-role">Senior Growth Marketer</div>
+        <div class="ticket-co">Copperline Ltd · London, UK</div>
         <div class="ticket-steps" id="ticketSteps"><i></i><i></i><i></i><i class="mk"></i></div>
         <div class="ticket-legend"><span>Sent</span><span>Viewed</span><span>Reply</span><span>Interview</span></div>
       </aside>
     </div>
       <ul class="hero-facts fade-up d3">
-        <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.5"/></svg>Nothing goes out without your approval</li>
-        <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.5"/></svg>Every application logged</li>
-        <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.5"/></svg>Pay by card or bank transfer</li>
+        <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.5"/></svg>Less time searching</li>
+        <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.5"/></svg>Better-prepared applications</li>
+        <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.5"/></svg>A clearer path forward</li>
       </ul>
   </div>
 
-  <div class="strip mono" id="strip" aria-label="Roles we apply for">
+  <div class="strip mono" id="strip" aria-label="Current target markets">
     <div class="strip-track">
-      <div class="strip-set"><span>Product management</span><span>Finance &amp; accounting</span><span>Software engineering</span><span>Operations</span><span>Sales</span><span>Data &amp; analytics</span><span>Marketing</span><span>Healthcare admin</span><span>Remote roles · UK, EU &amp; Canada</span></div>
-      <div class="strip-set" aria-hidden="true"><span>Product management</span><span>Finance &amp; accounting</span><span>Software engineering</span><span>Operations</span><span>Sales</span><span>Data &amp; analytics</span><span>Marketing</span><span>Healthcare admin</span><span>Remote roles · UK, EU &amp; Canada</span></div>
+      <div class="strip-set"><span>Current target markets</span><span>Australia</span><span>Russia</span><span>Germany</span><span>United Kingdom</span><span>Canada</span><span>Singapore</span><span>Malaysia</span></div>
+      <div class="strip-set" aria-hidden="true"><span>Current target markets</span><span>Australia</span><span>Russia</span><span>Germany</span><span>United Kingdom</span><span>Canada</span><span>Singapore</span><span>Malaysia</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROBLEM ================= -->
+<section class="section" id="why" style="padding-top:var(--s8)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div data-reveal>
+        <p class="eyebrow mono">Why people come to us</p>
+        <h2>Finding a job abroad shouldn’t feel like guesswork.</h2>
+      </div>
+      <p data-reveal style="--d:80ms">You’ve worked hard to build your skills and experience. But applying for jobs in another country can feel like starting from scratch.</p>
+    </div>
+    <ul class="pains">
+      <li data-reveal><h3>Your CV isn’t getting results.</h3><p>You need to present your experience in a way that aligns with the expectations of employers in your target market.</p></li>
+      <li data-reveal><h3>Finding suitable jobs takes time.</h3><p>Searching across job boards, checking requirements and completing applications can quickly become overwhelming.</p></li>
+      <li data-reveal><h3>You’re unsure which opportunities are realistic.</h3><p>Not every vacancy, employer or country will be a suitable match for your background.</p></li>
+      <li data-reveal><h3>Interviews feel unfamiliar.</h3><p>You want to communicate your experience clearly and prepare for the expectations of international hiring managers.</p></li>
+      <li data-reveal><h3>You don’t know what’s happening with your applications.</h3><p>You need a clear record of where you’ve applied and what happens next.</p></li>
+    </ul>
+    <div class="closer" data-reveal>
+      <p class="big">You don’t have to manage every part of the process <span class="hl">alone.</span></p>
+      <p>At Shortlist, we help you approach your international job search with a clear strategy, professional application support, and honest guidance.</p>
     </div>
   </div>
 </section>
@@ -552,26 +666,30 @@ ul{list-style:none;margin:0;padding:0}
   <div class="wrap">
     <div class="sec-head">
       <div data-reveal>
-        <p class="eyebrow mono">What we do</p>
-        <h2>Three jobs, done by people who do them every day.</h2>
+        <p class="eyebrow mono">Our services</p>
+        <h2>Your international job search, supported from start to finish.</h2>
       </div>
-      <p data-reveal style="--d:80ms">Buy one service on its own or let us run the whole search. Either way, you see the work before it goes out.</p>
+      <p data-reveal style="--d:80ms">Four services, delivered within the package you choose. Your agreement lists exactly what’s included.</p>
     </div>
 
     <div class="svc">
       <div data-reveal>
         <div class="svc-tabs" role="tablist" aria-label="Services">
           <button class="svc-tab" role="tab" id="tab-cv" aria-controls="p-cv" aria-selected="true" tabindex="0">
-            <span class="t"><span>CV &amp; LinkedIn rewrite</span></span><span class="k" aria-hidden="true">+</span>
-            <span class="d"><span>We turn duties into results, fix the format so applicant tracking systems can read it, and rewrite your LinkedIn to match.</span></span>
+            <span class="t"><span>International CV and LinkedIn optimisation</span></span><span class="k" aria-hidden="true">+</span>
+            <span class="d"><span>We rewrite your CV to highlight your relevant skills, achievements, qualifications and experience in a format suited to your target roles and job market. Where your package includes it, we also optimise your LinkedIn profile.</span></span>
           </button>
           <button class="svc-tab" role="tab" id="tab-apps" aria-controls="p-apps" aria-selected="false" tabindex="-1">
-            <span class="t"><span>Applications on your behalf</span></span><span class="k" aria-hidden="true">+</span>
-            <span class="d"><span>We find roles that fit your brief, tailor each application and send it. You approve the shortlist first.</span></span>
+            <span class="t"><span>Personalised job search and applications</span></span><span class="k" aria-hidden="true">+</span>
+            <span class="d"><span>We search for roles based on your skills, qualifications, experience, preferred roles and target countries, review the requirements, and submit agreed applications on your behalf.</span></span>
           </button>
           <button class="svc-tab" role="tab" id="tab-prep" aria-controls="p-prep" aria-selected="false" tabindex="-1">
-            <span class="t"><span>Interview preparation</span></span><span class="k" aria-hidden="true">+</span>
-            <span class="d"><span>When an employer replies, we run a mock interview on video for that specific role and send written feedback.</span></span>
+            <span class="t"><span>Mock interviews and personalised coaching</span></span><span class="k" aria-hidden="true">+</span>
+            <span class="d"><span>We run mock interviews so you can practise relevant questions, explain your experience clearly and communicate with more confidence. You get constructive feedback on your answers and how you present your skills.</span></span>
+          </button>
+          <button class="svc-tab" role="tab" id="tab-track" aria-controls="p-track" aria-selected="false" tabindex="-1">
+            <span class="t"><span>Your personal job search tracker</span></span><span class="k" aria-hidden="true">+</span>
+            <span class="d"><span>You should never have to wonder what work is being done on your behalf. Your private tracker records the roles targeted, companies approached, application dates and any responses received.</span></span>
           </button>
         </div>
         <ul class="svc-meta" id="svcMeta" aria-live="polite"></ul>
@@ -584,58 +702,50 @@ ul{list-style:none;margin:0;padding:0}
             <div class="diff-card before"><div class="mono"><span>Before</span><span>Duty</span></div><p>Helped with customer complaints and other duties as assigned.</p></div>
             <div class="diff-arrow mono">Rewritten</div>
             <div class="diff-card after"><div class="mono"><span>After</span><span>Result</span></div><p>Cut complaint resolution time from <span class="hl on">three days to nine hours</span> by redesigning the support ticket flow.</p></div>
-            <div class="diff-card after"><div class="mono"><span>LinkedIn headline</span><span>After</span></div><p>Customer operations lead · fintech · Lagos &amp; remote</p></div>
+            <div class="diff-card after"><div class="mono"><span>LinkedIn headline</span><span>After</span></div><p>Customer operations lead · fintech · open to roles in the UK and Canada</p></div>
           </div>
         </div>
         <div class="panel" role="tabpanel" id="p-apps" aria-labelledby="tab-apps" hidden>
-          <span class="stage-label mono">This week’s shortlist · sample</span>
+          <span class="stage-label mono">Roles matched to your criteria · sample</span>
           <div class="apps">
             <div class="apps-h"><b>Roles to approve</b><span class="mono">4 of 5 selected</span></div>
             <ul>
-              <li><span class="box on"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.5l2.5 2.5L10 3.5" stroke="#fff" stroke-width="1.8"/></svg></span><span><span class="r">Product Analyst</span><br><span class="c">Ferrule Pay · Lagos</span></span><span class="fit">Strong fit</span></li>
-              <li><span class="box on"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.5l2.5 2.5L10 3.5" stroke="#fff" stroke-width="1.8"/></svg></span><span><span class="r">Operations Associate</span><br><span class="c">Brightwater Logistics · Abuja</span></span><span class="fit">Strong fit</span></li>
-              <li><span class="box"></span><span><span class="r">Sales Manager</span><br><span class="c">Halo Retail · Port Harcourt</span></span><span class="fit">Stretch</span></li>
-              <li><span class="box on"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.5l2.5 2.5L10 3.5" stroke="#fff" stroke-width="1.8"/></svg></span><span><span class="r">Data Analyst</span><br><span class="c">Calder Analytics · Remote, UK</span></span><span class="fit">Good fit</span></li>
-              <li><span class="box on"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.5l2.5 2.5L10 3.5" stroke="#fff" stroke-width="1.8"/></svg></span><span><span class="r">Business Analyst</span><br><span class="c">Palmgrove Bank · Lagos</span></span><span class="fit">Good fit</span></li>
+              <li><span class="box on"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.5l2.5 2.5L10 3.5" stroke="#fff" stroke-width="1.8"/></svg></span><span><span class="r">Product Analyst</span><br><span class="c">Copperline Ltd · London, UK</span></span><span class="fit">Strong fit</span></li>
+              <li><span class="box on"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.5l2.5 2.5L10 3.5" stroke="#fff" stroke-width="1.8"/></svg></span><span><span class="r">Operations Analyst</span><br><span class="c">Maple &amp; Pine Consulting · Toronto, Canada</span></span><span class="fit">Strong fit</span></li>
+              <li><span class="box"></span><span><span class="r">Sales Manager</span><br><span class="c">Rheinwerk GmbH · Berlin, Germany</span></span><span class="fit">Stretch</span></li>
+              <li><span class="box on"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.5l2.5 2.5L10 3.5" stroke="#fff" stroke-width="1.8"/></svg></span><span><span class="r">Data Analyst</span><br><span class="c">Harbourline Pty · Sydney, Australia</span></span><span class="fit">Good fit</span></li>
+              <li><span class="box on"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.5l2.5 2.5L10 3.5" stroke="#fff" stroke-width="1.8"/></svg></span><span><span class="r">Business Analyst</span><br><span class="c">Straits Analytics · Singapore</span></span><span class="fit">Good fit</span></li>
             </ul>
-            <div class="apps-f"><span>Approve to send</span><span class="chip ink">Approve 4</span></div>
+            <div class="apps-f"><span>Only agreed roles are submitted</span><span class="chip ink">Approve 4</span></div>
           </div>
         </div>
         <div class="panel" role="tabpanel" id="p-prep" aria-labelledby="tab-prep" hidden>
           <span class="stage-label mono">Mock interview · sample</span>
           <div class="prep">
-            <div class="prep-q"><div class="mono">Likely question · Product Analyst</div><p>“Tell us about a time your analysis changed a decision.”</p></div>
+            <div class="prep-q"><div class="mono">Likely question · Product Analyst, UK</div><p>“Tell us about a time your analysis changed a decision.”</p></div>
             <div class="prep-star">
               <div><div class="mono">Situation</div><p>Churn was rising and the team blamed pricing.</p></div>
               <div><div class="mono">Action</div><p>You split churn by signup channel and found the real cause.</p></div>
               <div><div class="mono">Result</div><p>Lead with the number. Keep it under two minutes.</p></div>
             </div>
-            <div class="prep-fb"><span class="dot" aria-hidden="true"></span>Recording · feedback notes sent within 24 hours</div>
+            <div class="prep-fb"><span class="dot" aria-hidden="true"></span>Recorded session · personal feedback on structure and delivery</div>
+          </div>
+        </div>
+        <div class="panel" role="tabpanel" id="p-track" aria-labelledby="tab-track" hidden>
+          <span class="stage-label mono">Your tracker · sample</span>
+          <div class="apps">
+            <div class="apps-h"><b>Applications this month</b><span class="mono">12 recorded</span></div>
+            <ul class="track-list">
+              <li><span class="r">Senior Growth Marketer</span><span class="c">Copperline Ltd · UK · 29 Sep</span><span class="tag-st mk">Interview</span></li>
+              <li><span class="r">Brand Manager</span><span class="c">Northlake Health · Canada · 1 Oct</span><span class="tag-st ink">Replied</span></li>
+              <li><span class="r">Content Lead</span><span class="c">Rheinwerk GmbH · Germany · 2 Oct</span><span class="tag-st">Viewed</span></li>
+              <li><span class="r">Marketing Manager</span><span class="c">Harbourline Pty · Australia · 2 Oct</span><span class="tag-st">Sent</span></li>
+            </ul>
+            <div class="apps-f"><span>Updated throughout your service period</span><span class="mono">Private to you</span></div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ================= PROCESS ================= -->
-<section class="section" id="process" style="padding-top:var(--s8)">
-  <div class="wrap process">
-    <div class="process-aside" data-reveal>
-      <p class="eyebrow mono">How it works</p>
-      <h2 class="h2">From first call to first interview.</h2>
-      <p class="lede">Six steps. Some are yours, some are ours, and a few we do together.</p>
-      <div class="who-key"><span><i class="who">You</i></span><span><i class="who us">Us</i></span><span><i class="who both">Together</i></span></div>
-    </div>
-    <ol class="steps" id="steps" style="list-style:none;margin:0">
-      <span class="rail" aria-hidden="true"><i id="railFill"></i></span>
-      <li class="step"><div class="step-top"><span class="mono">Step 1</span><i class="who">You</i></div><h3>Book the intake call</h3><p>Twenty minutes on video. We ask about the roles you want, your salary range, where you want to work and what hasn’t worked so far.</p></li>
-      <li class="step"><div class="step-top"><span class="mono">Step 2</span><i class="who">You</i></div><h3>Sign and pay online</h3><p>Read the service agreement, sign it in your browser and pay by card or bank transfer. The agreement says exactly what we deliver, and by when.</p></li>
-      <li class="step"><div class="step-top"><span class="mono">Step 3</span><i class="who">You</i></div><h3>Upload your CV and work history</h3><p>Send your current CV, certificates and a short form about each past role. Rough notes are fine. Turning them into strong lines is our job.</p></li>
-      <li class="step"><div class="step-top"><span class="mono">Step 4</span><i class="who both">Together</i></div><h3>We rewrite, you approve</h3><p>Your first draft arrives within five working days. Comment on any line. Nothing is sent to an employer until you approve it.</p></li>
-      <li class="step"><div class="step-top"><span class="mono">Step 5</span><i class="who us">Us</i></div><h3>Applications go out</h3><p>We shortlist roles that match your brief, tailor each application and send it. Every one shows up in your tracker with the date and status.</p></li>
-      <li class="step"><div class="step-top"><span class="mono">Step 6</span><i class="who both">Together</i></div><h3>Prepare for the interview</h3><p>When an employer replies, we run a mock interview built around that role and send notes on what to tighten.</p></li>
-    </ol>
   </div>
 </section>
 
@@ -647,7 +757,7 @@ ul{list-style:none;margin:0;padding:0}
         <p class="eyebrow mono">Your tracker</p>
         <h2>Every application, on the record.</h2>
       </div>
-      <p data-reveal style="--d:80ms">No “we’re working on it” emails. Log in at any time to see which roles we applied to, when we applied and what happened next.</p>
+      <p data-reveal style="--d:80ms">You’ll have a clearer view of your progress and the next steps in your job search, with organised records and clear updates throughout your agreed service period.</p>
     </div>
 
     <div class="board" id="board" data-reveal>
@@ -656,28 +766,92 @@ ul{list-style:none;margin:0;padding:0}
         <span class="board-flags"><span class="mono live">Live</span><span class="mono sample">Sample data</span></span>
       </div>
       <div class="stats">
-        <div class="stat"><span class="mono">Sent</span><b data-count="27">0</b></div>
-        <div class="stat"><span class="mono">Viewed</span><b data-count="11">0</b></div>
+        <div class="stat"><span class="mono">Sent</span><b data-count="21">0</b></div>
+        <div class="stat"><span class="mono">Viewed</span><b data-count="9">0</b></div>
         <div class="stat"><span class="mono">Replies</span><b data-count="4">0</b></div>
         <div class="stat mk"><span class="mono">Interviews</span><b data-count="2">0</b></div>
       </div>
       <table class="tbl">
         <thead><tr><th scope="col">Role</th><th scope="col">Company</th><th scope="col">Sent</th><th scope="col">Status</th></tr></thead>
         <tbody id="rows">
-          <tr style="--d:0ms"><td><span class="r">Product Analyst</span></td><td class="dim">Ferrule Pay · Lagos</td><td class="mono-c">03 Oct</td><td><span class="st sent" data-flow="sent,viewed,reply,interview"><span class="tx">Sent</span></span></td></tr>
-          <tr style="--d:70ms"><td><span class="r">Data Analyst</span></td><td class="dim">Calder Analytics · Remote UK</td><td class="mono-c">03 Oct</td><td><span class="st sent" data-flow="sent,viewed,reply"><span class="tx">Sent</span></span></td></tr>
-          <tr style="--d:140ms"><td><span class="r">Operations Associate</span></td><td class="dim">Brightwater Logistics · Abuja</td><td class="mono-c">02 Oct</td><td><span class="st sent" data-flow="sent,viewed"><span class="tx">Sent</span></span></td></tr>
-          <tr style="--d:210ms"><td><span class="r">Business Analyst</span></td><td class="dim">Palmgrove Bank · Lagos</td><td class="mono-c">01 Oct</td><td><span class="st sent" data-flow="sent,viewed,interview"><span class="tx">Sent</span></span></td></tr>
-          <tr style="--d:280ms"><td><span class="r">Growth Associate</span></td><td class="dim">Odun Health · Lagos</td><td class="mono-c">30 Sep</td><td><span class="st sent" data-flow="sent"><span class="tx">Sent</span></span></td></tr>
+          <tr style="--d:0ms"><td><span class="r">Senior Growth Marketer</span></td><td class="dim">Copperline Ltd · London, UK</td><td class="mono-c">29 Sep</td><td><span class="st sent" data-flow="sent,viewed,reply,interview"><span class="tx">Sent</span></span></td></tr>
+          <tr style="--d:70ms"><td><span class="r">Brand Manager</span></td><td class="dim">Northlake Health · Toronto, Canada</td><td class="mono-c">01 Oct</td><td><span class="st sent" data-flow="sent,viewed,reply"><span class="tx">Sent</span></span></td></tr>
+          <tr style="--d:140ms"><td><span class="r">Content Lead</span></td><td class="dim">Rheinwerk GmbH · Berlin, Germany</td><td class="mono-c">02 Oct</td><td><span class="st sent" data-flow="sent,viewed"><span class="tx">Sent</span></span></td></tr>
+          <tr style="--d:210ms"><td><span class="r">Marketing Manager</span></td><td class="dim">Straits Analytics · Singapore</td><td class="mono-c">02 Oct</td><td><span class="st sent" data-flow="sent,viewed,interview"><span class="tx">Sent</span></span></td></tr>
+          <tr style="--d:280ms"><td><span class="r">Digital Marketing Lead</span></td><td class="dim">Harbourline Pty · Sydney, Australia</td><td class="mono-c">03 Oct</td><td><span class="st sent" data-flow="sent"><span class="tx">Sent</span></span></td></tr>
         </tbody>
       </table>
       <div class="board-note"><span>Updated by your Shortlist specialist</span><span class="mono">Sample · names invented</span></div>
     </div>
 
     <div class="tracker-points">
-      <div data-reveal><h3>You see every role</h3><p>Role, employer, date sent and the exact CV version we used.</p></div>
-      <div data-reveal style="--d:80ms"><h3>You see what happened next</h3><p>Viewed, replied, interview or no response. We update statuses as they change.</p></div>
-      <div data-reveal style="--d:160ms"><h3>You can pause at any time</h3><p>Got an offer, or need a break? Pause your applications from the tracker.</p></div>
+      <div data-reveal><h3>Roles targeted</h3><p>Every role and company we approach for you, matched to your agreed criteria.</p></div>
+      <div data-reveal style="--d:80ms"><h3>Dates and responses</h3><p>When each application went in, and any response or update received.</p></div>
+      <div data-reveal style="--d:160ms"><h3>Clear next steps</h3><p>A shared record of your progress, so you always know what happens next.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FIT ================= -->
+<section class="section" id="fit">
+  <div class="wrap">
+    <div class="sec-head">
+      <div data-reveal>
+        <p class="eyebrow mono">A service built around your goals</p>
+        <h2>We don’t accept every applicant just to collect a fee.</h2>
+      </div>
+      <p data-reveal style="--d:80ms">Your background, target roles, qualifications and preferred countries all matter. Before recommending a package, we assess whether we can identify a credible strategy for your job search.</p>
+    </div>
+
+    <div class="fit">
+      <div data-reveal>
+        <h3 class="sub">How we assess your profile</h3>
+        <ul class="crit">
+          <li><b>Relevant skills and experience</b><span>We review your professional background, qualifications, training and skills against the requirements of your target roles.</span></li>
+          <li><b>Suitable job markets</b><span>We consider whether your occupation and background align with opportunities in your preferred countries.</span></li>
+          <li><b>Communication and preparation</b><span>We consider the communication skills your target jobs require and your willingness to improve where necessary.</span></li>
+          <li><b>Clear and realistic goals</b><span>We discuss your preferred roles, salary expectations, flexibility and understanding of the job-search process.</span></li>
+          <li><b>Commitment to the process</b><span>We need accurate information, timely communication and your cooperation throughout the service.</span></li>
+        </ul>
+        <p class="fit-note">You don’t need a perfect profile to get started. What matters is whether we can identify a sensible next step for you.</p>
+      </div>
+      <div data-reveal style="--d:100ms">
+        <h3 class="sub">What happens after your intake call?</h3>
+        <div class="outcomes">
+          <div class="outcome"><span class="who us">You’re accepted</span><p>We recommend the package that best fits your needs.</p></div>
+          <div class="outcome"><span class="who both">You need more preparation</span><p>We may recommend our Readiness Package to help address specific gaps before reassessing your suitability.</p></div>
+          <div class="outcome"><span class="who">We’re not the right fit</span><p>We’ll explain our concerns honestly rather than sell you a service we don’t believe is suitable.</p></div>
+        </div>
+        <blockquote class="principle">
+          <p>We’d rather give you an honest answer than take your money on the basis of unrealistic expectations.</p>
+          <cite class="mono">Our principle</cite>
+        </blockquote>
+        <a href="book.html" class="btn btn-ink">Book your free intake call <span class="arr" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHO ================= -->
+<section class="section" id="who" style="padding-top:var(--s8)">
+  <div class="wrap who-grid">
+    <div data-reveal>
+      <p class="eyebrow mono">Who it’s for</p>
+      <h2 class="h2">Who is this service for?</h2>
+      <p class="lede">Our service is designed for people who want to pursue international employment with a more organised, professional approach.</p>
+    </div>
+    <div class="who-card" data-reveal style="--d:80ms">
+      <h3>You may be a good fit if you:</h3>
+      <ul>
+        <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Have relevant skills, qualifications, training or work experience.</li>
+        <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Have a clear idea of the roles or countries you’re interested in.</li>
+        <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Are serious about pursuing international job opportunities.</li>
+        <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Want professional help with your CV and job applications.</li>
+        <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Are willing to provide accurate information and take part in the process.</li>
+        <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Understand that employers make the final hiring decisions.</li>
+      </ul>
+      <p class="who-foot">We assess every applicant individually against their goals and the requirements of their target jobs.</p>
+      <p class="who-cta"><b>Not sure whether your profile is suitable?</b> That’s exactly what the <a href="book.html">free intake call</a> is for.</p>
     </div>
   </div>
 </section>
@@ -688,89 +862,141 @@ ul{list-style:none;margin:0;padding:0}
     <div class="sec-head">
       <div data-reveal>
         <p class="eyebrow mono">Packages</p>
-        <h2>Pick how much of the search you hand over.</h2>
+        <h2>Choose the right level of support.</h2>
       </div>
-      <p data-reveal style="--d:80ms">Every package starts with an intake call. Prices are fixed and written into your agreement before you pay.</p>
+      <p data-reveal style="--d:80ms">Whether you need a stronger CV, help managing your job search or extra interview preparation, we’ll help you identify the right package after your intake call.</p>
     </div>
 
-    <div class="pk-bar" data-reveal>
-      <span class="mono" style="color:var(--ink-3)">Show prices in</span>
-      <div class="seg" id="seg" role="group" aria-label="Currency">
-        <span class="thumb" aria-hidden="true"></span>
-        <button type="button" aria-pressed="true" data-cur="ngn">Naira ₦</button>
-        <button type="button" aria-pressed="false" data-cur="usd">Dollars $</button>
-      </div>
-    </div>
-
-    <div class="pk">
+    <!-- PLACEHOLDERS: durations ("X weeks") and prices ("₦ / $ amount") are still blank in the client's copy. -->
+    <div class="pk pk4">
       <div class="pk-col" data-reveal>
-        <div class="pk-name"><h3>CV Rewrite</h3><span class="mono">One-off</span></div>
-        <p class="pk-for">For people applying themselves who need documents that get read.</p>
-        <div class="price"><b data-ngn="45,000" data-usd="35"><i class="cur">₦</i><span class="n">45,000</span></b><span>once</span></div>
+        <div class="pk-name"><h3>Readiness</h3><span class="mono">Build first</span></div>
+        <p class="pk-who">For applicants who need to strengthen their profile first.</p>
+        <p class="pk-for">A practical starting point if we identify gaps to address before you begin a more active international job search.</p>
         <ul class="pk-list">
-          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>CV rewritten for applicant tracking systems</li>
-          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>LinkedIn headline and About section</li>
-          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Cover letter template you can adapt</li>
-          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Two rounds of revisions</li>
-          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Delivered in 5 working days</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>International CV rewrite</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Review of relevant skills and qualifications</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Written improvement roadmap</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Reassessment call after completing the package</li>
         </ul>
-        <a href="book.html?plan=rewrite" class="btn btn-line">Start with a rewrite</a>
+        <dl class="pk-terms"><div><dt>Duration</dt><dd>X weeks</dd></div><div><dt>Price</dt><dd>₦ / $ amount</dd></div></dl>
+        <a href="book.html?plan=readiness" class="btn btn-line">Book your free intake call</a>
+        <p class="pk-fine">Completing the Readiness Package does not guarantee acceptance into another package.</p>
       </div>
-      <div class="pk-col rec" data-reveal style="--d:80ms">
-        <div class="pk-name"><h3>Active Search</h3><span class="mono">Recommended</span></div>
-        <p class="pk-for">For people who want applications going out every week without doing it themselves.</p>
-        <div class="price"><b data-ngn="150,000" data-usd="110"><i class="cur">₦</i><span class="n">150,000</span></b><span>per month</span></div>
+      <div class="pk-col" data-reveal style="--d:60ms">
+        <div class="pk-name"><h3>Starter</h3><span class="mono">CV only</span></div>
+        <p class="pk-who">For applicants who need a professionally presented CV.</p>
+        <p class="pk-for">Get your application materials ready for your next career move.</p>
         <ul class="pk-list">
-          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg><span class="inh">Everything in CV Rewrite</span></li>
-          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>30 tailored applications a month</li>
-          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>You approve every shortlist</li>
-          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Live application tracker</li>
-          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>15-minute check-in call each week</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>International CV rewrite</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Professionally presented work experience and achievements</li>
         </ul>
-        <a href="book.html?plan=active" class="btn btn-ink">Start Active Search <span class="arr" aria-hidden="true">→</span></a>
+        <dl class="pk-terms"><div><dt>Duration</dt><dd>X weeks</dd></div><div><dt>Price</dt><dd>₦ / $ amount</dd></div></dl>
+        <a href="book.html?plan=starter" class="btn btn-line">Book your free intake call</a>
       </div>
-      <div class="pk-col" data-reveal style="--d:160ms">
-        <div class="pk-name"><h3>Full Concierge</h3><span class="mono">Per month</span></div>
-        <p class="pk-for">For senior or international searches that need volume and interview coaching.</p>
-        <div class="price"><b data-ngn="280,000" data-usd="210"><i class="cur">₦</i><span class="n">280,000</span></b><span>per month</span></div>
+      <div class="pk-col" data-reveal style="--d:120ms">
+        <div class="pk-name"><h3>Standard</h3><span class="mono">Job search</span></div>
+        <p class="pk-who">For applicants who want help managing their job search.</p>
+        <p class="pk-for">Move beyond your CV and get practical support finding and applying for relevant vacancies.</p>
         <ul class="pk-list">
-          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg><span class="inh">Everything in Active Search</span></li>
-          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>60 tailored applications a month</li>
-          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Three mock interviews with written feedback</li>
-          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Salary negotiation notes before offers</li>
-          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Priority WhatsApp line to your specialist</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>International CV rewrite</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>LinkedIn profile optimisation</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Personalised job search</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Agreed job applications submitted on your behalf</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Personal job search progress tracker</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Weekly progress updates</li>
         </ul>
-        <a href="book.html?plan=concierge" class="btn btn-line">Talk about Concierge</a>
+        <dl class="pk-terms"><div><dt>Duration</dt><dd>X weeks</dd></div><div><dt>Price</dt><dd>₦ / $ amount</dd></div></dl>
+        <a href="book.html?plan=standard" class="btn btn-line">Book your free intake call</a>
+      </div>
+      <div class="pk-col rec" data-reveal style="--d:180ms">
+        <div class="pk-name"><h3>Full Service</h3><span class="mono">With interviews</span></div>
+        <p class="pk-who">For applicants who want job-search support plus interview preparation.</p>
+        <p class="pk-for">Support with your application materials, targeted job searching, and preparation for interviews.</p>
+        <ul class="pk-list">
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg><span class="inh">Everything in Standard</span></li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Mock interview sessions</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Personalised interview feedback and coaching</li>
+        </ul>
+        <dl class="pk-terms"><div><dt>Duration</dt><dd>X weeks</dd></div><div><dt>Price</dt><dd>₦ / $ amount</dd></div></dl>
+        <a href="book.html?plan=full" class="btn btn-ink">Book your free intake call <span class="arr" aria-hidden="true">→</span></a>
       </div>
     </div>
-    <div class="pk-note" data-reveal><span>Card or bank transfer, processed by Paystack</span><span>Cancel monthly plans before your next billing date</span><span>Refund terms are written into your agreement</span></div>
+    <p class="pk-note" data-reveal>All packages are subject to an initial suitability assessment. Exact deliverables, timelines and payment terms will be stated in your service agreement.</p>
   </div>
 </section>
 
-<!-- ================= PROMISE ================= -->
+<!-- ================= PROCESS ================= -->
+<section class="section" id="process" style="padding-top:var(--s8)">
+  <div class="wrap process">
+    <div class="process-aside" data-reveal>
+      <p class="eyebrow mono">How it works</p>
+      <h2 class="h2">Six steps, from first call to clear progress.</h2>
+      <p class="lede">Some steps are yours, some are ours, and a few we do together. You sign before you pay.</p>
+      <div class="who-key"><span><i class="who">You</i></span><span><i class="who us">Us</i></span><span><i class="who both">Together</i></span></div>
+    </div>
+    <ol class="steps" id="steps" style="list-style:none;margin:0">
+      <span class="rail" aria-hidden="true"><i id="railFill"></i></span>
+      <li class="step"><div class="step-top"><span class="mono">Step 1</span><i class="who">You</i></div><h3>Book your free intake call</h3><p>Tell us about your experience, qualifications, preferred roles and target countries. We’ll discuss your goals and assess whether our service is a suitable fit.</p></li>
+      <li class="step"><div class="step-top"><span class="mono">Step 2</span><i class="who us">Us</i></div><h3>Receive an honest assessment</h3><p>We’ll explain whether we can help, what your options are and which package best fits your needs. If we don’t believe we can offer meaningful support, we’ll tell you.</p></li>
+      <li class="step"><div class="step-top"><span class="mono">Step 3</span><i class="who both">Together</i></div><h3>Agree on your service</h3><p>If you’re accepted, you’ll receive a written service agreement setting out your package, deliverables, duration and terms. Review and sign it before making payment.</p></li>
+      <li class="step"><div class="step-top"><span class="mono">Step 4</span><i class="who">You</i></div><h3>Provide your information</h3><p>Submit your CV, work history, qualifications and other relevant details through our secure process. Together we agree your target roles, countries and application criteria.</p></li>
+      <li class="step"><div class="step-top"><span class="mono">Step 5</span><i class="who us">Us</i></div><h3>We get to work</h3><p>We start delivering the services in your package. Depending on your selection, this may include CV optimisation, job searching, application submissions and interview preparation.</p></li>
+      <li class="step"><div class="step-top"><span class="mono">Step 6</span><i class="who both">Together</i></div><h3>Track your progress</h3><p>Follow your application activity through your progress tracker and receive updates according to your package.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= EXPECTATIONS ================= -->
+<section class="section" id="expect" style="padding-top:var(--s8)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div data-reveal>
+        <p class="eyebrow mono">Working with us</p>
+        <h2>Professional support. Honest expectations.</h2>
+      </div>
+      <p data-reveal style="--d:80ms">Here’s what you can expect when working with Shortlist.</p>
+    </div>
+    <ul class="expect">
+      <li data-reveal><b>A clear agreement</b><span>You know what you’re paying for before you begin.</span></li>
+      <li data-reveal style="--d:60ms"><b>A defined scope of work</b><span>Your package specifies the services and deliverables included.</span></li>
+      <li data-reveal style="--d:120ms"><b>Transparent application activity</b><span>We record the applications submitted within your agreed service.</span></li>
+      <li data-reveal><b>An honest assessment</b><span>We won’t promise that your profile is suitable for every role or country.</span></li>
+      <li data-reveal style="--d:60ms"><b>Professional communication</b><span>We keep you informed according to your package.</span></li>
+      <li data-reveal style="--d:120ms"><b>Respect for your information</b><span>Your personal details are handled according to our <a href="privacy.html">privacy policy</a> and applicable requirements.</span></li>
+    </ul>
+    <!-- TODO (client): add testimonials, anonymised before-and-after CV examples, and verified business registration and licence details when available. -->
+  </div>
+</section>
+
+<!-- ================= SCOPE ================= -->
 <section class="section" style="padding-top:var(--s7)">
   <div class="wrap promise">
     <div data-reveal>
-      <p class="eyebrow mono">Our promise</p>
-      <p class="big">We can’t promise you a job. <em>No honest service can.</em> We promise the work, and you can check every part of it.</p>
+      <p class="eyebrow mono">What we do, and what we don’t</p>
+      <p class="big">We provide career support focused on international job applications. <em>We don’t guarantee jobs, sponsorship or visas.</em></p>
+      <p class="scope-note">Employers make their own hiring decisions. Any sponsorship and immigration decisions are subject to the relevant employer requirements and authorities.</p>
     </div>
     <div class="ledger" data-reveal style="--d:100ms">
       <div>
-        <h3>We will</h3>
+        <h3>We do</h3>
         <ul>
-          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Deliver the documents listed in your agreement, on the dates listed</li>
-          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Send the number of applications in your package</li>
-          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Log every application where you can see it</li>
-          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Keep your documents and details private</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Search for relevant job opportunities</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Improve your CV and, where included, your LinkedIn profile</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Submit agreed applications on your behalf</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Run mock interviews and give feedback where included</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.6"/></svg>Record application activity and provide agreed updates</li>
         </ul>
       </div>
       <div class="no">
-        <h3>We won’t</h3>
+        <h3>We don’t</h3>
         <ul>
-          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.5"/></svg>Guarantee interviews or job offers</li>
-          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.5"/></svg>Apply anywhere you haven’t approved</li>
-          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.5"/></svg>Invent experience or qualifications</li>
-          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.5"/></svg>Ask employers for a fee on your behalf</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.5"/></svg>Guarantee job offers, interviews or employment</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.5"/></svg>Guarantee employer sponsorship or visa approval</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.5"/></svg>Arrange visas or immigration services</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.5"/></svg>Invent qualifications, experience or achievements</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.5"/></svg>Apply to roles outside your agreed criteria</li>
+          <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.5"/></svg>Promise access to employers or vacancies we can’t verify</li>
         </ul>
       </div>
     </div>
@@ -782,15 +1008,24 @@ ul{list-style:none;margin:0;padding:0}
   <div class="wrap faq">
     <div data-reveal>
       <p class="eyebrow mono">Questions</p>
-      <h2 class="h2">Before you book.</h2>
+      <h2 class="h2">Frequently asked questions.</h2>
+      <p class="lede faq-lede">Something else on your mind? Ask it on your free intake call.</p>
     </div>
     <div class="qa" data-reveal style="--d:80ms">
-      <div class="qa-item"><button class="qa-q" aria-expanded="true" aria-controls="a1" id="q1">Who is this for?<span class="pm" aria-hidden="true"></span></button><div class="qa-a" id="a1" role="region" aria-labelledby="q1"><div><p>Professionals in Nigeria looking for roles at home, and people applying to remote or overseas roles in the UK, EU and Canada. If you have at least one year of work experience, we can help.</p></div></div></div>
-      <div class="qa-item"><button class="qa-q" aria-expanded="false" aria-controls="a2" id="q2">Do you guarantee I’ll get a job?<span class="pm" aria-hidden="true"></span></button><div class="qa-a" id="a2" role="region" aria-labelledby="q2"><div><p>No. Hiring decisions belong to employers. We guarantee the work in your agreement: the documents, the number of applications and the preparation sessions.</p></div></div></div>
-      <div class="qa-item"><button class="qa-q" aria-expanded="false" aria-controls="a3" id="q3">Do you apply without asking me?<span class="pm" aria-hidden="true"></span></button><div class="qa-a" id="a3" role="region" aria-labelledby="q3"><div><p>Never. You approve a shortlist of roles each week, and only those applications go out.</p></div></div></div>
-      <div class="qa-item"><button class="qa-q" aria-expanded="false" aria-controls="a4" id="q4">How do I pay?<span class="pm" aria-hidden="true"></span></button><div class="qa-a" id="a4" role="region" aria-labelledby="q4"><div><p>By card or bank transfer through Paystack, after you’ve signed the agreement online. You’ll get a receipt by email.</p></div></div></div>
-      <div class="qa-item"><button class="qa-q" aria-expanded="false" aria-controls="a5" id="q5">What if I don’t like the rewrite?<span class="pm" aria-hidden="true"></span></button><div class="qa-a" id="a5" role="region" aria-labelledby="q5"><div><p>Every package includes revision rounds. Comment on any line and we’ll rework it until it reads like you on your best day.</p></div></div></div>
-      <div class="qa-item"><button class="qa-q" aria-expanded="false" aria-controls="a6" id="q6">What happens to my documents?<span class="pm" aria-hidden="true"></span></button><div class="qa-a" id="a6" role="region" aria-labelledby="q6"><div><p>They’re stored privately and only shared with employers you’ve approved. Ask us at any time and we’ll delete them.</p></div></div></div>
+      <div class="qa-item"><button class="qa-q" aria-expanded="true" aria-controls="a1" id="q1">Do you guarantee that I’ll get a job abroad?<span class="pm" aria-hidden="true"></span></button><div class="qa-a" id="a1" role="region" aria-labelledby="q1"><div><p>No. We guarantee only the services and deliverables expressly stated in your agreement. Hiring outcomes depend on your profile, the opportunities available, competition, employer decisions and other factors beyond our control.</p></div></div></div>
+      <div class="qa-item"><button class="qa-q" aria-expanded="false" aria-controls="a2" id="q2">What countries do you help people apply to?<span class="pm" aria-hidden="true"></span></button><div class="qa-a" id="a2" role="region" aria-labelledby="q2"><div><p>We assess opportunities based on your occupation, experience, qualifications and preferred destination. Our current target markets are Australia, Russia, Germany, the United Kingdom, Canada, Singapore and Malaysia. We’ll discuss your options on your free intake call.</p></div></div></div>
+      <div class="qa-item"><button class="qa-q" aria-expanded="false" aria-controls="a3" id="q3">Do you find jobs for me, or do I have to search myself?<span class="pm" aria-hidden="true"></span></button><div class="qa-a" id="a3" role="region" aria-labelledby="q3"><div><p>We actively search for relevant vacancies in packages that include job-search support. We identify opportunities based on your agreed criteria and submit authorised applications on your behalf. Your agreement specifies the number of applications and the scope of support included.</p></div></div></div>
+      <div class="qa-item"><button class="qa-q" aria-expanded="false" aria-controls="a4" id="q4">Do you conduct mock interviews?<span class="pm" aria-hidden="true"></span></button><div class="qa-a" id="a4" role="region" aria-labelledby="q4"><div><p>Yes. Mock interviews and personalised interview coaching are included in the Full Service package, according to the number of sessions stated in your agreement.</p></div></div></div>
+      <div class="qa-item"><button class="qa-q" aria-expanded="false" aria-controls="a5" id="q5">Do you arrange visas or guarantee sponsorship?<span class="pm" aria-hidden="true"></span></button><div class="qa-a" id="a5" role="region" aria-labelledby="q5"><div><p>No. Our service focuses on career preparation, job searching and applications. We don’t guarantee sponsorship or visa approval, and we don’t provide visa or immigration services as part of this offering.</p></div></div></div>
+      <div class="qa-item"><button class="qa-q" aria-expanded="false" aria-controls="a6" id="q6">Who can apply for your service?<span class="pm" aria-hidden="true"></span></button><div class="qa-a" id="a6" role="region" aria-labelledby="q6"><div><p>Anyone may enquire, but acceptance depends on our assessment of your background, target roles, preferred countries and whether we can identify a credible job-search strategy.</p></div></div></div>
+      <div class="qa-item"><button class="qa-q" aria-expanded="false" aria-controls="a7" id="q7">What happens if you don’t accept me?<span class="pm" aria-hidden="true"></span></button><div class="qa-a" id="a7" role="region" aria-labelledby="q7"><div><p>We’ll explain our decision honestly. If appropriate, we may recommend the Readiness Package or suggest areas to improve before you pursue your target roles.</p></div></div></div>
+      <div class="qa-item"><button class="qa-q" aria-expanded="false" aria-controls="a8" id="q8">Do I have to pay before the intake call?<span class="pm" aria-hidden="true"></span></button><div class="qa-a" id="a8" role="region" aria-labelledby="q8"><div><p>No. The intake call is free and carries no obligation to buy a package. If you’re accepted, you’ll receive your proposed package, service agreement and payment instructions.</p></div></div></div>
+      <div class="qa-item"><button class="qa-q" aria-expanded="false" aria-controls="a9" id="q9">How do I pay?<span class="pm" aria-hidden="true"></span></button><div class="qa-a" id="a9" role="region" aria-labelledby="q9"><div><p>We send a payment link for the agreed package. Available payment methods, including card or bank transfer where supported, are confirmed before you pay. You’ll receive payment confirmation and a copy of your service agreement.</p></div></div></div>
+      <div class="qa-item"><button class="qa-q" aria-expanded="false" aria-controls="a10" id="q10">How many jobs will you apply for?<span class="pm" aria-hidden="true"></span></button><div class="qa-a" id="a10" role="region" aria-labelledby="q10"><div><p>The number depends on your package. Your agreement specifies the number of applications included, the service period and any relevant conditions.</p></div></div></div>
+      <div class="qa-item"><button class="qa-q" aria-expanded="false" aria-controls="a11" id="q11">Will you apply to jobs without my permission?<span class="pm" aria-hidden="true"></span></button><div class="qa-a" id="a11" role="region" aria-labelledby="q11"><div><p>No. We agree your target roles and application criteria before we start. Applications are submitted within the scope of your authorisation.</p></div></div></div>
+      <div class="qa-item"><button class="qa-q" aria-expanded="false" aria-controls="a12" id="q12">How long does the service take?<span class="pm" aria-hidden="true"></span></button><div class="qa-a" id="a12" role="region" aria-labelledby="q12"><div><p>The duration depends on your package and is stated in your agreement. Our delivery timelines cover the work we control. Employer responses and hiring decisions may take longer.</p></div></div></div>
+      <div class="qa-item"><button class="qa-q" aria-expanded="false" aria-controls="a13" id="q13">What if I want a refund?<span class="pm" aria-hidden="true"></span></button><div class="qa-a" id="a13" role="region" aria-labelledby="q13"><div><p>Our <a href="refunds.html">refund policy</a> explains when refunds may be available and how they’re calculated. We share it before you pay, and it’s consistent with your agreement and applicable law.</p></div></div></div>
+      <div class="qa-item"><button class="qa-q" aria-expanded="false" aria-controls="a14" id="q14">How do you protect my personal information?<span class="pm" aria-hidden="true"></span></button><div class="qa-a" id="a14" role="region" aria-labelledby="q14"><div><p>We use your information to assess your suitability and deliver the agreed service. Our <a href="privacy.html">privacy policy</a> explains how it’s stored, who may access it, when it may be shared with prospective employers and how long it’s kept.</p></div></div></div>
     </div>
   </div>
 </section>
@@ -800,13 +1035,14 @@ ul{list-style:none;margin:0;padding:0}
   <div class="wrap">
     <div class="book" data-reveal>
       <div>
-        <p class="eyebrow mono">Intake call</p>
-        <h2>Tell us what you’re aiming for.</h2>
-        <p class="lede">In 20 minutes we’ll learn what you want and tell you honestly whether we can help, and which package fits.</p>
+        <p class="eyebrow mono">Free intake call</p>
+        <h2>Ready to take the next step?</h2>
+        <p class="lede">You don’t have to figure out your entire international job search alone. Start with a free intake call. We’ll discuss your experience, understand your goals and assess whether our service is right for you.</p>
+        <p class="lede book-honest">If we can help, we’ll explain how. If we can’t, we’ll tell you honestly.</p>
         <ul class="book-meta">
-          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M10.5 7l4-2.5v7L10.5 9" stroke="currentColor" stroke-width="1.3"/></svg>Video call on Google Meet</li>
-          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.3"/><path d="M8 4.5V8l2.5 1.5" stroke="currentColor" stroke-width="1.3"/></svg>20 minutes · times shown in West Africa Time</li>
-          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.5"/></svg>No payment needed to book</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M10.5 7l4-2.5v7L10.5 9" stroke="currentColor" stroke-width="1.3"/></svg>Video call · times shown in West Africa Time</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.5"/></svg>Free consultation. No obligation.</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.5"/></svg>No unrealistic promises.</li>
         </ul>
       </div>
       <div class="cal">
@@ -824,18 +1060,25 @@ ul{list-style:none;margin:0;padding:0}
 </main>
 
 <!-- ================= FOOTER ================= -->
+<!-- PLACEHOLDERS: business name, registered address, registration number, licence details, WhatsApp and LinkedIn are still to be supplied by the client. -->
 <footer class="foot">
   <div class="wrap">
     <div class="foot-grid">
       <div>
         <a href="#top" class="brand"><span class="brand-mark" aria-hidden="true"></span>Shortlist</a>
-        <p class="foot-blurb">A job-search support service. We are not a recruitment agency and we don’t take fees from employers.</p>
+        <p class="foot-blurb">International Career Support</p>
+        <ul class="foot-reg">
+          <li>Registered business address: to be added</li>
+          <li>Registration number: to be added</li>
+          <li>Licence details: once confirmed</li>
+        </ul>
       </div>
-      <div><h4>Service</h4><ul><li><a href="#services">What we do</a></li><li><a href="#process">How it works</a></li><li><a href="#packages">Packages</a></li><li><a href="#tracker">Tracker</a></li><li><a href="checkout.html">Start your package</a></li><li><a href="signin.html">Your tracker</a></li></ul></div>
-      <div><h4>Contact</h4><ul><li><a href="mailto:hello@shortlist.ng">hello@shortlist.ng</a></li><li><a href="#book">WhatsApp</a></li><li>Mon–Fri · 9:00–18:00 WAT</li><li>Lekki, Lagos</li></ul></div>
-      <div><h4>Legal</h4><ul><li><a href="agreement.html">Service agreement</a></li><li><a href="refunds.html">Refund policy</a></li><li><a href="privacy.html">Privacy</a></li><li><a href="terms.html">Terms</a></li></ul></div>
+      <div><h4>Service</h4><ul><li><a href="#process">How it works</a></li><li><a href="#services">Our services</a></li><li><a href="#packages">Packages</a></li><li><a href="#faq">FAQ</a></li><li><a href="signin.html">Your tracker</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li><a href="mailto:hello@shortlist.ng">hello@shortlist.ng</a></li><li>WhatsApp: to be added</li><li>LinkedIn: to be added</li><li><a href="book.html">Book a free call</a></li></ul></div>
+      <div><h4>Useful links</h4><ul><li><a href="terms.html">Terms of service</a></li><li><a href="privacy.html">Privacy policy</a></li><li><a href="refunds.html">Refund policy</a></li><li><a href="agreement.html">Service agreement</a></li></ul></div>
     </div>
-    <div class="foot-bottom"><span>© 2026 Shortlist. All rights reserved.</span><span>RC number: to be added</span></div>
+    <p class="foot-disc">Shortlist provides career support services. We do not guarantee employment, interviews, sponsorship or visas. Hiring decisions are made by employers, and any immigration decisions are made by the relevant authorities.</p>
+    <div class="foot-bottom"><span>© 2026 Shortlist. All rights reserved.</span><span>International Career Support</span></div>
     <div class="wordmark" aria-hidden="true">Shortlist</div>
   </div>
 </footer>
@@ -947,9 +1190,10 @@ ul{list-style:none;margin:0;padding:0}
 
   /* ---- services tabs ---- */
   const meta = {
-    'p-cv':   [['Turnaround', '5 working days'], ['Revisions', '2 rounds'], ['You get', 'CV · LinkedIn · cover letter']],
-    'p-apps': [['Volume', '30–60 a month'], ['Approval', 'You sign off each shortlist'], ['Visibility', 'Logged in your tracker']],
-    'p-prep': [['Format', 'Video mock interview'], ['Feedback', 'Written, within 24 hours'], ['Built for', 'The specific role']]
+    'p-cv':    [['You’ll receive', 'A professionally rewritten CV'], ['Format', 'Suited to your target market'], ['LinkedIn', 'Where your package includes it']],
+    'p-apps':  [['You’ll receive', 'Targeted job searching'], ['Applications', 'Agreed, then submitted for you'], ['Record', 'Every application logged']],
+    'p-prep':  [['You’ll receive', 'Practice and personal feedback'], ['Tailored to', 'Your target roles'], ['Included in', 'Full Service package']],
+    'p-track': [['You’ll receive', 'Visibility and organised records'], ['Updated', 'Throughout your service period'], ['Access', 'Private to you']]
   };
   const tabs = $$('.svc-tab'), metaEl = $('#svcMeta');
   const setMeta = id => { metaEl.innerHTML = meta[id].map(([k, v]) => `<li><span>${k}</span><span>${v}</span></li>`).join(''); };
@@ -1013,19 +1257,6 @@ ul{list-style:none;margin:0;padding:0}
       await wait(500);
     }
   }, { threshold: .35 }).observe(board);
-
-  /* ---- currency ---- */
-  const seg = $('#seg');
-  $$('button', seg).forEach(b => b.addEventListener('click', async () => {
-    const cur = b.dataset.cur;
-    if (b.getAttribute('aria-pressed') === 'true') return;
-    $$('button', seg).forEach(x => x.setAttribute('aria-pressed', x === b));
-    seg.classList.toggle('usd', cur === 'usd');
-    const prices = $$('.price');
-    prices.forEach(p => p.classList.add('swap'));
-    await wait(reduce ? 0 : 200);
-    prices.forEach(p => { const v = $('b', p); $('.n', v).textContent = v.dataset[cur]; $('.cur', v).textContent = cur === 'usd' ? '$' : '₦'; p.classList.remove('swap'); });
-  }));
 
   /* ---- faq ---- */
   $$('.qa-q').forEach(q => q.addEventListener('click', () => {

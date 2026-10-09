@@ -1,4 +1,4 @@
-/* Shortlist — shared tokens, base and primitives. Used by every page. */
+/* Shortlist: shared tokens, base and primitives. Used by every page. */
 :root{
   --paper:#F3F4F1; --sheet:#FFFFFF; --ink:#141619; --ink-2:#464A51; --ink-3:#6B6F76;
   --rule:#DADCD6; --rule-2:#C4C7C0; --scroll:#8A8E88;

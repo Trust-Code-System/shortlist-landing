@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Upload your CV — Shortlist</title>
+<title>Upload your CV · Shortlist</title>
 <meta name="description" content="Send Shortlist your CV, work history and job preferences to start your search.">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,13 +13,13 @@
 <link rel="stylesheet" href="assets/flow.css">
 <link rel="stylesheet" href="assets/portal.css">
 <!--
-  NOT CONNECTED YET — files stay in the browser.
+  NOT CONNECTED YET: files stay in the browser.
   To go live: upload to private storage (e.g. Supabase Storage / S3 with signed
   URLs) from a server route, scan files, and save the work-history and
   preference answers against the client's account. Never make CVs public.
 -->
 </head>
-<body data-title="Upload your CV — Shortlist">
+<body data-title="Upload your CV · Shortlist">
 
 <div class="demo" role="note"><b>Preview.</b> Files stay in your browser and aren’t uploaded anywhere.</div>
 
@@ -104,24 +104,20 @@
     <section class="panel" data-step="prefs" aria-labelledby="h-prefs" hidden>
       <p class="eyebrow mono">Preferences</p>
       <h1 id="h-prefs">What should we apply for?</h1>
-      <p class="lede">This is the brief your specialist works from. You can change it any time from your tracker.</p>
+      <p class="lede">Together we agree your target roles, countries and application criteria. We only apply within what you authorise here.</p>
 
       <form id="prefsForm" novalidate>
         <div class="fields">
           <div class="field">
             <label for="targets">Roles you want</label>
-            <input class="input" id="targets" placeholder="e.g. Growth marketing lead, brand manager">
+            <input class="input" id="targets" placeholder="e.g. Marketing manager, brand manager">
             <p class="hint">Separate with commas. Three is a good number.</p>
             <p class="err" id="err-targets"></p>
           </div>
 
           <div class="field">
-            <span class="legend" id="whereLbl">Where do you want to work?</span>
-            <div class="choices three" role="radiogroup" id="where" aria-labelledby="whereLbl">
-              <label class="choice"><input type="radio" name="where" value="Nigeria"><span class="choice-box"><span><span class="choice-t">In Nigeria</span><span class="choice-d">Lagos, Abuja, PH or remote</span></span></span></label>
-              <label class="choice"><input type="radio" name="where" value="Abroad"><span class="choice-box"><span><span class="choice-t">Abroad</span><span class="choice-d">UK, EU, Canada, remote</span></span></span></label>
-              <label class="choice"><input type="radio" name="where" value="Both"><span class="choice-box"><span><span class="choice-t">Both</span><span class="choice-d">Open to either</span></span></span></label>
-            </div>
+            <span class="legend" id="whereLbl">Which countries are you targeting? <span class="opt">Pick any</span></span>
+            <div class="multi" role="group" id="where" aria-labelledby="whereLbl"><label><input type="checkbox" name="countries" value="United Kingdom"><span>United Kingdom</span></label><label><input type="checkbox" name="countries" value="Canada"><span>Canada</span></label><label><input type="checkbox" name="countries" value="Germany"><span>Germany</span></label><label><input type="checkbox" name="countries" value="Australia"><span>Australia</span></label><label><input type="checkbox" name="countries" value="Singapore"><span>Singapore</span></label><label><input type="checkbox" name="countries" value="Malaysia"><span>Malaysia</span></label><label><input type="checkbox" name="countries" value="Russia"><span>Russia</span></label><label><input type="checkbox" name="countries" value="Not sure yet"><span>Not sure yet</span></label></div>
             <p class="err" id="err-where"></p>
           </div>
 
@@ -159,7 +155,7 @@
           </div>
 
           <div class="field">
-            <label class="check"><input type="checkbox" id="accurate"><span>Everything I’ve shared is accurate. I understand Shortlist won’t invent or exaggerate experience.</span></label>
+            <label class="check"><input type="checkbox" id="accurate"><span>Everything I’ve shared is accurate. I understand Shortlist won’t invent or exaggerate experience, and doesn’t arrange visas or guarantee sponsorship.</span></label>
             <p class="err" id="err-accurate"></p>
           </div>
         </div>
@@ -196,7 +192,7 @@
       <div class="sum-b">
         <p class="sum-title">Adaeze Okafor</p>
         <dl>
-          <div><dt>Package</dt><dd>Active Search</dd></div>
+          <div><dt>Package</dt><dd>Standard</dd></div>
           <div><dt>Specialist</dt><dd>Ngozi Eze</dd></div>
           <div><dt>Agreement</dt><dd>Signed</dd></div>
         </dl>
@@ -340,7 +336,7 @@
     const f = e.target;
     if (!validate([
       [$('#targets'), $('#targets').value.trim() ? '' : 'Tell us at least one role'],
-      [$('#where'), f.where.value ? '' : 'Choose where you want to work'],
+      [$('#where'), f.querySelectorAll('input[name="countries"]:checked').length ? '' : 'Choose at least one country, or Not sure yet'],
       [$('#salary'), $('#salary').value.trim() ? '' : 'Enter the lowest salary you’d accept'],
       [$('#notice'), $('#notice').value ? '' : 'Choose your notice period'],
       [$('#accurate'), $('#accurate').checked ? '' : 'Tick the box to confirm your details are accurate'],

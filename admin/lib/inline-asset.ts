@@ -33,7 +33,7 @@ export function inlineAsset(publicPath: string) {
 
   if (file.byteLength > WARN_BYTES) {
     console.warn(
-      `inlineAsset: ${key} is ${Math.round(file.byteLength / 1024)}KB before base64 — inline above-the-fold assets only`,
+      `inlineAsset: ${key} is ${Math.round(file.byteLength / 1024)}KB before base64: inline above-the-fold assets only`,
     );
   }
 

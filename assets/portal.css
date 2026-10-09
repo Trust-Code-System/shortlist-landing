@@ -1,4 +1,4 @@
-/* Shortlist — client portal, sign-in, legal and 404. Loaded after base.css and flow.css. */
+/* Shortlist: client portal, sign-in, legal and 404. Loaded after base.css and flow.css. */
 
 /* ---------- portal header ---------- */
 .phead{position:sticky;top:0;z-index:40;background:rgba(243,244,241,.92);-webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--rule)}

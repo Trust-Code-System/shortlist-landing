@@ -3,22 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Book your intake call — Shortlist</title>
+<title>Book your intake call · Shortlist</title>
 <meta name="description" content="Book a free 20-minute intake call with Shortlist.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&family=Fragment+Mono&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/base.css">
 <link rel="stylesheet" href="assets/flow.css">
+<link rel="stylesheet" href="assets/portal.css">
 <!--
-  NOT CONNECTED YET — booking is front-end only.
+  NOT CONNECTED YET: booking is front-end only.
   To go live, replace submitBooking() with a call to the chosen tool
   (Cal.com / Calendly API, or a small serverless function that writes to
   Google Calendar and emails the Meet link), and load real availability
   in place of isTaken().
 -->
 </head>
-<body data-title="Book your intake call — Shortlist">
+<body data-title="Book your intake call · Shortlist">
 
 <div class="demo" id="demoBar" role="note"><b>Preview.</b> Bookings aren’t connected to a calendar yet, so no invite is sent.</div>
 
@@ -42,7 +43,7 @@
     <section class="panel active" data-step="time" aria-labelledby="h-time">
       <p class="eyebrow mono">Intake call · 20 minutes</p>
       <h1 id="h-time">Pick a time for your call.</h1>
-      <p class="lede">Choose a day, then a time. We’ll talk about the roles you want and tell you honestly whether we can help.</p>
+      <p class="lede">Your free intake call. Choose a day, then a time. We’ll discuss your experience and goals and tell you honestly whether we can help.</p>
 
       <div class="cal" id="cal">
         <div class="cal-top">
@@ -92,17 +93,13 @@
           </div>
 
           <div class="field">
-            <span class="legend" id="whereLbl">Where do you want to work?</span>
-            <div class="choices three" role="radiogroup" id="where" aria-labelledby="whereLbl">
-              <label class="choice"><input type="radio" name="where" value="Nigeria"><span class="choice-box"><span><span class="choice-t">In Nigeria</span><span class="choice-d">Lagos, Abuja, PH or remote</span></span></span></label>
-              <label class="choice"><input type="radio" name="where" value="Abroad"><span class="choice-box"><span><span class="choice-t">Abroad</span><span class="choice-d">UK, EU, Canada, remote</span></span></span></label>
-              <label class="choice"><input type="radio" name="where" value="Both"><span class="choice-box"><span><span class="choice-t">Both</span><span class="choice-d">Open to either</span></span></span></label>
-            </div>
+            <span class="legend" id="whereLbl">Which countries are you targeting? <span class="opt">Pick any</span></span>
+            <div class="multi" role="group" id="where" aria-labelledby="whereLbl"><label><input type="checkbox" name="countries" value="United Kingdom"><span>United Kingdom</span></label><label><input type="checkbox" name="countries" value="Canada"><span>Canada</span></label><label><input type="checkbox" name="countries" value="Germany"><span>Germany</span></label><label><input type="checkbox" name="countries" value="Australia"><span>Australia</span></label><label><input type="checkbox" name="countries" value="Singapore"><span>Singapore</span></label><label><input type="checkbox" name="countries" value="Malaysia"><span>Malaysia</span></label><label><input type="checkbox" name="countries" value="Russia"><span>Russia</span></label><label><input type="checkbox" name="countries" value="Not sure yet"><span>Not sure yet</span></label></div>
             <p class="err" id="err-where"></p>
           </div>
 
           <div class="row2">
-            <div class="field"><label for="roles">Roles you’re aiming for</label><input class="input" id="roles" name="roles" placeholder="e.g. Product analyst, data analyst" required><p class="err" id="err-roles"></p></div>
+            <div class="field"><label for="roles">Roles you’re aiming for</label><input class="input" id="roles" name="roles" placeholder="e.g. Registered nurse, data analyst" required><p class="err" id="err-roles"></p></div>
             <div class="field">
               <label for="exp">Years of experience</label>
               <select class="select" id="exp" name="exp" required>
@@ -115,13 +112,13 @@
           <div class="field">
             <label for="plan">Package you’re interested in <span class="opt">Optional</span></label>
             <select class="select" id="plan" name="plan">
-              <option value="">Not sure yet</option><option value="rewrite">CV Rewrite · one-off</option><option value="active">Active Search · monthly</option><option value="concierge">Full Concierge · monthly</option>
+              <option value="">Not sure yet</option><option value="readiness">Readiness</option><option value="starter">Starter</option><option value="standard">Standard</option><option value="full">Full Service</option>
             </select>
           </div>
 
           <div class="field">
             <label for="notes">Anything we should know? <span class="opt">Optional</span></label>
-            <textarea class="textarea" id="notes" name="notes" placeholder="Career change, visa questions, a deadline you’re working to…"></textarea>
+            <textarea class="textarea" id="notes" name="notes" placeholder="Qualifications, professional registrations, a deadline you’re working to…"></textarea>
           </div>
 
           <div class="field">
@@ -162,7 +159,7 @@
 
       <div class="block">
         <h2>After the call</h2>
-        <p>If we’re a good fit, we’ll send your agreement and payment link the same day. You sign and pay online, then upload your CV to get started.</p>
+        <p>You’ll get an honest assessment. If you’re accepted, we’ll recommend a package and send a written service agreement to review and sign before you pay. If we’re not the right fit, we’ll tell you why.</p>
       </div>
 
       <div class="actions">
@@ -203,7 +200,7 @@
   const DEMO = true;
   if (!DEMO) $('#demoBar').remove();
 
-  const PLANS = { rewrite: 'CV Rewrite', active: 'Active Search', concierge: 'Full Concierge' };
+  const PLANS = { readiness: 'Readiness', starter: 'Starter', standard: 'Standard', full: 'Full Service' };
   const TIMES = ['09:00', '10:00', '11:30', '13:00', '14:30', '16:00']; // WAT
   const WAT_OFFSET = 1; // UTC+1, no daylight saving
 
@@ -333,7 +330,7 @@
       [$('#name'), v('name').length < 2 ? 'Enter your full name' : ''],
       [$('#email'), !em ? 'Enter your email address' : !isEmail(em) ? 'Enter an email address like name@example.com' : ''],
       [$('#phone'), ph.length < 7 || ph.length > 15 ? 'Enter your WhatsApp number' : ''],
-      [$('#where'), form.where.value ? '' : 'Choose where you want to work'],
+      [$('#where'), form.querySelectorAll('input[name="countries"]:checked').length ? '' : 'Choose at least one country, or Not sure yet'],
       [$('#roles'), v('roles') ? '' : 'Tell us at least one role you’re aiming for'],
       [$('#exp'), v('exp') ? '' : 'Choose your years of experience'],
       [$('#consent'), $('#consent').checked ? '' : 'Tick the box so we can store your details for the call'],
@@ -342,7 +339,7 @@
     const alert = $('#bookAlert'); alert.classList.remove('show');
     const btn = $('#confirmBtn'); busy(btn, true);
     try {
-      await submitBooking({ iso: state.iso, time: state.time, name: v('name'), email: em, phone: $('#cc').value.trim() + ' ' + v('phone'), where: form.where.value, roles: v('roles'), exp: v('exp'), plan: v('plan'), notes: v('notes') });
+      await submitBooking({ iso: state.iso, time: state.time, name: v('name'), email: em, phone: $('#cc').value.trim() + ' ' + v('phone'), countries: [...form.querySelectorAll('input[name="countries"]:checked')].map(i => i.value), roles: v('roles'), exp: v('exp'), plan: v('plan'), notes: v('notes') });
       showDone(v('name'), em);
     } catch (err) {
       alert.innerHTML = `<div><b>We couldn’t confirm your booking.</b> ${esc(err.message)} Your answers are still here, so you can try again.</div>`;
