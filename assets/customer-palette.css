@@ -11,7 +11,7 @@
   --client-sidebar-border:#232323;--client-icon:#d0d4dd;--client-icon-muted:#898b8d;
   --client-hover:#333333;--client-card-hover:#252525;--client-track:#3a3a3a;
   --client-success:#22c55e;--client-error:#f97373;--client-danger-fg:#141619;
-  --client-scrollbar:rgba(255,255,255,.2);--client-scrollbar-hover:rgba(255,255,255,.35);
+  --client-scrollbar:#9d8af3;--client-scrollbar-hover:#baaaff;
   --client-blue-bg:#1d2b3e;--client-blue-text:#bfdbfe;
   --client-purple-bg:#231f3a;--client-purple-text:#b7aee9;
   --client-green-bg:#1f3a2d;--client-green-text:#b1ebc5;
@@ -21,7 +21,7 @@
   --client-neutral-bg:#2a2a2a;--client-neutral-text:#cfcfcf;
   --client-red-bg:#3e1d1e;--client-red-text:#febfc6;
 }
-:root[data-theme="light"]{
+:root:not([data-theme="dark"]){
   color-scheme:light;
   --client-bg:#f7f7f4;--client-fg:#141619;--client-card:#ffffff;
   --client-primary:#4124fb;--client-primary-fg:#f9fbff;--client-primary-hover:#4b30ff;
@@ -32,7 +32,7 @@
   --client-sidebar-border:#e1e2dd;--client-icon:#2a2d31;--client-icon-muted:#63676d;
   --client-hover:#e6e7e3;--client-card-hover:#f6f6f3;--client-track:#e6e7e3;
   --client-success:#16a34a;--client-error:#b42318;--client-danger-fg:#ffffff;
-  --client-scrollbar:rgba(20,22,25,.2);--client-scrollbar-hover:rgba(20,22,25,.35);
+  --client-scrollbar:#9481e9;--client-scrollbar-hover:#745ce0;
   --client-blue-bg:#eaf1fb;--client-blue-text:#1e4e8c;
   --client-purple-bg:#f1eefb;--client-purple-text:#4c3a9a;
   --client-green-bg:#e8f5ec;--client-green-text:#1e6b3c;

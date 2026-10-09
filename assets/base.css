@@ -1,7 +1,7 @@
 /* Shortlist: shared tokens, base and primitives. Used by every page. */
 :root{
   --paper:#F3F4F1; --sheet:#FFFFFF; --ink:#141619; --ink-2:#464A51; --ink-3:#6B6F76;
-  --rule:#DADCD6; --rule-2:#C4C7C0; --scroll:#8A8E88;
+  --rule:#DADCD6; --rule-2:#C4C7C0; --scroll:#9481E9;
   --accent:#4124FB; --accent-hover:#4B30FF;
   --marker:#E8E3FF; --marker-line:#B5A7FF; --marker-soft:rgba(65,36,251,.14);
   --error:#B42318; --error-tint:#FCF0EE; --ok:#1D6B3F;
@@ -28,12 +28,15 @@
   --mono:"Fragment Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 *,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;text-size-adjust:100%;color-scheme:light;accent-color:var(--ink);scrollbar-color:var(--scroll) var(--paper)}
-@supports not (scrollbar-color:auto){
-  ::-webkit-scrollbar{width:12px;height:12px}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;color-scheme:light;accent-color:var(--ink)}
+*{scrollbar-width:thin;scrollbar-color:var(--scroll) var(--paper)}
+@supports selector(::-webkit-scrollbar){
+  *{scrollbar-width:auto!important;scrollbar-color:auto!important}
+  ::-webkit-scrollbar{width:10px;height:10px}
   ::-webkit-scrollbar-track{background:var(--paper)}
-  ::-webkit-scrollbar-thumb{background:var(--scroll);border:3px solid var(--paper);border-radius:var(--r2)}
-  ::-webkit-scrollbar-thumb:hover{background:var(--ink-2)}
+  ::-webkit-scrollbar-thumb{background:var(--scroll);border:2px solid var(--paper);border-radius:999px}
+  ::-webkit-scrollbar-thumb:hover{background:var(--accent-hover)}
+  ::-webkit-scrollbar-button{display:none!important;width:0!important;height:0!important}
   ::-webkit-scrollbar-corner{background:var(--paper)}
 }
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:var(--t-body);line-height:1.55;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;overflow-x:hidden}

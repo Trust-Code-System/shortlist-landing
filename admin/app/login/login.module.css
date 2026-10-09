@@ -1,0 +1,348 @@
+.page {
+  --login-tint: #eeebfb;
+  --login-tint-border: #ded7f3;
+  --login-story-ink: #4e3a91;
+  --login-sheet: #fff;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--background);
+}
+:global([data-theme="dark"]) .page {
+  --login-tint: #241f38;
+  --login-tint-border: #443761;
+  --login-story-ink: #c2b3ff;
+  --login-sheet: #1b1d20;
+}
+.header,
+.footer {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+  padding: 28px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.brandMark {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  color: var(--login-story-ink);
+  background: var(--login-tint);
+  border: 1px solid var(--login-tint-border);
+}
+.brandMark svg {
+  width: 26px;
+  height: 26px;
+}
+.brandName {
+  display: block;
+  font-size: 21px;
+  line-height: 1.3;
+  font-weight: 650;
+  letter-spacing: -0.6px;
+}
+.brandCaption {
+  display: block;
+  font-size: 12px;
+  color: var(--soft);
+  margin-top: 1px;
+}
+.layout {
+  width: min(1200px, 100%);
+  margin: auto;
+  padding: 20px 32px 36px;
+  display: grid;
+  grid-template-columns: 1.08fr 1fr;
+  gap: clamp(40px, 6vw, 86px);
+  align-items: center;
+}
+.story {
+  border-radius: 26px;
+  padding: 44px 38px 28px;
+  background: var(--login-tint);
+  border: 1px solid var(--login-tint-border);
+  overflow: hidden;
+}
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--login-story-ink);
+  font-size: 12px;
+  font-weight: 500;
+}
+.eyebrow > span,
+.accessLabel > span {
+  width: 6px;
+  height: 6px;
+  background: currentColor;
+  border-radius: 50%;
+  flex: none;
+}
+.storyTitle {
+  margin: 24px 0 16px;
+  max-width: 12ch;
+  font-size: clamp(32px, 3.5vw, 46px);
+  line-height: 1.1;
+  font-weight: 550;
+  letter-spacing: -1.7px;
+  text-wrap: balance;
+}
+.storyCopy {
+  max-width: 35ch;
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--soft);
+}
+.documentScene {
+  position: relative;
+  margin: 38px 0 40px;
+  padding: 8px 5px 34px;
+}
+.documentBack {
+  position: absolute;
+  inset: 0 12px 46px;
+  background: var(--login-sheet);
+  border: 1px solid var(--login-tint-border);
+  border-radius: 12px;
+  transform: rotate(-4deg);
+  opacity: 0.6;
+}
+.document {
+  position: relative;
+  padding: 23px;
+  border-radius: 12px;
+  background: var(--login-sheet);
+  border: 1px solid var(--login-tint-border);
+  box-shadow: 0 12px 22px -18px rgba(38, 20, 85, 0.3);
+  transform: rotate(1.5deg);
+}
+.documentTop {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 22px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.documentTop small {
+  display: block;
+  margin-top: 4px;
+  color: var(--soft);
+  font-size: 11px;
+  font-weight: 400;
+}
+.documentIcon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 40px;
+  border: 1px solid var(--login-tint-border);
+  background: var(--login-tint);
+  color: var(--login-story-ink);
+  border-radius: 8px;
+}
+.documentIcon svg {
+  width: 23px;
+  height: 23px;
+}
+.documentLine {
+  height: 5px;
+  margin-top: 9px;
+  background: var(--border);
+  border-radius: 4px;
+  width: 88%;
+}
+.documentLine:nth-of-type(3) {
+  width: 72%;
+}
+.documentLine:nth-of-type(4) {
+  width: 80%;
+}
+.documentBottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  color: var(--soft);
+  font-size: 10px;
+}
+.reviewPill {
+  border: 1px solid var(--login-tint-border);
+  background: var(--login-tint);
+  color: var(--login-story-ink);
+  padding: 5px 8px;
+  border-radius: 30px;
+}
+.prepNote {
+  position: absolute;
+  bottom: -18px;
+  right: -6px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: calc(100% - 12px);
+  padding: 14px 18px;
+  border: 1px solid var(--login-tint-border);
+  border-radius: 10px;
+  background: var(--login-sheet);
+  font-size: 11px;
+  box-shadow: 0 9px 20px -17px rgba(38, 20, 85, 0.25);
+}
+.prepNote svg {
+  width: 24px;
+  height: 24px;
+  flex: none;
+  color: var(--login-story-ink);
+}
+.prepNote small {
+  display: block;
+  margin-top: 4px;
+  font-size: 10px;
+  color: var(--soft);
+}
+.storyFoot {
+  margin: 0;
+  color: var(--login-story-ink);
+  font-size: 12px;
+}
+.formSection {
+  width: 100%;
+  max-width: 400px;
+  padding: 24px 0;
+}
+.accessLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--login-story-ink);
+  font-size: 12px;
+  font-weight: 500;
+}
+.title {
+  margin: 22px 0 14px;
+  font-size: 38px;
+  line-height: 1.15;
+  letter-spacing: -1.3px;
+  font-weight: 550;
+}
+.intro {
+  margin: 0;
+  color: var(--soft);
+  font-size: 15px;
+  line-height: 1.7;
+  max-width: 30ch;
+}
+.accessNote {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.accessNote svg {
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  color: var(--soft);
+  flex: none;
+}
+.accessNote p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.8;
+}
+.accessNote p span {
+  color: var(--soft);
+}
+.footer {
+  padding-top: 0;
+  font-size: 11px;
+  color: var(--soft);
+}
+.formSection {
+  animation: arrive 240ms var(--ease-power3-out);
+}
+@keyframes arrive {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (max-width: 860px) {
+  .layout {
+    max-width: 580px;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding-top: 16px;
+  }
+  .formSection {
+    order: -1;
+    max-width: 420px;
+    justify-self: center;
+    padding: 22px 0;
+  }
+  .story {
+    padding: 26px;
+  }
+  .storyTitle {
+    max-width: 22ch;
+    font-size: 28px;
+    letter-spacing: -0.8px;
+    margin-top: 16px;
+  }
+  .storyCopy {
+    max-width: none;
+    font-size: 14px;
+  }
+  .documentScene {
+    display: none;
+  }
+  .storyFoot {
+    margin-top: 20px;
+  }
+}
+@media (max-width: 480px) {
+  .header,
+  .footer {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .header {
+    padding-top: 24px;
+    padding-bottom: 18px;
+  }
+  .layout {
+    padding: 16px 24px 32px;
+    gap: 24px;
+  }
+  .title {
+    font-size: 34px;
+  }
+  .story {
+    padding: 22px;
+    border-radius: 18px;
+  }
+  .eyebrow {
+    font-size: 11px;
+  }
+}
