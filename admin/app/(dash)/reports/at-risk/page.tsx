@@ -1,7 +1,5 @@
-import AtRiskPage from "@/components/pages/at-risk-page";
-
-export const metadata = { title: "At-risk clients · Shortlist Admin" };
+import ComingSoonPage from "@/components/pages/coming-soon-page";
 
 export default function Page() {
-  return <AtRiskPage />;
+  return <ComingSoonPage title="At-risk clients" />;
 }

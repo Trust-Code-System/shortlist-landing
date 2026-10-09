@@ -1,7 +1,5 @@
-import { CoachesPage } from "@/components/pages/team-page";
-
-export const metadata = { title: "Interview coaches · Shortlist Admin" };
+import ComingSoonPage from "@/components/pages/coming-soon-page";
 
 export default function Page() {
-  return <CoachesPage />;
+  return <ComingSoonPage title="Interview coaches" />;
 }

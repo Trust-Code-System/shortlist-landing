@@ -1,7 +1,5 @@
-import RevenuePage from "@/components/pages/revenue-page";
-
-export const metadata = { title: "Monthly revenue · Shortlist Admin" };
+import ComingSoonPage from "@/components/pages/coming-soon-page";
 
 export default function Page() {
-  return <RevenuePage />;
+  return <ComingSoonPage title="Monthly revenue" />;
 }

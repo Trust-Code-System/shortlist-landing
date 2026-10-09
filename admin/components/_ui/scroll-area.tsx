@@ -7,11 +7,15 @@ import { cn } from "@/lib/utils";
 type ScrollAreaProps = ComponentProps<typeof ScrollAreaPrimitive.Root> & {
   orientation?: "vertical" | "horizontal" | "both";
   viewportClassName?: string;
+  viewportLabel?: string;
+  viewportTabIndex?: number;
 };
 
 function ScrollArea({
   className,
   viewportClassName,
+  viewportLabel,
+  viewportTabIndex,
   orientation = "vertical",
   type = "hover",
   scrollHideDelay = 600,
@@ -28,8 +32,11 @@ function ScrollArea({
     >
       <ScrollAreaPrimitive.Viewport
         data-slot="scroll-area-viewport"
+        role={viewportLabel ? "region" : undefined}
+        aria-label={viewportLabel}
+        tabIndex={viewportTabIndex}
         className={cn(
-          "size-full rounded-[inherit] outline-none [&>div]:block!",
+          "focus-visible:ring-ring size-full rounded-[inherit] outline-none focus-visible:ring-2 focus-visible:ring-inset [&>div]:block!",
           viewportClassName,
         )}
       >
@@ -61,7 +68,7 @@ function ScrollBar({
     >
       <ScrollAreaPrimitive.ScrollAreaThumb
         data-slot="scroll-area-thumb"
-        className="ease-power3-out relative flex-1 rounded-full bg-tint/20 transition-[background-color] duration-150 hover:bg-tint/35 active:bg-tint/40"
+        className="ease-power3-out bg-tint/20 hover:bg-tint/35 active:bg-tint/40 relative flex-1 rounded-full transition-[background-color] duration-150"
       />
     </ScrollAreaPrimitive.ScrollAreaScrollbar>
   );

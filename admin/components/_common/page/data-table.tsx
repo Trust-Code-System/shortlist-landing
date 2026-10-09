@@ -54,19 +54,32 @@ export default function DataTable<T>({
 
   return (
     <div className="flex min-h-0 flex-1 flex-col">
-      <ScrollArea orientation="both" className="min-h-0 flex-1">
+      <ScrollArea
+        orientation="both"
+        viewportLabel={countLabel}
+        viewportTabIndex={0}
+        className="min-h-0 flex-1"
+      >
         <Table
           role="table"
           className="grid w-full min-w-max justify-between"
-          style={{ gridTemplateColumns: `repeat(${columns.length}, max-content)` }}
+          style={{
+            gridTemplateColumns: `repeat(${columns.length}, max-content)`,
+          }}
         >
           <TableHeader role="rowgroup" className="contents">
-            <TableRow role="row" className="col-span-full grid grid-cols-subgrid">
+            <TableRow
+              role="row"
+              className="col-span-full grid grid-cols-subgrid"
+            >
               {columns.map((column) => (
                 <TableHead
                   key={column.key}
                   role="columnheader"
-                  className={cn("flex items-center", ALIGN[column.align ?? "start"])}
+                  className={cn(
+                    "flex items-center",
+                    ALIGN[column.align ?? "start"],
+                  )}
                 >
                   {column.label}
                 </TableHead>
@@ -92,7 +105,10 @@ export default function DataTable<T>({
                   <TableCell
                     key={column.key}
                     role="cell"
-                    className={cn("flex items-center", ALIGN[column.align ?? "start"])}
+                    className={cn(
+                      "flex items-center",
+                      ALIGN[column.align ?? "start"],
+                    )}
                   >
                     {column.render(row)}
                   </TableCell>
@@ -100,7 +116,10 @@ export default function DataTable<T>({
               </TableRow>
             ))}
             {rows.length === 0 && (
-              <TableRow role="row" className="col-span-full grid grid-cols-subgrid">
+              <TableRow
+                role="row"
+                className="col-span-full grid grid-cols-subgrid"
+              >
                 <td
                   role="cell"
                   className="caption-style text-muted-foreground col-span-full flex h-[120px] items-center justify-center"

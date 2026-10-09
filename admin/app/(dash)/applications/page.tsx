@@ -1,7 +1,5 @@
-import ApplicationsPage from "@/components/pages/applications-page";
-
-export const metadata = { title: "Applications · Shortlist Admin" };
+import ComingSoonPage from "@/components/pages/coming-soon-page";
 
 export default function Page() {
-  return <ApplicationsPage />;
+  return <ComingSoonPage title="Applications" />;
 }

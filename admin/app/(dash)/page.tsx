@@ -1,11 +1,5 @@
-import Companies from "@/components/companies/companies";
-import MarketScope from "@/components/companies/market-scope";
+import ClientWorkflowPage from "@/components/pages/client-workflow-page";
 
 export default function Home() {
-  return (
-    <>
-      <MarketScope market="all" />
-      <Companies title="Clients" />
-    </>
-  );
+  return <ClientWorkflowPage />;
 }

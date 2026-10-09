@@ -1,7 +1,5 @@
-import InterviewsPage from "@/components/pages/interviews-page";
-
-export const metadata = { title: "Interviews · Shortlist Admin" };
+import ComingSoonPage from "@/components/pages/coming-soon-page";
 
 export default function Page() {
-  return <InterviewsPage />;
+  return <ComingSoonPage title="Employer interviews" />;
 }

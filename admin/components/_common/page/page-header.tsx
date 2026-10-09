@@ -2,14 +2,11 @@
 
 import Avatar from "@/components/_ui/avatar";
 import Button from "@/components/_ui/button";
-import { Tabs, TabsList, TabsTrigger } from "@/components/_ui/tabs";
-import Notifications from "@/components/companies/header/notifications/notifications";
 import ThemeToggle from "@/components/_common/theme-toggle";
 import { CURRENT_USER } from "@/data/companies";
 import { useCompaniesStore } from "@/stores/companies-store";
 import MenuIcon from "@/public/assets/images/_common/menu.svg";
 import ActiveDot from "@/public/assets/images/companies/header/active-dot.svg";
-import SearchIcon from "@/public/assets/images/_common/search.svg";
 
 export type PageTab = { value: string; label: string; count?: number };
 
@@ -29,8 +26,6 @@ export default function PageHeader({
   onTabChange,
 }: PageHeaderProps) {
   const setSidebarOpen = useCompaniesStore((state) => state.setSidebarOpen);
-  const setSearchOpen = useCompaniesStore((state) => state.setSearchOpen);
-  const openProfile = useCompaniesStore((state) => state.openProfile);
 
   return (
     <header className="shrink-0">
@@ -55,42 +50,35 @@ export default function PageHeader({
         </div>
 
         <div className="flex shrink-0 items-center gap-2">
-          <Button
-            variant="secondary"
-            size="icon"
-            aria-label="Search"
-            aria-keyshortcuts="Meta+K Control+K"
-            onClick={() => setSearchOpen(true)}
-          >
-            <SearchIcon aria-hidden className="size-3.5" />
-          </Button>
-          <Notifications />
           <ThemeToggle />
-          <Button
-            variant="secondary"
-            size="none"
-            className="caption-style h-[30px] gap-1.5 py-[5px] pr-[7px] pl-[5px] font-normal"
-            aria-label={`Open profile for ${CURRENT_USER.name}`}
-            onClick={() => openProfile(CURRENT_USER.name)}
-          >
+          <span className="caption-style border-line-strong flex h-[30px] items-center gap-1.5 rounded-full border py-[5px] pr-[7px] pl-[5px]">
             <Avatar src={CURRENT_USER.avatar} alt="" />
             <span className="hidden sm:inline">{CURRENT_USER.name}</span>
-          </Button>
+          </span>
         </div>
       </div>
 
       {tabs && tab !== undefined && onTabChange && (
-        <Tabs value={tab} onValueChange={onTabChange}>
-          <TabsList className="border-border scrollbar-none overflow-x-auto border-b px-4">
-            {tabs.map((item) => (
-              <TabsTrigger key={item.value} value={item.value} className="shrink-0">
-                {item.count === undefined
-                  ? item.label
-                  : `${item.label} · ${item.count}`}
-              </TabsTrigger>
-            ))}
-          </TabsList>
-        </Tabs>
+        <div
+          role="group"
+          aria-label={`${title} views`}
+          className="border-border flex shrink-0 overflow-x-auto border-b px-4"
+        >
+          {tabs.map((item) => (
+            <Button
+              key={item.value}
+              variant="ghost"
+              size="sm"
+              aria-pressed={tab === item.value}
+              onClick={() => onTabChange(item.value)}
+              className="text-soft aria-pressed:border-primary aria-pressed:text-foreground shrink-0 rounded-none border-b-2 border-transparent px-3 py-3"
+            >
+              {item.count === undefined
+                ? item.label
+                : `${item.label} · ${item.count}`}
+            </Button>
+          ))}
+        </div>
       )}
     </header>
   );

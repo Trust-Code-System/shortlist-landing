@@ -1,7 +1,5 @@
-import MessagesPage from "@/components/pages/messages-page";
-
-export const metadata = { title: "Messages · Shortlist Admin" };
+import ComingSoonPage from "@/components/pages/coming-soon-page";
 
 export default function Page() {
-  return <MessagesPage />;
+  return <ComingSoonPage title="Messages" />;
 }

@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
-import Companies from "@/components/companies/companies";
-import MarketScope from "@/components/companies/market-scope";
+import ComingSoonPage from "@/components/pages/coming-soon-page";
 import { REGIONS } from "@/data/companies";
 
 function regionBySlug(slug: string) {
@@ -11,19 +10,24 @@ export function generateStaticParams() {
   return REGIONS.map((region) => ({ slug: region.slug }));
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const { slug } = await params;
-  return { title: `${regionBySlug(slug)?.label ?? "Market"} · Shortlist Admin` };
+  return {
+    title: `${regionBySlug(slug)?.label ?? "Market"} · Shortlist Admin`,
+  };
 }
 
-export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const { slug } = await params;
   const region = regionBySlug(slug);
   if (!region) notFound();
-  return (
-    <>
-      <MarketScope market={region.label} />
-      <Companies title={`Clients · ${region.label}`} />
-    </>
-  );
+  return <ComingSoonPage title={`Markets · ${region.label}`} />;
 }

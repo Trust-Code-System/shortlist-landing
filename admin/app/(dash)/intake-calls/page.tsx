@@ -1,7 +1,5 @@
-import IntakeCallsPage from "@/components/pages/intake-calls-page";
-
-export const metadata = { title: "Intake calls · Shortlist Admin" };
+import ComingSoonPage from "@/components/pages/coming-soon-page";
 
 export default function Page() {
-  return <IntakeCallsPage />;
+  return <ComingSoonPage title="Intake calls" />;
 }

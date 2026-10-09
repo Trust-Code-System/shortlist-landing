@@ -8,6 +8,7 @@ type SidebarNavItemProps = {
   label: string;
   href?: string;
   count?: number;
+  comingSoon?: boolean;
   active?: boolean;
   tone?: "default" | "quiet";
   iconClassName?: string;
@@ -19,6 +20,7 @@ export default function SidebarNavItem({
   label,
   href,
   count,
+  comingSoon,
   active = false,
   tone = "default",
   iconClassName,
@@ -30,6 +32,9 @@ export default function SidebarNavItem({
         variant="nav"
         size="md"
         href={href}
+        disabled={comingSoon && !href}
+        aria-label={comingSoon ? `${label} · Coming soon` : undefined}
+        title={comingSoon ? `${label} · Coming soon` : label}
         onClick={onNavigate}
         data-active={active}
         aria-current={active ? "page" : undefined}
@@ -46,7 +51,13 @@ export default function SidebarNavItem({
           )}
         />
         <span className="min-w-0 flex-1 truncate text-left">{label}</span>
-        {count !== undefined && <CountBadge>{count}</CountBadge>}
+        {comingSoon ? (
+          <span className="bg-muted text-soft shrink-0 rounded-full px-1.5 py-1 text-[10px] leading-none">
+            Coming soon
+          </span>
+        ) : (
+          count !== undefined && <CountBadge>{count}</CountBadge>
+        )}
       </Button>
     </li>
   );
