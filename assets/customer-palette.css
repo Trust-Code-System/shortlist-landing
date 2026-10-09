@@ -98,7 +98,7 @@ body.customer{
 .customer .doc .meta,.customer .sig-line,.customer .read-state{border-color:var(--client-border)}
 .customer .alert{color:var(--client-red-text)}
 .customer .legal p,.customer .legal li{color:var(--client-soft)}
-.customer .legal .draft{background:var(--client-amber-bg);border-color:var(--client-accent-border);color:var(--client-amber-text)}
+.customer .legal .draft{background:var(--client-accent-bg);border-color:var(--client-accent-border);color:var(--client-accent-text)}
 .customer .legal-nav a[aria-current="page"]{background:var(--client-muted);color:var(--client-fg)}
 .customer .modal-f{background:var(--client-secondary);border-color:var(--client-border)}
 .customer .toast{background:var(--client-primary);color:var(--client-primary-fg)}

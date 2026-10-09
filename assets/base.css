@@ -2,7 +2,8 @@
 :root{
   --paper:#F3F4F1; --sheet:#FFFFFF; --ink:#141619; --ink-2:#464A51; --ink-3:#6B6F76;
   --rule:#DADCD6; --rule-2:#C4C7C0; --scroll:#8A8E88;
-  --marker:#F2E85A;
+  --accent:#4124FB; --accent-hover:#4B30FF;
+  --marker:#E8E3FF; --marker-line:#B5A7FF; --marker-soft:rgba(65,36,251,.14);
   --error:#B42318; --error-tint:#FCF0EE; --ok:#1D6B3F;
   --night:#111315; --night-2:#191C1F; --night-rule:#2A2E33; --night-ink:#ECEDEA; --night-ink-2:#A3A7AD;
 
@@ -46,7 +47,8 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
 .mono{font-family:var(--mono);font-size:var(--t-mono);letter-spacing:.02em;text-transform:uppercase}
 .eyebrow{display:flex;align-items:center;gap:var(--s3);color:var(--ink-2)}
-.eyebrow::before{content:"";width:24px;height:1px;background:currentColor}
+.eyebrow::before{content:"";width:7px;height:7px;flex:none;border-radius:50%;background:var(--accent)}
+.night .eyebrow::before{background:var(--marker-line)}
 .hl{background:linear-gradient(var(--marker),var(--marker)) no-repeat 0 82% / 0% 46%;-webkit-box-decoration-break:clone;box-decoration-break:clone;padding:0 .08em;margin:0 -.08em;transition:background-size 900ms var(--ease-out)}
 .hl.on{background-size:100% 46%}
 

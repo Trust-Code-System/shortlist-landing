@@ -65,8 +65,8 @@
 .card-b{padding:var(--s5)}
 .card.mark{border-color:var(--marker-line);animation:markPulse 3.2s ease-in-out infinite}
 @keyframes markPulse{
-  0%,100%{box-shadow:0 0 0 3px rgba(242,232,90,.35),var(--sh-sheet)}
-  50%{box-shadow:0 0 0 6px rgba(242,232,90,.22),var(--sh-sheet)}
+  0%,100%{box-shadow:0 0 0 3px rgba(65,36,251,.35),var(--sh-sheet)}
+  50%{box-shadow:0 0 0 6px rgba(65,36,251,.22),var(--sh-sheet)}
 }
 
 /* ---------- KPIs ---------- */
@@ -238,8 +238,8 @@
 .auth-side::before{ /* ambient glow */
   content:"";position:absolute;inset:0;pointer-events:none;
   background:
-    radial-gradient(640px 420px at 18% 12%,rgba(242,232,90,.14),transparent 62%),
-    radial-gradient(720px 560px at 88% 92%,rgba(242,232,90,.07),transparent 60%);
+    radial-gradient(640px 420px at 18% 12%,rgba(65,36,251,.14),transparent 62%),
+    radial-gradient(720px 560px at 88% 92%,rgba(65,36,251,.07),transparent 60%);
 }
 .auth-side::after{ /* dotted grid */
   content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
@@ -259,7 +259,7 @@
   font-family:var(--serif);font-weight:500;font-style:italic;
   font-size:clamp(30px,2.9vw,44px);line-height:1.12;letter-spacing:-.015em;margin:var(--s4) 0 var(--s5);
 }
-.auth-hero h2 .mk{background:linear-gradient(transparent 62%,rgba(242,232,90,.32) 62%);padding:0 .06em;font-style:italic}
+.auth-hero h2 .mk{background:linear-gradient(transparent 62%,rgba(65,36,251,.32) 62%);padding:0 .06em;font-style:italic}
 .auth-hero p{color:var(--night-ink-2);font-size:16.5px;line-height:1.6;margin:0;max-width:38ch}
 
 /* floating sheets */
@@ -284,10 +284,10 @@
   position:absolute;right:-14px;top:-16px;transform:rotate(10deg);
   border:2px solid var(--marker);border-radius:6px;color:var(--marker);
   font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
-  padding:5px 9px;box-shadow:0 0 0 2px rgba(242,232,90,.15);
+  padding:5px 9px;box-shadow:0 0 0 2px rgba(65,36,251,.15);
   animation:stampGlow 3.4s ease-in-out infinite;
 }
-@keyframes stampGlow{0%,100%{opacity:.85}50%{opacity:1;box-shadow:0 0 18px rgba(242,232,90,.35)}}
+@keyframes stampGlow{0%,100%{opacity:.85}50%{opacity:1;box-shadow:0 0 18px rgba(65,36,251,.35)}}
 
 .auth-side-foot{position:relative;z-index:2;display:flex;gap:var(--s7);flex-wrap:wrap}
 .auth-stat b{display:block;font-size:26px;font-weight:650;letter-spacing:-.03em;color:var(--night-ink);font-variant-numeric:tabular-nums}
@@ -330,7 +330,7 @@
 .legal article{max-width:68ch}
 .legal h1{font-size:clamp(38px,4.2vw,58px);line-height:1;letter-spacing:-.045em;margin:var(--s4) 0}
 .legal .meta{display:flex;flex-wrap:wrap;gap:var(--s2) var(--s5);color:var(--ink-3);margin-bottom:var(--s6)}
-.legal .draft{display:flex;gap:var(--s3);padding:var(--s4);border:1.5px dashed var(--marker-line);background:#FBF9E3;border-radius:10px;font-size:14.5px;color:#5C5410;margin-bottom:var(--s6)}
+.legal .draft{display:flex;gap:var(--s3);padding:var(--s4);border:1.5px dashed var(--marker-line);background:var(--marker);border-radius:10px;font-size:14.5px;color:#4C3A9A;margin-bottom:var(--s6)}
 .legal .summary{background:var(--sheet);border:1px solid var(--sheet-line);border-radius:var(--r-sheet);padding:var(--s5);margin-bottom:var(--s7);box-shadow:var(--sh-sheet)}
 .legal .summary h2{margin:0 0 var(--s3);font-size:17px}
 .legal .summary ul{display:grid;gap:var(--s2);color:var(--ink-2);list-style:disc;padding-left:1.2em}
