@@ -53,7 +53,7 @@ export default function Profile() {
   const stats = [
     { label: "Clients", value: String(accounts.length) },
     { label: "Applications", value: String(openDeals) },
-    { label: "Monthly value", value: `₦${formatMoney(pipeline)}` },
+    { label: "Package value", value: `₦${formatMoney(pipeline)}` },
     { label: "Avg. response", value: `${avgWin}%` },
   ];
 

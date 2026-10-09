@@ -81,37 +81,23 @@ const TARGET_ROLES: Record<string, string[]> = {
 };
 
 const EMPLOYERS: Record<Market, string[]> = {
-  Nigeria: [
-    "Ferrule Pay",
-    "Palmgrove Bank",
-    "Brightwater Logistics",
-    "Odun Health",
-    "Halo Retail",
-    "Kestrel Energy",
-    "Tidewell Insurance",
-    "Saltpond Telecom",
-    "Arcadia Foods",
-    "Northbank Capital",
-  ],
-  "UK & Ireland": [
-    "Copperline Ltd",
-    "Lumen Health",
-    "Harbourside Group",
-    "Calder Analytics",
-    "Westmere Bank",
-  ],
-  "Canada & remote": [
-    "Maple & Pine Consulting",
-    "Fairhaven Tech",
-    "Northlake Health",
-    "Brightside Software",
-  ],
+  "United Kingdom": ["Copperline Ltd", "Lumen Health", "Harbourside Group", "Calder Analytics", "Westmere Bank"],
+  Canada: ["Maple & Pine Consulting", "Fairhaven Tech", "Northlake Health", "Brightside Software"],
+  Germany: ["Rheinwerk GmbH", "Elbtal Logistik", "Isar Analytics", "Nordlicht Health"],
+  Australia: ["Harbourline Pty", "Southbank Health", "Wattle Analytics", "Coralbay Group"],
+  Singapore: ["Straits Analytics", "Marina Health", "Lionbay Tech"],
+  Malaysia: ["Kuala Digital", "Petaling Systems", "Klang Logistics"],
+  Russia: ["Nevsky Systems", "Volga Analytics", "Ural Logistics"],
 };
 
 const LOCATIONS: Record<Market, string[]> = {
-  Nigeria: ["Lagos", "Abuja", "Port Harcourt", "Lagos · Hybrid"],
-  "UK & Ireland": ["London, UK", "Manchester, UK", "Dublin, IE", "Remote, UK"],
-  "Canada & remote": ["Toronto, CA", "Remote", "Vancouver, CA", "Remote, EU"],
+  "United Kingdom": ["London, UK", "Manchester, UK", "Leeds, UK", "Remote, UK"],
+  Canada: ["Toronto, Canada", "Vancouver, Canada", "Calgary, Canada"],
+  Germany: ["Berlin, Germany", "Munich, Germany", "Hamburg, Germany"],
+  Australia: ["Sydney, Australia", "Melbourne, Australia", "Brisbane, Australia"],
+  Singapore: ["Singapore"],
+  Malaysia: ["Kuala Lumpur, Malaysia", "Penang, Malaysia"],
+  Russia: ["Moscow, Russia", "St Petersburg, Russia"],
 };
 
 function statusFor(client: Company, index: number): ApplicationStatus {
@@ -282,15 +268,15 @@ export type IntakeCall = {
 };
 
 export const INTAKE_CALLS: IntakeCall[] = [
-  { id: "c1", name: "Obinna Chukwu", clientId: "obinna-chukwu", date: isoDaysFrom(1), time: "10:00", interest: "Active Search", where: "Nigeria", roles: "Sales operations, revenue ops", source: "Website", specialist: "Emeka Okonkwo", status: "Confirmed" },
-  { id: "c2", name: "Chiamaka Nnadi", clientId: "chiamaka-nnadi", date: isoDaysFrom(1), time: "13:30", interest: "CV Rewrite", where: "Nigeria", roles: "Pharmacist, clinical research", source: "Instagram", specialist: "Kemi Lawal", status: "Confirmed" },
-  { id: "c3", name: "Tolu Bankole", date: isoDaysFrom(2), time: "09:30", interest: "Not sure yet", where: "Abroad", roles: "Software engineer", source: "Referral", specialist: "Ifeanyi Nwosu", status: "Confirmed" },
-  { id: "c4", name: "Hauwa Garba", date: isoDaysFrom(3), time: "11:00", interest: "Full Concierge", where: "Both", roles: "Project manager, PMO lead", source: "LinkedIn", specialist: "Seyi Adeyemi", status: "Rescheduled" },
-  { id: "c5", name: "Victor Okon", date: isoDaysFrom(4), time: "16:00", interest: "Active Search", where: "Nigeria", roles: "Accountant, audit associate", source: "Website", specialist: "Halima Bello", status: "Confirmed" },
-  { id: "c6", name: "Grace Effiong", date: isoDaysFrom(6), time: "14:30", interest: "CV Rewrite", where: "Abroad", roles: "Nurse (UK NMC)", source: "Website", specialist: "Amaka Obi", status: "Confirmed" },
-  { id: "c7", name: "Aisha Lawan", clientId: "aisha-lawan", date: isoDaysFrom(-4), time: "10:00", interest: "Full Concierge", where: "Abroad", roles: "Data scientist", source: "Referral", specialist: "Emeka Okonkwo", status: "Completed" },
-  { id: "c8", name: "Blessing Udoh", clientId: "blessing-udoh", date: isoDaysFrom(-3), time: "11:30", interest: "Active Search", where: "Nigeria", roles: "Customer experience lead", source: "Instagram", specialist: "Halima Bello", status: "Completed" },
-  { id: "c9", name: "Peter Akande", date: isoDaysFrom(-2), time: "15:30", interest: "Not sure yet", where: "Nigeria", roles: "Graduate trainee", source: "Website", specialist: "Ngozi Eze", status: "No-show" },
+  { id: "c1", name: "Obinna Chukwu", clientId: "obinna-chukwu", date: isoDaysFrom(1), time: "10:00", interest: "Standard", where: "Germany", roles: "Sales operations, revenue ops", source: "Website", specialist: "Emeka Okonkwo", status: "Confirmed" },
+  { id: "c2", name: "Chiamaka Nnadi", clientId: "chiamaka-nnadi", date: isoDaysFrom(1), time: "13:30", interest: "Starter", where: "Australia", roles: "Pharmacist, clinical research", source: "Instagram", specialist: "Kemi Lawal", status: "Confirmed" },
+  { id: "c3", name: "Tolu Bankole", date: isoDaysFrom(2), time: "09:30", interest: "Not sure yet", where: "Canada, Germany", roles: "Software engineer", source: "Referral", specialist: "Ifeanyi Nwosu", status: "Confirmed" },
+  { id: "c4", name: "Hauwa Garba", date: isoDaysFrom(3), time: "11:00", interest: "Full Service", where: "United Kingdom", roles: "Project manager, PMO lead", source: "LinkedIn", specialist: "Seyi Adeyemi", status: "Rescheduled" },
+  { id: "c5", name: "Victor Okon", date: isoDaysFrom(4), time: "16:00", interest: "Readiness", where: "Not sure yet", roles: "Accountant, audit associate", source: "Website", specialist: "Halima Bello", status: "Confirmed" },
+  { id: "c6", name: "Grace Effiong", date: isoDaysFrom(6), time: "14:30", interest: "Standard", where: "United Kingdom", roles: "Registered nurse (NMC)", source: "Website", specialist: "Amaka Obi", status: "Confirmed" },
+  { id: "c7", name: "Aisha Lawan", clientId: "aisha-lawan", date: isoDaysFrom(-4), time: "10:00", interest: "Full Service", where: "Australia", roles: "Data scientist", source: "Referral", specialist: "Emeka Okonkwo", status: "Completed" },
+  { id: "c8", name: "Blessing Udoh", clientId: "blessing-udoh", date: isoDaysFrom(-3), time: "11:30", interest: "Standard", where: "Canada", roles: "Customer experience lead", source: "Instagram", specialist: "Halima Bello", status: "Completed" },
+  { id: "c9", name: "Peter Akande", date: isoDaysFrom(-2), time: "15:30", interest: "Not sure yet", where: "Singapore, Malaysia", roles: "Graduate trainee", source: "Website", specialist: "Ngozi Eze", status: "No-show" },
 ];
 
 
@@ -312,15 +298,16 @@ export type Agreement = {
 };
 
 const START_OFFSET: Record<string, number> = {
-  "CV in progress": 12,
-  Applying: 40,
-  Interviewing: 70,
-  "Offer received": 95,
-  Paused: 60,
+  "CV in progress": 2,
+  Applying: 14,
+  Interviewing: 30,
+  "Offer received": 55,
+  Paused: 40,
 };
 
 function startOffset(client: Company) {
-  return (START_OFFSET[stageOf(client)] ?? 30) + (hash(client.id) % 30);
+  if (stageOf(client) === "CV in progress") return 1 + (hash(client.id) % 7);
+  return (START_OFFSET[stageOf(client)] ?? 20) + (hash(client.id) % 40);
 }
 
 export const AGREEMENTS: Agreement[] = COMPANIES.filter(
@@ -373,25 +360,22 @@ export const PAYMENTS: Payment[] = COMPANIES.filter(
   (client) => !["Intake booked", "Agreement sent"].includes(stageOf(client)),
 )
   .flatMap((client) => {
-    const start = startOffset(client);
-    const monthly = packageOf(client) !== "CV Rewrite";
+    const date = isoDaysFrom(-startOffset(client));
     const seed = hash(client.id);
+    const ref = `SL-${date.slice(2, 4)}${date.slice(5, 7)}-${String((seed % 9000) + 1000)}`;
+    const base = {
+      clientId: client.id,
+      amount: client.pipelineValue,
+      method: (seed % 3 === 0 ? "Bank transfer" : "Card") as Payment["method"],
+      period: packageOf(client),
+    };
     const payments: Payment[] = [];
-    for (let offset = start; offset >= 0; offset -= monthly ? 30 : 1000) {
-      const date = isoDaysFrom(-offset);
-      const month = MONTH_NAMES[Number(date.slice(5, 7)) - 1];
-      let status: PaymentStatus = "Paid";
-      if (client.id === "segun-afolabi" && offset < 30) status = "Failed";
-      if (client.id === "yusuf-danjuma" && offset < 30) status = "Refunded";
-      payments.push({
-        ref: `SL-${date.slice(2, 4)}${date.slice(5, 7)}-${String(seed % 9000 + 1000)}${payments.length}`,
-        clientId: client.id,
-        amount: client.pipelineValue,
-        method: seed % 3 === 0 ? "Bank transfer" : "Card",
-        date,
-        status,
-        period: monthly ? `${month} ${date.slice(0, 4)}` : "One-off",
-      });
+    if (client.id === "kelechi-ibe") {
+      payments.push({ ...base, ref: ref + "F", date: isoDaysFrom(-startOffset(client) - 1), status: "Failed" });
+    }
+    payments.push({ ...base, ref, date, status: "Paid" });
+    if (client.id === "yusuf-danjuma") {
+      payments.push({ ...base, ref: ref + "R", amount: Math.round(client.pipelineValue * 0.4), date: isoDaysFrom(-20), status: "Refunded" });
     }
     return payments;
   })
@@ -413,7 +397,7 @@ export const REVENUE: RevenueMonth[] = (() => {
     months.set(key, {
       key,
       label: `${MONTH_NAMES[date.getUTCMonth()]} ${key.slice(0, 4)}`,
-      byPackage: { "CV Rewrite": 0, "Active Search": 0, "Full Concierge": 0 },
+      byPackage: { Readiness: 0, Starter: 0, Standard: 0, "Full Service": 0 },
       total: 0,
     });
   }
@@ -510,8 +494,8 @@ export function risksFor(clients: Company[]): Risk[] {
   return clients.flatMap((client) => {
     const risks: Risk[] = [];
     const stage = stageOf(client);
-    if (client.lastInteraction.label === "Renewal failed") {
-      risks.push({ clientId: client.id, reason: "Renewal payment failed", action: "Send payment link", severity: "High" });
+    if (stage === "Paused" && client.activityDays > 30) {
+      risks.push({ clientId: client.id, reason: `Paused, no reply for ${client.activityDays} days`, action: "Call to agree next steps", severity: "High" });
     } else if (stage === "Paused") {
       risks.push({ clientId: client.id, reason: "Search paused", action: "Book a check-in call", severity: "Medium" });
     }

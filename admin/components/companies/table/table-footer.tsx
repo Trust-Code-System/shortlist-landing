@@ -4,7 +4,7 @@ type TableFooterProps = {
   count: number;
 };
 
-const CALCULATIONS = ["Sum of monthly value", "Avg response rate", "Add calculation"];
+const CALCULATIONS = ["Sum of package value", "Avg response rate", "Add calculation"];
 
 export default function TableFooter({ count }: TableFooterProps) {
   return (

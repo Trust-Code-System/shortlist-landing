@@ -34,8 +34,8 @@ export default function PaymentsPage() {
   const byStatus = (status: PaymentStatus) => PAYMENTS.filter((item) => item.status === status);
   const rows = view === "all" ? PAYMENTS : byStatus(view as PaymentStatus);
   const thisMonth = REVENUE[REVENUE.length - 1];
-  const mrr = companies
-    .filter((client) => packageOf(client) !== "CV Rewrite" && !["Intake booked", "Agreement sent", "Paused"].includes(stageOf(client)))
+  const inService = companies
+    .filter((client) => !["Intake booked", "Agreement sent", "Paused"].includes(stageOf(client)))
     .reduce((sum, client) => sum + client.pipelineValue, 0);
 
   const columns: Column<Payment>[] = [
@@ -49,7 +49,7 @@ export default function PaymentsPage() {
         return client ? <Tag tone={TAG_TONES[packageOf(client)]}>{packageOf(client)}</Tag> : null;
       },
     },
-    { key: "period", label: "Period", render: (item) => <Muted>{item.period}</Muted> },
+    
     { key: "date", label: "Date", render: (item) => <span className="tabular-nums">{formatDay(item.date)}</span> },
     { key: "method", label: "Method", render: (item) => <Muted>{item.method}</Muted> },
     { key: "amount", label: "Amount", align: "end", render: (item) => <Money value={item.amount} /> },
@@ -58,7 +58,7 @@ export default function PaymentsPage() {
 
   function exportCsv() {
     downloadCsv("payments.csv", [
-      ["Reference", "Client", "Period", "Date", "Method", "Amount (NGN)", "Status"],
+      ["Reference", "Client", "Package", "Date", "Method", "Amount (NGN)", "Status"],
       ...rows.map((item) => [item.ref, clientById(item.clientId)?.name ?? "", item.period, item.date, item.method, item.amount, item.status]),
     ]);
   }
@@ -68,7 +68,7 @@ export default function PaymentsPage() {
       header={
         <PageHeader
           title="Payments"
-          status="Paystack · demo"
+          status="Paystack · sample prices"
           tabs={[
             { value: "all", label: "All", count: PAYMENTS.length },
             { value: "Paid", label: "Paid", count: byStatus("Paid").length },
@@ -92,8 +92,8 @@ export default function PaymentsPage() {
       <StatStrip
         stats={[
           { label: `Collected in ${thisMonth.label}`, value: naira(thisMonth.total), hint: "Successful payments only" },
-          { label: "Monthly recurring", value: naira(mrr), hint: "Active Search and Full Concierge" },
-          { label: "Failed", value: byStatus("Failed").length, hint: "Applications paused until paid" },
+          { label: "Value in service", value: naira(inService), hint: "Packages currently being delivered" },
+          { label: "Failed", value: byStatus("Failed").length, hint: "Retry or send a new payment link" },
           { label: "Refunded", value: naira(byStatus("Refunded").reduce((sum, item) => sum + item.amount, 0)), hint: "Across all months" },
         ]}
       />

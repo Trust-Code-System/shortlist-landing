@@ -1,30 +1,29 @@
 import { notFound } from "next/navigation";
 import Companies from "@/components/companies/companies";
 import MarketScope from "@/components/companies/market-scope";
+import { REGIONS } from "@/data/companies";
 
-const MARKETS: Record<string, string> = {
-  nigeria: "Nigeria",
-  "uk-ireland": "UK & Ireland",
-  "canada-remote": "Canada & remote",
-};
+function regionBySlug(slug: string) {
+  return REGIONS.find((region) => region.slug === slug);
+}
 
 export function generateStaticParams() {
-  return Object.keys(MARKETS).map((slug) => ({ slug }));
+  return REGIONS.map((region) => ({ slug: region.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  return { title: `${MARKETS[slug] ?? "Market"} · Shortlist Admin` };
+  return { title: `${regionBySlug(slug)?.label ?? "Market"} · Shortlist Admin` };
 }
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const market = MARKETS[slug];
-  if (!market) notFound();
+  const region = regionBySlug(slug);
+  if (!region) notFound();
   return (
     <>
-      <MarketScope market={market} />
-      <Companies title={`Clients · ${market}`} />
+      <MarketScope market={region.label} />
+      <Companies title={`Clients · ${region.label}`} />
     </>
   );
 }

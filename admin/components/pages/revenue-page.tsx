@@ -5,15 +5,16 @@ import { ScrollArea } from "@/components/_ui/scroll-area";
 import PageHeader from "@/components/_common/page/page-header";
 import PageShell from "@/components/_common/page/page-shell";
 import StatStrip from "@/components/_common/page/stat-strip";
-import { PAYMENTS, REVENUE, packageOf, stageOf } from "@/data/ops";
+import { REVENUE, stageOf } from "@/data/ops";
 import { useCompaniesStore } from "@/stores/companies-store";
 import type { Segment } from "@/data/companies";
 import { cn } from "@/lib/utils";
 
 const SERIES: { key: Segment; color: string }[] = [
-  { key: "Active Search", color: "bg-(--chart-1)" },
-  { key: "Full Concierge", color: "bg-(--chart-2)" },
-  { key: "CV Rewrite", color: "bg-(--chart-3)" },
+  { key: "Standard", color: "bg-(--chart-1)" },
+  { key: "Full Service", color: "bg-(--chart-2)" },
+  { key: "Starter", color: "bg-(--chart-3)" },
+  { key: "Readiness", color: "bg-(--chart-4)" },
 ];
 
 const naira = (value: number) => `₦${value.toLocaleString("en-NG")}`;
@@ -27,12 +28,12 @@ export default function RevenuePage() {
   const companies = useCompaniesStore((state) => state.companies);
   const current = REVENUE[REVENUE.length - 1];
   const previous = REVENUE[REVENUE.length - 2];
-  const recurring = companies
-    .filter((client) => packageOf(client) !== "CV Rewrite" && !["Intake booked", "Agreement sent", "Paused"].includes(stageOf(client)))
-    .reduce((sum, client) => sum + client.pipelineValue, 0);
-  const oneOffs = PAYMENTS.filter((payment) => payment.period === "One-off" && payment.status === "Paid" && payment.date.startsWith(current.key))
-    .reduce((sum, payment) => sum + payment.amount, 0);
-  const projected = recurring + oneOffs;
+  const inService = companies.filter(
+    (client) => !["Intake booked", "Agreement sent", "Paused"].includes(stageOf(client)),
+  );
+  const avgPackage = inService.length
+    ? Math.round(inService.reduce((sum, client) => sum + client.pipelineValue, 0) / inService.length)
+    : 0;
   const max = Math.max(...REVENUE.map((month) => month.total));
   const ceiling = Math.ceil(max / 500000) * 500000;
   const ticks = [ceiling, ceiling / 2, 0];
@@ -45,7 +46,7 @@ export default function RevenuePage() {
           stats={[
             { label: `Collected in ${current.label}`, value: naira(current.total), hint: "Month to date" },
             { label: `Collected in ${previous.label}`, value: naira(previous.total), hint: "Full month" },
-            { label: `Projected for ${current.label.slice(0, 3)}`, value: naira(projected), hint: "Recurring renewals plus one-offs" },
+            { label: "Average package", value: naira(avgPackage), hint: `Across ${inService.length} clients in service` },
             { label: "Four-month total", value: naira(total), hint: `${REVENUE[0].label} to ${current.label}` },
           ]}
         />
@@ -54,7 +55,7 @@ export default function RevenuePage() {
           <div className="flex flex-wrap items-end justify-between gap-3">
             <div className="flex flex-col gap-1.5">
               <h2 id="revenue-chart-title">Revenue by package</h2>
-              <p className="text-subtle">Successful payments per month. Failed and refunded payments are excluded.</p>
+              <p className="text-subtle">One-off package payments by month received. Failed and refunded payments are excluded. Sample prices.</p>
             </div>
             <ul className="caption-style flex flex-wrap items-center gap-4" aria-label="Legend">
               {SERIES.map((series) => (

@@ -169,6 +169,7 @@
   --chart-1: #3987e5;
   --chart-2: #d95926;
   --chart-3: #199e70;
+  --chart-4: #c98500;
   --max-width-global: 76.25rem;
   --padding-global: 1rem;
   --padding-section-sm: 1.5rem;
@@ -263,6 +264,7 @@
   --chart-1: #2a78d6;
   --chart-2: #eb6834;
   --chart-3: #1baf7a;
+  --chart-4: #eda100;
 }
 
 @variant sm {

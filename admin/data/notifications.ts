@@ -24,7 +24,7 @@ export const NOTIFICATIONS: Notification[] = [
     companyId: "adaeze-okafor",
     message: "mentioned you on Adaeze Okafor",
     quote:
-      "She wants to add UK remote roles. Can we move her to Full Concierge from next month?",
+      "She has two UK interviews coming up. Can we upgrade her to Full Service so she gets mock interviews?",
     time: "2m ago",
     unread: true,
   },
@@ -41,7 +41,7 @@ export const NOTIFICATIONS: Notification[] = [
     id: "n3",
     kind: "alert",
     companyId: "segun-afolabi",
-    message: "Renewal payment for Segun Afolabi failed. Applications are paused.",
+    message: "Segun Afolabi hasn’t replied in 41 days. Applications are paused.",
     time: "1h ago",
     unread: true,
   },

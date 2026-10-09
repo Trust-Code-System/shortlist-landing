@@ -49,7 +49,7 @@ export default function AtRiskPage() {
         stats={[
           { label: "Clients at risk", value: new Set(risks.map((risk) => risk.clientId)).size, hint: `Of ${companies.length} clients` },
           { label: "High severity", value: risks.filter((risk) => risk.severity === "High").length, hint: "Act today" },
-          { label: "Payment issues", value: risks.filter((risk) => risk.reason.includes("payment")).length, hint: "Failed renewals" },
+          { label: "Unsigned agreements", value: risks.filter((risk) => risk.reason.startsWith("Agreement unsigned")).length, hint: "Sign before payment" },
           { label: "Gone quiet", value: risks.filter((risk) => risk.reason.startsWith("No touchpoint")).length, hint: "No contact in 10+ days" },
         ]}
       />

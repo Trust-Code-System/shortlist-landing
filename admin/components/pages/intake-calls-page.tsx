@@ -44,7 +44,7 @@ export default function IntakeCallsPage() {
     },
     { key: "name", label: "Name", render: (call) => <ClientCell name={call.name} /> },
     { key: "interest", label: "Interested in", render: (call) => call.interest },
-    { key: "where", label: "Wants to work", render: (call) => <Muted>{call.where}</Muted> },
+    { key: "where", label: "Target country", render: (call) => <Muted>{call.where}</Muted> },
     { key: "roles", label: "Target roles", render: (call) => <Muted>{call.roles}</Muted> },
     { key: "source", label: "Source", render: (call) => <Muted>{call.source}</Muted> },
     { key: "specialist", label: "Specialist", render: (call) => <SpecialistCell name={call.specialist} /> },

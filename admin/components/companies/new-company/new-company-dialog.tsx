@@ -29,6 +29,7 @@ import {
   DEFAULT_TREND,
   INTERACTION_TYPES,
   MARKETS,
+  PACKAGE_PRICES,
   OWNERS,
   SEGMENTS,
   STAGES,
@@ -63,7 +64,7 @@ const EMPTY_FORM: FormState = {
   stage: STAGES[0],
   owner: OWNERS[0].name,
   market: MARKETS[0],
-  pipelineValue: "",
+  pipelineValue: String(PACKAGE_PRICES[SEGMENTS[0]]),
   openDeals: "0",
   winProbability: 0,
   interactionDate: TODAY,
@@ -163,7 +164,10 @@ export default function NewCompanyDialog() {
               <Field label="Package" htmlFor="company-segment">
                 <Select
                   value={form.segment}
-                  onValueChange={(value) => update("segment", value as Segment)}
+                  onValueChange={(value) => {
+                    update("segment", value as Segment);
+                    update("pipelineValue", String(PACKAGE_PRICES[value as Segment]));
+                  }}
                 >
                   <SelectTrigger id="company-segment">
                     <SelectValue />
@@ -219,7 +223,7 @@ export default function NewCompanyDialog() {
                 </SelectContent>
               </Select>
             </Field>
-            <Field label="Market" htmlFor="company-market">
+            <Field label="Target country" htmlFor="company-market">
               <Select
                 value={form.market}
                 onValueChange={(value) => update("market", value as Market)}
@@ -239,7 +243,7 @@ export default function NewCompanyDialog() {
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2">
-              <Field label="Monthly value" htmlFor="company-pipeline">
+              <Field label="Package value" htmlFor="company-pipeline">
                 <div className="relative">
                   <span
                     aria-hidden

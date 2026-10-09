@@ -1,4 +1,4 @@
-import type { Company, SortKey, Stage } from "@/data/companies";
+import { regionOf, type Company, type SortKey, type Stage } from "@/data/companies";
 
 export type CompanyFilters = {
   sortBy: SortKey;
@@ -46,7 +46,7 @@ export const CLIENT_VIEWS: { value: string; label: string; stages?: Stage[] }[] 
 export type ClientScope = { market?: string; view?: string };
 
 export function inScope(company: Company, { market, view }: ClientScope = {}) {
-  if (market && market !== ALL_MARKETS && company.market !== market) return false;
+  if (market && market !== ALL_MARKETS && regionOf(company.market) !== market) return false;
   const stages = CLIENT_VIEWS.find((item) => item.value === view)?.stages;
   if (stages && !company.tags.some((tag) => (stages as string[]).includes(tag))) return false;
   return true;
@@ -89,11 +89,12 @@ export function companiesCsvRows(companies: Company[]) {
       "Package & Stage",
       "Specialist",
       "Applications Sent",
-      "Monthly Value (NGN)",
+      "Package Value (NGN)",
       "Response Rate (%)",
       "Last Touchpoint Date",
       "Last Touchpoint",
-      "Market",
+      "Target Country",
+      "Region",
     ],
     ...companies.map((company) => [
       company.name,
@@ -105,6 +106,7 @@ export function companiesCsvRows(companies: Company[]) {
       company.lastInteraction.date,
       company.lastInteraction.label,
       company.market,
+      regionOf(company.market),
     ]),
   ];
 }

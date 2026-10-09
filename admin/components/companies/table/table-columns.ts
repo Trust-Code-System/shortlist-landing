@@ -9,7 +9,7 @@ export const TABLE_COLUMNS = [
   },
   {
     key: "pipelineValue",
-    label: "Monthly Value",
+    label: "Package Value",
     className: "justify-end tabular-nums",
   },
   {

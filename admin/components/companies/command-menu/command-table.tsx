@@ -18,7 +18,7 @@ const HEADERS = [
   { label: "Client", className: "" },
   { label: "Package & Stage", className: "hidden md:block" },
   { label: "Specialist", className: "hidden md:block" },
-  { label: "Monthly value", className: "text-right" },
+  { label: "Package value", className: "text-right" },
   { label: "Response rate", className: "hidden text-right lg:block" },
   { label: "Last touchpoint", className: "hidden lg:block" },
 ];

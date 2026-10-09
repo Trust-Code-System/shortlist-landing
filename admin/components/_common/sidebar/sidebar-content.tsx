@@ -85,9 +85,9 @@ export default function SidebarContent() {
     {
       title: "Markets",
       items: [
-        { icon: DotYellow, label: "Nigeria", href: "/markets/nigeria" },
-        { icon: DotPink, label: "UK & Ireland", href: "/markets/uk-ireland" },
-        { icon: DotPurple, label: "Canada & remote", href: "/markets/canada-remote" },
+        { icon: DotYellow, label: "UK & Europe", href: "/markets/uk-europe" },
+        { icon: DotPink, label: "Canada", href: "/markets/canada" },
+        { icon: DotPurple, label: "Asia-Pacific", href: "/markets/asia-pacific" },
       ],
     },
   ];
@@ -151,7 +151,7 @@ export default function SidebarContent() {
             {shortNaira(collected)}
           </span>
           <span className="caption-style text-subtle block whitespace-nowrap">
-            Active value
+            In service
           </span>
         </div>
         <Button
