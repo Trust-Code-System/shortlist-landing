@@ -1,7 +1,12 @@
+import { randomBytes } from "node:crypto";
 import type { NextConfig } from "next";
 
+process.env.BUILD_SESSION_SECRET ||= randomBytes(32).toString("hex");
+
 const nextConfig: NextConfig = {
-  /* config options here */
+  env: {
+    BUILD_SESSION_SECRET: process.env.BUILD_SESSION_SECRET,
+  },
   images: {
     // unoptimized: true,
     formats: ["image/avif", "image/webp"],

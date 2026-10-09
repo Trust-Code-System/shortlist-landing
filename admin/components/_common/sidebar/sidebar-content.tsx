@@ -7,6 +7,7 @@ import { ScrollArea } from "@/components/_ui/scroll-area";
 import SidebarNavItem from "./sidebar-nav-item";
 import SidebarSection from "./sidebar-section";
 import { useCompaniesStore } from "@/stores/companies-store";
+import { logout } from "@/app/login/actions";
 import { APPLICATIONS, INTAKE_CALLS, INTERVIEWS, THREADS, risksFor } from "@/data/ops";
 import Logo from "@/public/assets/images/_common/logo.svg";
 import ClipboardIcon from "@/public/assets/images/companies/sidebar/clipboard.svg";
@@ -143,6 +144,21 @@ export default function SidebarContent() {
           tone="quiet"
         />
         <SidebarNavItem icon={MessageQuestionIcon} label="Help" tone="quiet" />
+        <li>
+          <form action={logout}>
+            <Button
+              variant="nav"
+              size="md"
+              type="submit"
+              className="group text-subtle h-[30px] gap-1.5 py-0"
+            >
+              <svg aria-hidden viewBox="0 0 16 16" fill="none" className="text-subtle group-hover:text-icon size-3.5 shrink-0">
+                <path d="M6 2.5H3.5v11H6M10.5 5l3 3-3 3M13.5 8H6.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              <span className="min-w-0 flex-1 truncate text-left">Sign out</span>
+            </Button>
+          </form>
+        </li>
       </SidebarSection>
 
       <div className="border-sidebar-border bg-sidebar-accent flex shrink-0 items-center justify-between gap-2 border-b p-4">
